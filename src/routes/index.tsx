@@ -63,8 +63,9 @@ function Index() {
               <span className="italic text-sage">Tomaszewska</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
-              Aktorka, artystka, obserwatorka. 21 lat, głowa pełna kadrów, płócien i ludzi, których jeszcze nie zagrałam.
+              21-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
             </p>
+
             <div className="flex flex-wrap gap-4">
               <a href="#kontakt" className="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">Napisz do mnie</a>
               <a href="#galeria" className="px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">Zobacz galerię</a>
