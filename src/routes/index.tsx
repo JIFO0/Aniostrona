@@ -97,8 +97,15 @@ function Index() {
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
               <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
-              <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens. Reszta czasu należy do książek, farby i cichej obserwacji.</p>
+              <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, rzecz, która nie pasuje do reszty.</p>
+              <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
             </div>
+            <div className="mt-8 rounded-2xl p-6 bg-gradient-to-br from-rose/60 via-cream to-sage/20 border border-sage/20 shadow-[0_20px_50px_-30px_oklch(0.4_0.02_40/0.3)]">
+              <p className="text-foreground leading-relaxed font-serif italic text-lg">
+                Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży.
+              </p>
+            </div>
+
           </Reveal>
         </div>
       </section>
