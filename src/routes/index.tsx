@@ -203,7 +203,7 @@ function Index() {
               { y: "od 10.2024", t: "Green Caffe Nero, baristka", d: "Barem szybko rządziło się samo. Ludzie, ekspres, tempo, wszystko zapamiętane." },
               { y: "10.2025 - 03.2026", t: "Uniwersytet Warszawski, filologia polska", d: "Specjalność literaturoznawczo-językoznawcza. Słowo pod lupą." },
               { y: "od 10.2025", t: "Kierowniczka zmiany, Green Caffe Nero", d: "Awans, który wyszedł naturalnie. Zespół, grafik, decyzje pod presją." },
-              { y: "obecnie", t: "Warszawskie Studium Aktorskie im. Lucyny Kobierzyckiej", d: "Weekendowy tryb, przygotowanie do egzaminów na uczelnie aktorskie. Rekrutacje w toku." },
+              { y: "obecnie", t: "Profesjonalny kurs jubilerstwa, tryb dzienny", d: "Uczę się już teraz przy marce lambadjara.pl. Praca w metalu, kamieniach, drobnym detalu. Ręce zajęte, głowa pracuje inaczej." },
             ].map((e, i) => (
               <Reveal key={e.t} delay={i * 80}>
                 <div className="relative">
