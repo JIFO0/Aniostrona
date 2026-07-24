@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { useEffect, useState } from "react";
+import { Trophy, Award, Languages, Palette, Camera, Film, Gem, Users, Music, BookOpen, Sparkles, Brain, Megaphone } from "lucide-react";
+
 
 import meHero from "@/assets/photos/me-nobg.png.asset.json";
 import zaraModel from "@/assets/photos/Ok_Zara_model_nobg.png.asset.json";
