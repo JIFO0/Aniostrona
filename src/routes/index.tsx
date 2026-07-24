@@ -132,14 +132,8 @@ function Index() {
                   <h3 className="text-2xl mb-3">{c.t}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
                 </div>
-
-              <Reveal key={c.t} delay={i * 100}>
-                <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
-                  <div className="w-10 h-10 rounded-full bg-rose/50 mb-6 animate-shimmer" />
-                  <h3 className="text-2xl mb-3">{c.t}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
-                </div>
               </Reveal>
+
             ))}
           </div>
         </div>
