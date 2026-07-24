@@ -317,10 +317,17 @@ function Index() {
           </Reveal>
           <Reveal delay={150}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
-              <a href="mailto:aniat1090@gmail.com" className="px-7 py-4 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">aniat1090@gmail.com</a>
-              <a href="tel:+48518357491" className="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">518 357 491</a>
-              <a href="https://instagram.com/ann.veronique" target="_blank" rel="noopener noreferrer" className="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">@ann.veronique</a>
+              <a href="mailto:aniat1090@gmail.com" className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">
+                <Mail className="w-4 h-4" /> aniat1090@gmail.com
+              </a>
+              <a href="tel:+48518357491" className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">
+                <Phone className="w-4 h-4" /> 518 357 491
+              </a>
+              <a href="https://instagram.com/ann.veronique" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">
+                <Instagram className="w-4 h-4" /> @ann.veronique
+              </a>
             </div>
+
           </Reveal>
           <Reveal delay={300}>
             <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Warszawa · Gdynia · mobilna po całej Polsce</p>
