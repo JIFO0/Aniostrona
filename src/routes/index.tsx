@@ -115,15 +115,24 @@ function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">czym się zajmuję</p>
-            <h2 className="text-4xl md:text-5xl mb-16 max-w-2xl">Cztery rzeczy, które robię serio.</h2>
+            <h2 className="text-4xl md:text-5xl mb-16 max-w-2xl">
+              Rzeczy, z którymi można mi <span className="italic text-sage bg-gradient-to-r from-sage/20 to-rose/40 px-3 rounded-md">zaufać</span>.
+            </h2>
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { t: "Aktorstwo", d: "Od 2023 przed kamerą. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
+              { t: "Aktorstwo", d: "Na planach już od 2022. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
               { t: "Modeling", d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
               { t: "Zarządzanie", d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", d: "Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana, kiedy obraz w końcu zaczyna oddychać." },
+              { t: "Sztuka", d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach</span>, poprawiam pojedynczy pociąg pędzla, aż obraz zaczyna oddychać.</> },
             ].map((c, i) => (
+              <Reveal key={c.t} delay={i * 100}>
+                <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
+                  <div className="w-10 h-10 rounded-full bg-rose/50 mb-6 animate-shimmer" />
+                  <h3 className="text-2xl mb-3">{c.t}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
+                </div>
+
               <Reveal key={c.t} delay={i * 100}>
                 <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
                   <div className="w-10 h-10 rounded-full bg-rose/50 mb-6 animate-shimmer" />
