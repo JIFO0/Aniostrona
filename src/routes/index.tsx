@@ -233,7 +233,7 @@ function Index() {
           </Reveal>
           <Reveal delay={100}>
             <div className="flex flex-wrap gap-3 mb-12">
-              {["estetyka", "marketing", "psychologia", "malarstwo", "aktorstwo", "proces twórczy filmów", "muzyka", "literatura"].map((tag) => (
+              {["estetyka", "marketing", "psychologia", "malarstwo", "aktorstwo", "jubilerstwo", "ludzie", "muzyka", "literatura"].map((tag) => (
                 <span key={tag} className="px-5 py-2 rounded-full bg-rose/40 text-sm tracking-wide hover:bg-rose/60 transition-colors cursor-default">
                   {tag}
                 </span>
@@ -242,8 +242,9 @@ function Index() {
           </Reveal>
           <Reveal delay={200}>
             <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed italic font-serif">
-              Czytam rzeczy nietypowe, często wraca się z nich innym człowiekiem. Lubię, kiedy książka wymaga ode mnie uwagi, a film pokazuje, jak sam się robił.
+              Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera. Chętnie się tym dzielę, na głos albo w notatkach.
             </p>
+
           </Reveal>
         </div>
       </section>
