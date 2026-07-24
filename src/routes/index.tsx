@@ -255,10 +255,39 @@ function Index() {
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">osiągnięcia</p>
             <h3 className="text-3xl mb-8">Rzeczy, o których warto wspomnieć.</h3>
-            <ul className="space-y-6 text-muted-foreground">
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span></li>
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span><strong className="text-foreground font-normal">Instant Challenge Champion</strong>, Destination Imagination Global Finals, Knoxville, USA.</span></li>
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span>Cambridge English Level 1 Certificate in ESOL, poziom B2, dziś realnie bliżej C1.</span></li>
+
+            {/* Champion highlight */}
+            <div className="relative rounded-2xl p-6 mb-6 bg-gradient-to-br from-rose/70 via-cream to-sage/25 border border-sage/30 shadow-[0_25px_60px_-30px_oklch(0.4_0.04_155/0.4)] overflow-hidden">
+              <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage/15 blur-2xl" />
+              <div className="relative flex items-start gap-4">
+                <div className="shrink-0 w-14 h-14 rounded-2xl bg-sage text-primary-foreground flex items-center justify-center shadow-lg">
+                  <Trophy className="w-7 h-7" />
+                </div>
+                <div>
+                  <p className="text-xs tracking-[0.25em] uppercase text-sage mb-2">najważniejsze</p>
+                  <h4 className="font-serif text-2xl md:text-3xl mb-2 text-foreground">
+                    Instant Challenge <span className="italic">Champion</span>
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Destination Imagination Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <ul className="space-y-4 text-muted-foreground">
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Award className="w-4 h-4" /></span>
+                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span>
+              </li>
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Languages className="w-4 h-4" /></span>
+                <span>Cambridge English Level 1 Certificate in ESOL, poziom B2, dziś realnie bliżej C1.</span>
+              </li>
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Sparkles className="w-4 h-4" /></span>
+                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, Varsztatownia.</span>
+              </li>
             </ul>
           </Reveal>
           <Reveal delay={150}>
@@ -267,8 +296,10 @@ function Index() {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
               <p>Szybko się uczę, ogarniam wiele wątków naraz, adaptuję się do zmiany planu w pół dnia. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. Umiem reprezentować tak siebie, jak i markę, konkretnie, spokojnie, z klasą.</p>
             </div>
           </Reveal>
+
         </div>
       </section>
 
