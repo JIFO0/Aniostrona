@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { useEffect, useState } from "react";
+import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram } from "lucide-react";
+
 
 import meHero from "@/assets/photos/me-nobg.png.asset.json";
 import zaraModel from "@/assets/photos/Ok_Zara_model_nobg.png.asset.json";
@@ -61,8 +63,9 @@ function Index() {
               <span className="italic text-sage">Tomaszewska</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
-              Aktorka, artystka, obserwatorka. 21 lat, głowa pełna kadrów, płócien i ludzi, których jeszcze nie zagrałam.
+              21-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
             </p>
+
             <div className="flex flex-wrap gap-4">
               <a href="#kontakt" className="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">Napisz do mnie</a>
               <a href="#galeria" className="px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">Zobacz galerię</a>
@@ -94,8 +97,15 @@ function Index() {
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
               <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
-              <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens. Reszta czasu należy do książek, farby i cichej obserwacji.</p>
+              <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, rzecz, która nie pasuje do reszty.</p>
+              <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
             </div>
+            <div className="mt-8 rounded-2xl p-6 bg-gradient-to-br from-rose/60 via-cream to-sage/20 border border-sage/20 shadow-[0_20px_50px_-30px_oklch(0.4_0.02_40/0.3)]">
+              <p className="text-foreground leading-relaxed font-serif italic text-lg">
+                Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży.
+              </p>
+            </div>
+
           </Reveal>
         </div>
       </section>
@@ -105,14 +115,16 @@ function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">czym się zajmuję</p>
-            <h2 className="text-4xl md:text-5xl mb-16 max-w-2xl">Cztery rzeczy, które robię serio.</h2>
+            <h2 className="text-4xl md:text-5xl mb-16 max-w-2xl">
+              Rzeczy, z którymi można mi <span className="italic text-sage bg-gradient-to-r from-sage/20 to-rose/40 px-3 rounded-md">zaufać</span>.
+            </h2>
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { t: "Aktorstwo", d: "Od 2023 przed kamerą. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
+              { t: "Aktorstwo", d: "Na planach już od 2022. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
               { t: "Modeling", d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
               { t: "Zarządzanie", d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", d: "Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana, kiedy obraz w końcu zaczyna oddychać." },
+              { t: "Sztuka", d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach</span>, poprawiam pojedynczy pociąg pędzla, aż obraz zaczyna oddychać.</> },
             ].map((c, i) => (
               <Reveal key={c.t} delay={i * 100}>
                 <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
@@ -121,6 +133,7 @@ function Index() {
                   <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
                 </div>
               </Reveal>
+
             ))}
           </div>
         </div>
@@ -132,7 +145,7 @@ function Index() {
           {[
             { n: 20, s: "+", label: "planów filmowych", note: "na których byłam, uczyłam się rytmu i ciszy między ujęciami" },
             { n: 100, s: "+", label: "prac plastycznych", note: "od szkiców po skończone płótna, każde z własnym nastrojem" },
-            { n: 2, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, mikrofon w ręku" },
+            { n: 4, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, mikrofon w ręku" },
           ].map((s, i) => (
             <Reveal key={s.label} delay={i * 120}>
               <div>
@@ -190,7 +203,7 @@ function Index() {
               { y: "od 10.2024", t: "Green Caffe Nero, baristka", d: "Barem szybko rządziło się samo. Ludzie, ekspres, tempo, wszystko zapamiętane." },
               { y: "10.2025 - 03.2026", t: "Uniwersytet Warszawski, filologia polska", d: "Specjalność literaturoznawczo-językoznawcza. Słowo pod lupą." },
               { y: "od 10.2025", t: "Kierowniczka zmiany, Green Caffe Nero", d: "Awans, który wyszedł naturalnie. Zespół, grafik, decyzje pod presją." },
-              { y: "obecnie", t: "Warszawskie Studium Aktorskie im. Lucyny Kobierzyckiej", d: "Weekendowy tryb, przygotowanie do egzaminów na uczelnie aktorskie. Rekrutacje w toku." },
+              { y: "obecnie", t: "Profesjonalny kurs jubilerstwa, tryb dzienny", d: "Uczę się już teraz przy marce lambadjara.pl. Praca w metalu, kamieniach, drobnym detalu. Ręce zajęte, głowa pracuje inaczej." },
             ].map((e, i) => (
               <Reveal key={e.t} delay={i * 80}>
                 <div className="relative">
@@ -220,7 +233,7 @@ function Index() {
           </Reveal>
           <Reveal delay={100}>
             <div className="flex flex-wrap gap-3 mb-12">
-              {["estetyka", "marketing", "psychologia", "malarstwo", "aktorstwo", "proces twórczy filmów", "muzyka", "literatura"].map((tag) => (
+              {["estetyka", "marketing", "psychologia", "malarstwo", "aktorstwo", "jubilerstwo", "ludzie", "muzyka", "literatura"].map((tag) => (
                 <span key={tag} className="px-5 py-2 rounded-full bg-rose/40 text-sm tracking-wide hover:bg-rose/60 transition-colors cursor-default">
                   {tag}
                 </span>
@@ -229,8 +242,9 @@ function Index() {
           </Reveal>
           <Reveal delay={200}>
             <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed italic font-serif">
-              Czytam rzeczy nietypowe, często wraca się z nich innym człowiekiem. Lubię, kiedy książka wymaga ode mnie uwagi, a film pokazuje, jak sam się robił.
+              Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera. Chętnie się tym dzielę, na głos albo w notatkach.
             </p>
+
           </Reveal>
         </div>
       </section>
@@ -241,10 +255,39 @@ function Index() {
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">osiągnięcia</p>
             <h3 className="text-3xl mb-8">Rzeczy, o których warto wspomnieć.</h3>
-            <ul className="space-y-6 text-muted-foreground">
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span></li>
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span><strong className="text-foreground font-normal">Instant Challenge Champion</strong>, Destination Imagination Global Finals, Knoxville, USA.</span></li>
-              <li className="flex gap-4"><span className="text-sage font-serif text-2xl leading-none">·</span><span>Cambridge English Level 1 Certificate in ESOL, poziom B2, dziś realnie bliżej C1.</span></li>
+
+            {/* Champion highlight */}
+            <div className="relative rounded-2xl p-6 mb-6 bg-gradient-to-br from-rose/70 via-cream to-sage/25 border border-sage/30 shadow-[0_25px_60px_-30px_oklch(0.4_0.04_155/0.4)] overflow-hidden">
+              <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage/15 blur-2xl" />
+              <div className="relative flex items-start gap-4">
+                <div className="shrink-0 w-14 h-14 rounded-2xl bg-sage text-primary-foreground flex items-center justify-center shadow-lg">
+                  <Trophy className="w-7 h-7" />
+                </div>
+                <div>
+                  <p className="text-xs tracking-[0.25em] uppercase text-sage mb-2">najważniejsze</p>
+                  <h4 className="font-serif text-2xl md:text-3xl mb-2 text-foreground">
+                    Instant Challenge <span className="italic">Champion</span>
+                  </h4>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Destination Imagination Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <ul className="space-y-4 text-muted-foreground">
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Award className="w-4 h-4" /></span>
+                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span>
+              </li>
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Languages className="w-4 h-4" /></span>
+                <span>Cambridge English Level 1 Certificate in ESOL, poziom B2, dziś realnie bliżej C1.</span>
+              </li>
+              <li className="flex gap-4 items-start">
+                <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Sparkles className="w-4 h-4" /></span>
+                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, Varsztatownia.</span>
+              </li>
             </ul>
           </Reveal>
           <Reveal delay={150}>
@@ -253,8 +296,10 @@ function Index() {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
               <p>Szybko się uczę, ogarniam wiele wątków naraz, adaptuję się do zmiany planu w pół dnia. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. Umiem reprezentować tak siebie, jak i markę, konkretnie, spokojnie, z klasą.</p>
             </div>
           </Reveal>
+
         </div>
       </section>
 
@@ -272,10 +317,17 @@ function Index() {
           </Reveal>
           <Reveal delay={150}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10">
-              <a href="mailto:aniat1090@gmail.com" className="px-7 py-4 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">aniat1090@gmail.com</a>
-              <a href="tel:+48518357491" className="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">518 357 491</a>
-              <a href="https://instagram.com/ann.veronique" target="_blank" rel="noopener noreferrer" className="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">@ann.veronique</a>
+              <a href="mailto:aniat1090@gmail.com" className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">
+                <Mail className="w-4 h-4" /> aniat1090@gmail.com
+              </a>
+              <a href="tel:+48518357491" className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">
+                <Phone className="w-4 h-4" /> 518 357 491
+              </a>
+              <a href="https://instagram.com/ann.veronique" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">
+                <Instagram className="w-4 h-4" /> @ann.veronique
+              </a>
             </div>
+
           </Reveal>
           <Reveal delay={300}>
             <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">Warszawa · Gdynia · mobilna po całej Polsce</p>
