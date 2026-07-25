@@ -3,6 +3,11 @@ import { useState } from "react";
 import { Lock, Download, ArrowLeft, FileText } from "lucide-react";
 import cvAsset from "@/assets/cv.pdf.asset.json";
 
+// In static export mode the PDF lives at /assets/pdf/CV.pdf.
+// In Lovable dev mode we use the Lovable CDN URL from the asset JSON.
+const EXPORT_STATIC = import.meta.env.EXPORT_STATIC === "1";
+const cvUrl = EXPORT_STATIC ? "/assets/pdf/CV.pdf" : cvAsset.url;
+
 export const Route = createFileRoute("/cv")({
   head: () => ({
     meta: [
@@ -93,14 +98,14 @@ function CVPage() {
               </p>
               <div className="flex flex-col gap-3">
                 <a
-                  href={cvAsset.url}
+                  href={cvUrl}
                   download="Anna-Tomaszewska-CV.pdf"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
                 >
                   <Download className="w-4 h-4" /> Pobierz CV (PDF)
                 </a>
                 <a
-                  href={cvAsset.url}
+                  href={cvUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors"

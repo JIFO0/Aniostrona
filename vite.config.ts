@@ -15,5 +15,15 @@ export default defineConfig({
   },
   vite: {
     plugins: [mcpPlugin()],
+    // Allow the export script to override the output directory via env variable.
+    build: {
+      outDir: process.env.VITE_BUILD_OUTDIR ?? "dist",
+      emptyOutDir: true,
+    },
+    // Expose EXPORT_STATIC to import.meta.env so cv.tsx can detect static export mode.
+    define: {
+      "import.meta.env.EXPORT_STATIC": JSON.stringify(process.env.EXPORT_STATIC ?? ""),
+    },
   },
 });
+
