@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { useEffect, useState } from "react";
-import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram } from "lucide-react";
+import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText } from "lucide-react";
+
 
 
 import meHero from "@/assets/photos/me-nobg.png.asset.json";
@@ -43,13 +44,17 @@ function Index() {
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <a href="#top" className="font-serif italic text-lg tracking-wide">Ania Tomaszewska</a>
-          <div className="hidden md:flex gap-8 text-sm text-muted-foreground">
+          <div className="hidden md:flex gap-8 text-sm text-muted-foreground items-center">
             <a href="#o-mnie" className="hover:text-foreground transition-colors">o mnie</a>
             <a href="#czym" className="hover:text-foreground transition-colors">czym się zajmuję</a>
             <a href="#galeria" className="hover:text-foreground transition-colors">galeria</a>
             <a href="#sciezka" className="hover:text-foreground transition-colors">ścieżka</a>
             <a href="#kontakt" className="hover:text-foreground transition-colors">kontakt</a>
+            <Link to="/cv" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
+              <FileText className="w-3.5 h-3.5" /> CV
+            </Link>
           </div>
+
         </div>
       </nav>
 
