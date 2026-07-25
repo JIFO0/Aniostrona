@@ -110,31 +110,38 @@ function Index() {
 
       {/* ABOUT */}
       <section id="o-mnie" className="py-24 md:py-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="rounded-3xl p-8 md:p-14 bg-gradient-to-br from-[oklch(0.95_0.03_235)] via-[oklch(0.97_0.02_230)] to-[oklch(0.94_0.04_215)] border border-[oklch(0.85_0.05_230)]/40 shadow-[0_30px_70px_-40px_oklch(0.55_0.08_235/0.45)]">
-            <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="rounded-3xl p-8 md:p-16 bg-gradient-to-br from-[oklch(0.975_0.012_235)] via-[oklch(0.98_0.008_230)] to-[oklch(0.97_0.015_215)] border border-[oklch(0.9_0.02_230)]/50 shadow-[0_30px_70px_-45px_oklch(0.55_0.05_235/0.25)]">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
               <Reveal>
                 <div className="relative">
                   <div className="absolute -inset-4 bg-rose/40 rounded-3xl -rotate-2" />
-                  <img src={orchid.url} alt="Ania z orchideą" className="relative rounded-2xl object-cover aspect-[3/4] w-full" />
+                  <img src={orchid.url} alt="Ania z orchideą" className="relative rounded-2xl object-cover aspect-[4/5] w-full" />
                 </div>
               </Reveal>
               <Reveal delay={150}>
                 <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">o mnie</p>
                 <h2 className="text-4xl md:text-5xl mb-8">Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.</h2>
-                <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+                <div className="space-y-5 text-[1.0625rem] md:text-lg text-muted-foreground leading-relaxed">
                   <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
                   <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
                   <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.</p>
                   <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
                 </div>
-                <div className="mt-8 rounded-2xl p-7 md:p-8 bg-gradient-to-br from-rose/60 via-cream to-sage/20 border border-sage/20 shadow-[0_20px_50px_-30px_oklch(0.4_0.02_40/0.3)]">
-                  <p className="italic text-xl md:text-2xl leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 400 }}>
+              </Reveal>
+            </div>
+            <Reveal delay={200}>
+              <div className="mt-12 md:mt-16 rounded-2xl p-7 md:p-10 bg-gradient-to-br from-[oklch(0.97_0.015_230)] via-cream/60 to-[oklch(0.96_0.02_25)]/60 border border-sage/15">
+                <div className="flex items-start gap-5">
+                  <div className="shrink-0 w-11 h-11 rounded-full bg-sage/15 text-sage flex items-center justify-center">
+                    <Sparkles className="w-5 h-5" />
+                  </div>
+                  <p className="italic text-[1.1875rem] md:text-[1.375rem] leading-relaxed text-foreground/85" style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 300 }}>
                     Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży.
                   </p>
                 </div>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
