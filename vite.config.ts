@@ -12,8 +12,11 @@ const isExport = process.env.EXPORT_STATIC === "1";
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
     server: { entry: "server" },
+    // Enable SSG prerendering during static export so pages build as fully populated HTML.
+    prerender: isExport ? {
+      routes: ["/", "/cv", "/poradnik-portfolio-aktorskie"],
+    } : undefined,
   },
   vite: {
     // Disable mcpPlugin during static export build to avoid Windows path separator bug in @lovable.dev/mcp-js
@@ -29,5 +32,7 @@ export default defineConfig({
     },
   },
 });
+
+
 
 

@@ -432,18 +432,120 @@ def rewrite_asset_urls():
 
 
 # ---------------------------------------------------------------------------
-# Step 6 — Generate per-route HTML files
+# Step 6 — Generate per-route HTML files with pre-rendered content & relative paths
 # ---------------------------------------------------------------------------
 
 def generate_route_html_files():
-    root_html_path = DIST_DIR / "index.html"
-    if not root_html_path.exists():
-        css_files = [f.name for f in DIST_ASSETS.glob("styles-*.css")] if DIST_ASSETS.exists() else []
-        js_files  = [f.name for f in DIST_ASSETS.glob("index-*.js")] if DIST_ASSETS.exists() else []
-        css_link  = f'<link rel="stylesheet" href="/assets/{css_files[0]}" />' if css_files else ""
-        js_script = f'<script type="module" src="/assets/{js_files[0]}"></script>' if js_files else ""
+    log("Generating pre-rendered static HTML files...")
 
-        template = f"""<!DOCTYPE html>
+    css_files = [f.name for f in DIST_ASSETS.glob("styles-*.css")] if DIST_ASSETS.exists() else []
+    js_files  = [f.name for f in DIST_ASSETS.glob("index-*.js")] if DIST_ASSETS.exists() else []
+
+    css_name = css_files[0] if css_files else ""
+    js_name  = js_files[0]  if js_files  else ""
+
+    # 1. Main Index HTML (relative path: assets/...)
+    root_html_path = DIST_DIR / "index.html"
+    
+    # Pre-rendered markup for the homepage so it renders instantly offline without requiring SSR
+    main_body_markup = """
+    <main class="grain min-h-screen text-foreground">
+      <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+          <a href="#top" class="font-serif italic text-lg tracking-wide">Ania Tomaszewska</a>
+          <div class="hidden md:flex gap-8 text-sm text-muted-foreground items-center">
+            <a href="#o-mnie" class="hover:text-foreground transition-colors">o mnie</a>
+            <a href="#czym" class="hover:text-foreground transition-colors">czym się zajmuję</a>
+            <a href="#galeria" class="hover:text-foreground transition-colors">galeria</a>
+            <a href="#sciezka" class="hover:text-foreground transition-colors">ścieżka</a>
+            <a href="poradnik-portfolio-aktorskie/" class="hover:text-foreground transition-colors">poradnik</a>
+            <a href="#kontakt" class="hover:text-foreground transition-colors">kontakt</a>
+            <a href="cv/" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
+              CV
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <section id="top" class="mesh-bg relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-32">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative">
+          <div>
+            <p class="text-sm tracking-[0.3em] uppercase text-sage mb-6">Warszawa · Gdynia · w drodze</p>
+            <h1 class="font-serif text-5xl md:text-7xl leading-[1.05] mb-6">
+              Anna Weronika<br/>
+              <span class="italic text-sage">Tomaszewska</span>
+              <span class="block text-xl md:text-2xl font-normal font-sans text-muted-foreground mt-3 tracking-normal">
+                Aktorka · Modelka · Artystka
+              </span>
+            </h1>
+            <p class="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
+              Aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#kontakt" class="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all">Napisz do mnie</a>
+              <a href="#galeria" class="px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">Zobacz galerię</a>
+            </div>
+          </div>
+          <div class="relative flex justify-center md:justify-end">
+            <img src="assets/gallery-me/me-nobg-upscaled.png" alt="Anna Weronika Tomaszewska" class="max-h-[560px] w-auto object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.15)]" />
+          </div>
+        </div>
+      </section>
+
+      <section id="o-mnie" class="py-24 md:py-32">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="rounded-3xl p-8 md:p-16 bg-gradient-to-br from-[oklch(0.975_0.012_235)] via-[oklch(0.98_0.008_230)] to-[oklch(0.97_0.015_215)] border border-[oklch(0.9_0.02_230)]/50">
+            <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+              <div>
+                <img src="assets/gallery-me/Orchid-me-upscaled.png" alt="Ania z orchideą" class="rounded-2xl object-cover aspect-[4/5] w-full" />
+              </div>
+              <div>
+                <p class="text-sm tracking-[0.25em] uppercase text-sage mb-4">o mnie</p>
+                <h2 class="text-4xl md:text-5xl mb-8">Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.</h2>
+                <div class="space-y-5 text-[1.0625rem] md:text-lg text-muted-foreground leading-relaxed">
+                  <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
+                  <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
+                  <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="galeria" class="py-24 md:py-32 mesh-bg">
+        <div class="max-w-6xl mx-auto px-6">
+          <p class="text-sm tracking-[0.25em] uppercase text-sage mb-4">galeria</p>
+          <h2 class="text-4xl md:text-5xl mb-6 max-w-2xl">Ja i moje prace w kadrze.</h2>
+          <div class="columns-2 md:columns-3 gap-4 space-y-4 pt-8">
+            <img src="assets/gallery-me/Orchid-me-upscaled.png" alt="Portret z orchideą" class="w-full rounded-xl object-cover" />
+            <img src="assets/gallery-me/guitar-me%20upscaled.png" alt="Z gitarą" class="w-full rounded-xl object-cover" />
+            <img src="assets/gallery-me/Silver_glitter-upscaled.png" alt="Srebrny brokat" class="w-full rounded-xl object-cover" />
+            <img src="assets/gallery-me/Peaceful_evening-upscaled.png" alt="Wieczór" class="w-full rounded-xl object-cover" />
+            <img src="assets/gallery-me/Ok_Zara_model-upscaled.png" alt="Zara model" class="w-full rounded-xl object-cover" />
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" class="mesh-bg py-24 md:py-32">
+        <div class="max-w-3xl mx-auto px-6 text-center">
+          <p class="text-sm tracking-[0.25em] uppercase text-sage mb-6">kontakt</p>
+          <h2 class="font-serif text-5xl md:text-6xl mb-6">Napisz, <span class="italic">jeśli masz coś ciekawego.</span></h2>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-10 pt-4">
+            <a href="mailto:aniat1090@gmail.com" class="px-7 py-4 rounded-full bg-sage text-primary-foreground text-sm tracking-wide">aniat1090@gmail.com</a>
+            <a href="tel:+48518357491" class="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide">518 357 491</a>
+            <a href="https://instagram.com/ann.veronique" target="_blank" class="px-7 py-4 rounded-full border border-sage/40 text-sm tracking-wide">@ann.veronique</a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-10 text-center text-xs text-muted-foreground border-t border-border/40">
+        <p class="font-serif italic">© Anna Weronika Tomaszewska</p>
+      </footer>
+    </main>
+    """
+
+    index_html = f"""<!DOCTYPE html>
 <html lang="pl">
   <head>
     <meta charset="utf-8" />
@@ -454,66 +556,76 @@ def generate_route_html_files():
     <meta property="og:description" content="Miejsce, w którym mieszczą się plany filmowe, płótna, sceny i cichy proces twórczy." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://annatomaszewska.pl/" />
-    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <link rel="canonical" href="https://annatomaszewska.pl/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" />
-    {css_link}
+    {f'<link rel="stylesheet" href="assets/{css_name}" />' if css_name else ''}
   </head>
   <body>
-    <div id="root"></div>
-    {js_script}
+    <div id="root">{main_body_markup}</div>
+    {f'<script type="module" src="assets/{js_name}"></script>' if js_name else ''}
   </body>
 </html>"""
-        root_html_path.write_text(template, encoding="utf-8")
-        ok("Generated dist-static/index.html from bundled assets.")
 
+    root_html_path.write_text(index_html, encoding="utf-8")
+    ok("Generated standalone dist-static/index.html (with relative asset links)")
 
-    root_html = root_html_path.read_text(encoding="utf-8")
-
-    # Fix relative asset paths → absolute in root index.html
-    root_html_fixed = re.sub(
-        r'(href|src)="(?!https?:|/|#|data:)([^"]+)"',
-        r'\1="/\2"',
-        root_html,
-    )
-    root_html_path.write_text(root_html_fixed, encoding="utf-8")
-    ok("Fixed asset paths in dist-static/index.html")
-
+    # 2. Sub-routes HTML (relative paths pointing to ../assets/...)
     for route in ROUTES:
         route_dir = DIST_DIR / route["path"]
         ensure_dir(route_dir)
         route_html_path = route_dir / "index.html"
 
-        html = root_html_fixed
+        css_rel = f'<link rel="stylesheet" href="../assets/{css_name}" />' if css_name else ''
+        js_rel  = f'<script type="module" src="../assets/{js_name}"></script>' if js_name else ''
 
-        # Fix relative paths for routes one level deeper
-        html = re.sub(
-            r'(href|src)="(?!https?:|/|#|data:)([^"]+)"',
-            r'\1="/\2"',
-            html,
-        )
+        noindex_meta = '<meta name="robots" content="noindex" />' if route["noindex"] else ''
 
-        # Update <title>
-        html = re.sub(r"<title>[^<]*</title>", f"<title>{route['title']}</title>", html)
+        sub_html = f"""<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{route['title']}</title>
+    <meta name="description" content="Anna Weronika Tomaszewska — Official Portfolio" />
+    {noindex_meta}
+    <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="{route['canonical']}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" />
+    {css_rel}
+  </head>
+  <body>
+    <div id="root">{main_body_markup}</div>
+    {js_rel}
+  </body>
+</html>"""
 
-        # Update canonical link
-        html = re.sub(
-            r'<link rel="canonical"[^>]*/?>',
-            f'<link rel="canonical" href="{route["canonical"]}" />',
-            html,
-        )
-
-        # Add noindex for CV page
-        if route["noindex"] and 'name="robots"' not in html:
-            html = html.replace(
-                "</head>",
-                '  <meta name="robots" content="noindex" />\n</head>',
-            )
-
-        route_html_path.write_text(html, encoding="utf-8")
+        route_html_path.write_text(sub_html, encoding="utf-8")
         ok(f"Generated route HTML → dist-static/{route['path']}/index.html")
+
+    # 3. Create double-clickable offline Windows launcher in dist-static/
+    launcher_bat = DIST_DIR / "start_offline_site.bat"
+    launcher_bat.write_text(
+        '@echo off\n'
+        'title Aniastrona - Local Offline Website\n'
+        'echo ================================================\n'
+        'echo   Aniastrona - Local Offline Website Launcher\n'
+        'echo ================================================\n'
+        'echo.\n'
+        'echo Opening website in your default browser at http://localhost:3000 ...\n'
+        'start http://localhost:3000\n'
+        'echo Press Ctrl+C in this window to stop the server.\n'
+        'echo.\n'
+        'python -m http.server 3000 --directory "%~dp0" 2>nul || py -m http.server 3000 --directory "%~dp0"\n'
+        'pause\n',
+        encoding="utf-8",
+    )
+    ok("Generated double-clickable launcher → dist-static/start_offline_site.bat")
+
 
 
 # ---------------------------------------------------------------------------
