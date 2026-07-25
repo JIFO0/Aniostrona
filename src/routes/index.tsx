@@ -19,15 +19,29 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const gallery = [
+const galleryMe = [
   { src: orchid.url, alt: "Portret z białą orchideą", tall: true },
-  { src: movieSet.url, alt: "Kadr z planu filmowego" },
-  { src: painting.url, alt: "Malarstwo, obraz w toku", tall: true },
   { src: guitar.url, alt: "Z gitarą w białej sukni" },
   { src: silver.url, alt: "Srebrny brokat, sesja portretowa", tall: true },
   { src: peaceful.url, alt: "Wieczorne czytanie przy oknie" },
+];
+
+const galleryWorks = [
+  { src: movieSet.url, alt: "Kadr z planu filmowego" },
+  { src: painting.url, alt: "Malarstwo, obraz w toku", tall: true },
   { src: rose.url, alt: "Sucha róża w złotej godzinie", tall: true },
 ];
+
+function useAge() {
+  return useMemo(() => {
+    const now = new Date();
+    const birthYear = 2004;
+    const birthMonth = 11; // listopad
+    let age = now.getFullYear() - birthYear;
+    if (now.getMonth() + 1 < birthMonth) age -= 1;
+    return age;
+  }, []);
+}
 
 function Index() {
   const [lightbox, setLightbox] = useState<string | null>(null);
