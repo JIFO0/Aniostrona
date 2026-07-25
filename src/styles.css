@@ -28,14 +28,15 @@
   --color-rose: var(--rose);
   --color-sage: var(--sage);
   --color-cream: var(--cream);
-  --font-serif: "Cormorant Garamond", serif;
+  --font-serif: "Lora", serif;
   --font-sans: "Karla", sans-serif;
+  --font-display: "Montserrat", sans-serif;
 }
 
 :root {
   --radius: 1rem;
   --background: oklch(0.975 0.008 70);
-  --foreground: oklch(0.24 0.02 40);
+  --foreground: oklch(0.34 0.008 40);
   --card: oklch(0.99 0.006 70);
   --card-foreground: oklch(0.24 0.02 40);
   --primary: oklch(0.42 0.04 155);
@@ -58,10 +59,11 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
-    color: var(--color-foreground);
+    color: rgb(65 60 59);
     font-family: var(--font-sans);
     font-weight: 300;
     letter-spacing: 0.01em;
+    font-size: 1.0625rem;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);

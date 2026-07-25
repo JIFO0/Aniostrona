@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
-import { useEffect, useState } from "react";
-import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText, User, ImageIcon } from "lucide-react";
 
 
 
@@ -19,24 +19,41 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const gallery = [
+const galleryMe = [
   { src: orchid.url, alt: "Portret z białą orchideą", tall: true },
-  { src: movieSet.url, alt: "Kadr z planu filmowego" },
-  { src: painting.url, alt: "Malarstwo, obraz w toku", tall: true },
   { src: guitar.url, alt: "Z gitarą w białej sukni" },
   { src: silver.url, alt: "Srebrny brokat, sesja portretowa", tall: true },
   { src: peaceful.url, alt: "Wieczorne czytanie przy oknie" },
+];
+
+const galleryWorks = [
+  { src: movieSet.url, alt: "Kadr z planu filmowego" },
+  { src: painting.url, alt: "Malarstwo, obraz w toku", tall: true },
   { src: rose.url, alt: "Sucha róża w złotej godzinie", tall: true },
 ];
 
+function useAge() {
+  return useMemo(() => {
+    const now = new Date();
+    const birthYear = 2004;
+    const birthMonth = 11; // listopad
+    let age = now.getFullYear() - birthYear;
+    if (now.getMonth() + 1 < birthMonth) age -= 1;
+    return age;
+  }, []);
+}
+
 function Index() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [galleryTab, setGalleryTab] = useState<"me" | "works">("me");
+  const age = useAge();
   useEffect(() => {
     if (!lightbox) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightbox(null);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightbox]);
+  const gallery = galleryTab === "me" ? galleryMe : galleryWorks;
 
   return (
     <main className="grain min-h-screen text-foreground">
@@ -68,7 +85,7 @@ function Index() {
               <span className="italic text-sage">Tomaszewska</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
-              21-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
+              {age}-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -82,6 +99,10 @@ function Index() {
               src={meHero.url}
               alt="Ania"
               className="max-h-[560px] w-auto object-contain animate-float-slow drop-shadow-[0_30px_40px_rgba(0,0,0,0.15)]"
+              style={{
+                WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 78%, transparent 100%)",
+              }}
             />
           </div>
         </div>
@@ -89,29 +110,32 @@ function Index() {
 
       {/* ABOUT */}
       <section id="o-mnie" className="py-24 md:py-32">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-5 gap-12 items-center">
-          <Reveal className="md:col-span-2">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-rose/40 rounded-3xl -rotate-2" />
-              <img src={orchid.url} alt="Ania z orchideą" className="relative rounded-2xl object-cover aspect-[3/4] w-full" />
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="rounded-3xl p-8 md:p-14 bg-gradient-to-br from-[oklch(0.95_0.03_235)] via-[oklch(0.97_0.02_230)] to-[oklch(0.94_0.04_215)] border border-[oklch(0.85_0.05_230)]/40 shadow-[0_30px_70px_-40px_oklch(0.55_0.08_235/0.45)]">
+            <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center">
+              <Reveal>
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-rose/40 rounded-3xl -rotate-2" />
+                  <img src={orchid.url} alt="Ania z orchideą" className="relative rounded-2xl object-cover aspect-[3/4] w-full" />
+                </div>
+              </Reveal>
+              <Reveal delay={150}>
+                <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">o mnie</p>
+                <h2 className="text-4xl md:text-5xl mb-8">Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.</h2>
+                <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+                  <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
+                  <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
+                  <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.</p>
+                  <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
+                </div>
+                <div className="mt-8 rounded-2xl p-7 md:p-8 bg-gradient-to-br from-rose/60 via-cream to-sage/20 border border-sage/20 shadow-[0_20px_50px_-30px_oklch(0.4_0.02_40/0.3)]">
+                  <p className="italic text-xl md:text-2xl leading-relaxed" style={{ fontFamily: '"Montserrat", sans-serif', fontWeight: 400 }}>
+                    Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży.
+                  </p>
+                </div>
+              </Reveal>
             </div>
-          </Reveal>
-          <Reveal className="md:col-span-3" delay={150}>
-            <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">o mnie</p>
-            <h2 className="text-4xl md:text-5xl mb-8">Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.</h2>
-            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed">
-              <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
-              <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
-              <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, rzecz, która nie pasuje do reszty.</p>
-              <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
-            </div>
-            <div className="mt-8 rounded-2xl p-6 bg-gradient-to-br from-rose/60 via-cream to-sage/20 border border-sage/20 shadow-[0_20px_50px_-30px_oklch(0.4_0.02_40/0.3)]">
-              <p className="text-foreground leading-relaxed font-serif italic text-lg">
-                Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży.
-              </p>
-            </div>
-
-          </Reveal>
+          </div>
         </div>
       </section>
 
@@ -129,7 +153,7 @@ function Index() {
               { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</> },
               { t: "Modeling", icon: Camera, d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
               { t: "Zarządzanie", icon: Briefcase, d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedynczy pociąg pędzla, aż efekt jest perfekcyjny</span>.</> },
+              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny</span>.</> },
             ].map((c, i) => {
               const Icon = c.icon;
               return (
@@ -155,7 +179,7 @@ function Index() {
           {[
             { n: 20, s: "+", label: "planów filmowych", note: "na których byłam, uczyłam się rytmu i ciszy między ujęciami" },
             { n: 100, s: "+", label: "prac plastycznych", note: "od szkiców po skończone płótna, każde z własnym nastrojem" },
-            { n: 4, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, mikrofon w ręku" },
+            { n: 4, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, reklamy, marketing, mikrofon w ręku" },
           ].map((s, i) => (
             <Reveal key={s.label} delay={i * 120}>
               <div>
@@ -175,10 +199,29 @@ function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">galeria</p>
-            <h2 className="text-4xl md:text-5xl mb-6 max-w-2xl">Kadry z drogi.</h2>
-            <p className="text-muted-foreground max-w-xl mb-14 leading-relaxed">Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.</p>
+            <h2 className="text-4xl md:text-5xl mb-6 max-w-2xl">Ja i moje prace w kadrze.</h2>
+            <p className="text-muted-foreground max-w-xl mb-10 leading-relaxed">Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.</p>
           </Reveal>
-          <div className="columns-2 md:columns-3 gap-4 space-y-4">
+          <Reveal delay={100}>
+            <div className="inline-flex items-center gap-1 p-1 mb-10 rounded-full bg-cream/70 border border-sage/20 shadow-[0_10px_30px_-20px_oklch(0.4_0.02_40/0.3)]">
+              {[
+                { key: "me" as const, label: "Ja", Icon: User },
+                { key: "works" as const, label: "Prace", Icon: ImageIcon },
+              ].map(({ key, label, Icon }) => {
+                const active = galleryTab === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setGalleryTab(key)}
+                    className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm tracking-wide transition-all ${active ? "bg-sage text-primary-foreground shadow" : "text-muted-foreground hover:text-foreground"}`}
+                  >
+                    <Icon className="w-3.5 h-3.5" /> {label}
+                  </button>
+                );
+              })}
+            </div>
+          </Reveal>
+          <div key={galleryTab} className="columns-2 md:columns-3 gap-4 space-y-4 animate-drift-in">
             {gallery.map((g, i) => (
               <Reveal key={g.src} delay={i * 60}>
                 <button
@@ -234,7 +277,7 @@ function Index() {
           src={zaraModel.url}
           alt=""
           aria-hidden
-          className="absolute right-0 bottom-0 h-[500px] w-auto opacity-30 pointer-events-none hidden lg:block"
+          className="absolute bottom-0 h-[500px] w-auto opacity-30 pointer-events-none hidden lg:block right-[4rem] xl:right-[6rem] 2xl:right-[8rem]"
         />
         <div className="max-w-4xl mx-auto px-6 relative">
           <Reveal>
@@ -306,7 +349,7 @@ function Index() {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
               <p>Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
-              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>, konkretnie, spokojnie, z klasą.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>.</p>
             </div>
           </Reveal>
 
@@ -323,7 +366,7 @@ function Index() {
               Napisz, <span className="italic">jeśli masz coś ciekawego.</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed">
-              Plan, sesja, rola, projekt. Odpisuję szybko, nawet między zmianami.
+              Plan, sesja, rola, projekt. Odpisuję szybko, nawet między moimi zajęciami i zmianami.
             </p>
           </Reveal>
           <Reveal delay={150}>
