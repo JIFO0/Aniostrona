@@ -349,7 +349,7 @@ function Index() {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
               <p>Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
-              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>, konkretnie, spokojnie, z klasą.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>.</p>
             </div>
           </Reveal>
 
