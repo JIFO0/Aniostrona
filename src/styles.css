@@ -28,8 +28,9 @@
   --color-rose: var(--rose);
   --color-sage: var(--sage);
   --color-cream: var(--cream);
-  --font-serif: "Cormorant Garamond", serif;
+  --font-serif: "Lora", serif;
   --font-sans: "Karla", sans-serif;
+  --font-display: "Montserrat", sans-serif;
 }
 
 :root {
