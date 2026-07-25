@@ -366,7 +366,7 @@ function Index() {
               Napisz, <span className="italic">jeśli masz coś ciekawego.</span>
             </h2>
             <p className="text-muted-foreground max-w-xl mx-auto mb-12 leading-relaxed">
-              Plan, sesja, rola, projekt. Odpisuję szybko, nawet między zmianami.
+              Plan, sesja, rola, projekt. Odpisuję szybko, nawet między moimi zajęciami i zmianami.
             </p>
           </Reveal>
           <Reveal delay={150}>
