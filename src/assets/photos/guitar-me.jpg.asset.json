@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "asset_id": "ee8cc33d-ffcf-455d-859b-05069ff35bf8",
+  "asset_id": "8cb5864a-c113-4a56-846d-d4cc71269f59",
   "project_id": "dd74ab12-74ce-4c06-9ec4-ee10e1078e70",
-  "url": "/__l5e/assets-v1/ee8cc33d-ffcf-455d-859b-05069ff35bf8/guitar-me.jpg",
-  "r2_key": "a/v1/dd74ab12-74ce-4c06-9ec4-ee10e1078e70/ee8cc33d-ffcf-455d-859b-05069ff35bf8/guitar-me.jpg",
-  "original_filename": "guitar-me.jpg",
-  "size": 45676,
-  "content_type": "image/jpeg",
-  "created_at": "2026-07-24T18:17:25Z"
+  "url": "/__l5e/assets-v1/8cb5864a-c113-4a56-846d-d4cc71269f59/guitar-me.png",
+  "r2_key": "a/v1/dd74ab12-74ce-4c06-9ec4-ee10e1078e70/8cb5864a-c113-4a56-846d-d4cc71269f59/guitar-me.png",
+  "original_filename": "guitar-me.png",
+  "size": 9884392,
+  "content_type": "image/png",
+  "created_at": "2026-07-25T08:03:29Z"
 }
