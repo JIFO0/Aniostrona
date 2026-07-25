@@ -41,7 +41,7 @@ const timeline = [
     period: "od 06.2026",
     title: "Kreatorka mediów, Lambadjara",
     description:
-      "Tworzenie contentu wokół marki i narracji, a także samo robienie handmade koralików.",
+      "Tworzenie contentu wokół marki i narracji o niej, a także samo robienie handmade koralików.",
   },
   {
     period: "obecnie",

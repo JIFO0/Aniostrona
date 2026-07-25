@@ -1,5 +1,52 @@
 {
-  "generated": "never",
-  "galleryMe": [],
-  "galleryWorks": []
+  "generated": "2026-07-25T11:17:08.108896+00:00",
+  "galleryMe": [
+    {
+      "src": "/assets/gallery-me/Ok_Zara_model-upscaled.png",
+      "alt": "Ok Zara model",
+      "file": "Ok_Zara_model-upscaled.png"
+    },
+    {
+      "src": "/assets/gallery-me/Orchid-me-upscaled.png",
+      "alt": "Orchid me",
+      "file": "Orchid-me-upscaled.png"
+    },
+    {
+      "src": "/assets/gallery-me/Peaceful_evening-upscaled.png",
+      "alt": "Peaceful evening",
+      "file": "Peaceful_evening-upscaled.png"
+    },
+    {
+      "src": "/assets/gallery-me/Silver_glitter-upscaled.png",
+      "alt": "Silver glitter",
+      "file": "Silver_glitter-upscaled.png"
+    },
+    {
+      "src": "/assets/gallery-me/guitar-me%20upscaled.png",
+      "alt": "guitar me",
+      "file": "guitar-me upscaled.png"
+    },
+    {
+      "src": "/assets/gallery-me/me-nobg-upscaled.png",
+      "alt": "me nobg",
+      "file": "me-nobg-upscaled.png"
+    }
+  ],
+  "galleryWorks": [
+    {
+      "src": "/assets/gallery-works/Dried%20rose%20in%20the%20golden%20hour.jpg",
+      "alt": "Dried rose in the golden hour",
+      "file": "Dried rose in the golden hour.jpg"
+    },
+    {
+      "src": "/assets/gallery-works/Late-night%20painting.jpg",
+      "alt": "Late night painting",
+      "file": "Late-night painting.jpg"
+    },
+    {
+      "src": "/assets/gallery-works/Movie%20set%20life.jpg",
+      "alt": "Movie set life",
+      "file": "Movie set life.jpg"
+    }
+  ]
 }
