@@ -471,10 +471,11 @@ function Index() {
               href="https://jifo.dev"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-foreground transition-colors group"
+              className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors group"
             >
               <span>Made by boyfriend</span>
               <Heart className="w-3 h-3 text-rose-500 fill-rose-500 inline group-hover:scale-110 transition-transform" />
+              <span className="underline decoration-sage/40 underline-offset-2">jifo.dev</span>
             </a>
           </div>
         </div>
