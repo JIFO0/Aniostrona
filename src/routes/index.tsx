@@ -153,7 +153,7 @@ function Index() {
               { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</> },
               { t: "Modeling", icon: Camera, d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
               { t: "Zarządzanie", icon: Briefcase, d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedynczy pociąg pędzla, aż efekt jest perfekcyjny</span>.</> },
+              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny</span>.</> },
             ].map((c, i) => {
               const Icon = c.icon;
               return (
