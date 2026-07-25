@@ -45,12 +45,15 @@ function useAge() {
 
 function Index() {
   const [lightbox, setLightbox] = useState<string | null>(null);
+  const [galleryTab, setGalleryTab] = useState<"me" | "works">("me");
+  const age = useAge();
   useEffect(() => {
     if (!lightbox) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightbox(null);
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [lightbox]);
+  const gallery = galleryTab === "me" ? galleryMe : galleryWorks;
 
   return (
     <main className="grain min-h-screen text-foreground">
