@@ -7,10 +7,14 @@ export const Route = createFileRoute("/cv")({
   head: () => ({
     meta: [
       { title: "CV — Anna Weronika Tomaszewska" },
-      { name: "description", content: "CV Anny Weroniki Tomaszewskiej do pobrania." },
+      { name: "description", content: "Prywatne CV i dorobek artystyczny Anny Weroniki Tomaszewskiej. Zobacz lub pobierz pełne CV w formacie PDF." },
       { name: "robots", content: "noindex" },
       { property: "og:title", content: "CV — Anna Weronika Tomaszewska" },
-      { property: "og:description", content: "CV Anny Weroniki Tomaszewskiej do pobrania." },
+      { property: "og:description", content: "Prywatne CV i dorobek artystyczny Anny Weroniki Tomaszewskiej. Zobacz lub pobierz pełne CV w formacie PDF." },
+      { property: "og:url", content: "https://annatomaszewska.pl/cv" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://annatomaszewska.pl/cv" },
     ],
   }),
   component: CVPage,
@@ -57,8 +61,11 @@ function CVPage() {
                 Wpisz hasło, żeby zobaczyć i pobrać CV.
               </p>
               <form onSubmit={onSubmit} className="space-y-4">
+                <label htmlFor="cv-password" className="sr-only">Hasło dostępu do CV</label>
                 <input
+                  id="cv-password"
                   type="password"
+                  aria-label="Hasło dostępu do CV"
                   autoFocus
                   value={value}
                   onChange={(e) => { setValue(e.target.value); setError(false); }}

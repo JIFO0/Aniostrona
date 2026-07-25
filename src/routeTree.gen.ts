@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as PoradnikPortfolioAktorskieRouteImport } from './routes/poradnik-portfolio-aktorskie'
 import { Route as CvRouteImport } from './routes/cv'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
@@ -21,6 +22,12 @@ const McpRoute = McpRouteImport.update({
   path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PoradnikPortfolioAktorskieRoute =
+  PoradnikPortfolioAktorskieRouteImport.update({
+    id: '/poradnik-portfolio-aktorskie',
+    path: '/poradnik-portfolio-aktorskie',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CvRoute = CvRouteImport.update({
   id: '/cv',
   path: '/cv',
@@ -53,6 +60,7 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/mcp': typeof McpRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -61,6 +69,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/mcp': typeof McpRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -70,6 +79,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/mcp': typeof McpRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -80,6 +90,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cv'
+    | '/poradnik-portfolio-aktorskie'
     | '/mcp'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -88,6 +99,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cv'
+    | '/poradnik-portfolio-aktorskie'
     | '/mcp'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -96,6 +108,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cv'
+    | '/poradnik-portfolio-aktorskie'
     | '/mcp'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -105,6 +118,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CvRoute: typeof CvRoute
+  PoradnikPortfolioAktorskieRoute: typeof PoradnikPortfolioAktorskieRoute
   McpRoute: typeof McpRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -118,6 +132,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poradnik-portfolio-aktorskie': {
+      id: '/poradnik-portfolio-aktorskie'
+      path: '/poradnik-portfolio-aktorskie'
+      fullPath: '/poradnik-portfolio-aktorskie'
+      preLoaderRoute: typeof PoradnikPortfolioAktorskieRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cv': {
@@ -161,6 +182,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CvRoute: CvRoute,
+  PoradnikPortfolioAktorskieRoute: PoradnikPortfolioAktorskieRoute,
   McpRoute: McpRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:

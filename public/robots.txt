@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /cv
+
+Sitemap: https://annatomaszewska.pl/sitemap.xml

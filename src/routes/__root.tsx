@@ -82,6 +82,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Ania Tomaszewska — aktorka, artystka, obserwatorka" },
       { property: "og:description", content: "Miejsce, w którym mieszczą się plany filmowe, płótna, sceny i cichy proces twórczy." },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://annatomaszewska.pl/" },
       { property: "og:image", content: "https://id-preview--dd74ab12-74ce-4c06-9ec4-ee10e1078e70.lovable.app/__l5e/assets-v1/efb43aee-bbda-4210-aab5-6793d711dfc4/me-nobg.png" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: "https://id-preview--dd74ab12-74ce-4c06-9ec4-ee10e1078e70.lovable.app/__l5e/assets-v1/efb43aee-bbda-4210-aab5-6793d711dfc4/me-nobg.png" },
@@ -89,9 +90,43 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: "stylesheet", href: appCss },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "canonical", href: "https://annatomaszewska.pl/" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Person",
+              "@id": "https://annatomaszewska.pl/#person",
+              "name": "Anna Weronika Tomaszewska",
+              "alternateName": "Ania Tomaszewska",
+              "jobTitle": ["Aktorka", "Modelka", "Artystka"],
+              "description": "Polska aktorka, modelka i autorka prac plastycznych pochodząca z Warszawy, pracująca w Warszawie i Gdyni.",
+              "url": "https://annatomaszewska.pl/",
+              "image": "https://id-preview--dd74ab12-74ce-4c06-9ec4-ee10e1078e70.lovable.app/__l5e/assets-v1/efb43aee-bbda-4210-aab5-6793d711dfc4/me-nobg.png",
+              "workLocation": [
+                { "@type": "Place", "name": "Warszawa" },
+                { "@type": "Place", "name": "Gdynia" }
+              ],
+              "knowsAbout": ["Aktorstwo", "Modelowanie", "Malarstwo", "Fotografia artystyczna", "Produkcja filmowa"]
+            },
+            {
+              "@type": "WebSite",
+              "@id": "https://annatomaszewska.pl/#website",
+              "url": "https://annatomaszewska.pl/",
+              "name": "Anna Weronika Tomaszewska — Official Portfolio",
+              "publisher": { "@id": "https://annatomaszewska.pl/#person" },
+              "inLanguage": "pl-PL"
+            }
+          ]
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,

@@ -66,6 +66,7 @@ function Index() {
             <a href="#czym" className="hover:text-foreground transition-colors">czym się zajmuję</a>
             <a href="#galeria" className="hover:text-foreground transition-colors">galeria</a>
             <a href="#sciezka" className="hover:text-foreground transition-colors">ścieżka</a>
+            <Link to="/poradnik-portfolio-aktorskie" className="hover:text-foreground transition-colors">poradnik</Link>
             <a href="#kontakt" className="hover:text-foreground transition-colors">kontakt</a>
             <Link to="/cv" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
               <FileText className="w-3.5 h-3.5" /> CV
@@ -83,6 +84,9 @@ function Index() {
             <h1 className="font-serif text-5xl md:text-7xl leading-[1.05] mb-6">
               Anna Weronika<br/>
               <span className="italic text-sage">Tomaszewska</span>
+              <span className="block text-xl md:text-2xl font-normal font-sans text-muted-foreground mt-3 tracking-normal">
+                Aktorka · Modelka · Artystka
+              </span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
               {age}-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
@@ -97,7 +101,7 @@ function Index() {
             <div className="absolute inset-0 mesh-bg blur-3xl opacity-60 -z-10" />
             <img
               src={meHero.url}
-              alt="Ania"
+              alt="Anna Weronika Tomaszewska — portret aktorski i artystyczny"
               className="max-h-[560px] w-auto object-contain animate-float-slow drop-shadow-[0_30px_40px_rgba(0,0,0,0.15)]"
               style={{
                 WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 100%)",
@@ -362,6 +366,25 @@ function Index() {
           </Reveal>
 
 
+        </div>
+      </section>
+
+      {/* GUIDE BANNER */}
+      <section className="py-16 bg-gradient-to-r from-sage/10 via-rose/10 to-sage/10 border-y border-sage/20">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8">
+          <div>
+            <span className="text-xs tracking-[0.25em] uppercase text-sage font-medium block mb-2">Poradnik · Baza wiedzy</span>
+            <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-3">Jak przygotować się do sesji portfolio aktorskiego?</h3>
+            <p className="text-muted-foreground text-base max-w-xl">
+              Sprawdź praktyczne porady dotyczące headshotów, wyboru ubioru, makijażu oraz ekspresji przed aparatem dla aktorów i modeli.
+            </p>
+          </div>
+          <Link
+            to="/poradnik-portfolio-aktorskie"
+            className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-sage text-primary-foreground text-sm font-medium tracking-wide hover:opacity-90 transition-all hover:scale-[1.02] shadow-md"
+          >
+            <Camera className="w-4 h-4" /> Przeczytaj poradnik
+          </Link>
         </div>
       </section>
 
