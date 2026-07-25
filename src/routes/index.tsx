@@ -1,7 +1,8 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
 import { useEffect, useState } from "react";
-import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram } from "lucide-react";
+import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText } from "lucide-react";
+
 
 
 import meHero from "@/assets/photos/me-nobg.png.asset.json";
@@ -43,13 +44,17 @@ function Index() {
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <a href="#top" className="font-serif italic text-lg tracking-wide">Ania Tomaszewska</a>
-          <div className="hidden md:flex gap-8 text-sm text-muted-foreground">
+          <div className="hidden md:flex gap-8 text-sm text-muted-foreground items-center">
             <a href="#o-mnie" className="hover:text-foreground transition-colors">o mnie</a>
             <a href="#czym" className="hover:text-foreground transition-colors">czym się zajmuję</a>
             <a href="#galeria" className="hover:text-foreground transition-colors">galeria</a>
             <a href="#sciezka" className="hover:text-foreground transition-colors">ścieżka</a>
             <a href="#kontakt" className="hover:text-foreground transition-colors">kontakt</a>
+            <Link to="/cv" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
+              <FileText className="w-3.5 h-3.5" /> CV
+            </Link>
           </div>
+
         </div>
       </nav>
 
@@ -121,20 +126,25 @@ function Index() {
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { t: "Aktorstwo", d: "Na planach już od 2022. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
-              { t: "Modeling", d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
-              { t: "Zarządzanie", d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach</span>, poprawiam pojedynczy pociąg pędzla, aż obraz zaczyna oddychać.</> },
-            ].map((c, i) => (
-              <Reveal key={c.t} delay={i * 100}>
-                <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
-                  <div className="w-10 h-10 rounded-full bg-rose/50 mb-6 animate-shimmer" />
-                  <h3 className="text-2xl mb-3">{c.t}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
-                </div>
-              </Reveal>
+              { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</> },
+              { t: "Modeling", icon: Camera, d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
+              { t: "Zarządzanie", icon: Briefcase, d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
+              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedynczy pociąg pędzla, aż efekt jest perfekcyjny</span>.</> },
+            ].map((c, i) => {
+              const Icon = c.icon;
+              return (
+                <Reveal key={c.t} delay={i * 100}>
+                  <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
+                    <div className="w-11 h-11 rounded-2xl bg-sage/15 text-sage mb-6 flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-2xl mb-3">{c.t}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
 
-            ))}
           </div>
         </div>
       </section>
@@ -269,7 +279,7 @@ function Index() {
                     Instant Challenge <span className="italic">Champion</span>
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Destination Imagination Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
+                    <a href="https://www.kreatywnosc.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Destination Imagination</a> Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
                   </p>
                 </div>
               </div>
@@ -278,7 +288,7 @@ function Index() {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Award className="w-4 h-4" /></span>
-                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span>
+                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności <a href="https://www.kreatywnosc.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Destination Imagination</a>, Oczyma Wyobraźni.</span>
               </li>
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Languages className="w-4 h-4" /></span>
@@ -286,7 +296,7 @@ function Index() {
               </li>
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Sparkles className="w-4 h-4" /></span>
-                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, Varsztatownia.</span>
+                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Varsztatownia</a>.</span>
               </li>
             </ul>
           </Reveal>
@@ -295,10 +305,11 @@ function Index() {
             <h3 className="text-3xl mb-8">Jak działam z ludźmi.</h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
-              <p>Szybko się uczę, ogarniam wiele wątków naraz, adaptuję się do zmiany planu w pół dnia. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
-              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. Umiem reprezentować tak siebie, jak i markę, konkretnie, spokojnie, z klasą.</p>
+              <p>Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>, konkretnie, spokojnie, z klasą.</p>
             </div>
           </Reveal>
+
 
         </div>
       </section>
