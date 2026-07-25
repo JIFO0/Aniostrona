@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "sdk_version": "0.24.0",
+  "path": "/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "ania-tomaszewska-portfolio",
+      "version": "0.1.0",
+      "title": "Ania Tomaszewska — portfolio"
+    },
+    "tools": [
+      {
+        "name": "get_profile",
+        "title": "Pobierz profil Ani",
+        "description": "Zwraca podstawowe informacje o Ani Tomaszewskiej: krótkie bio, lokalizacje, kontakt (email, telefon, Instagram) oraz języki.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_experience",
+        "title": "Pobierz ścieżkę zawodową",
+        "description": "Zwraca oś czasu edukacji i doświadczeń Ani: szkoła, warsztaty aktorskie, praca w Green Caffe Nero, filologia polska UW, Lambadjara i kurs jubilerstwa.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_skills_and_achievements",
+        "title": "Pobierz umiejętności i osiągnięcia",
+        "description": "Zwraca dziedziny, w których Ania pracuje (aktorstwo, modeling, zarządzanie, sztuka), zainteresowania, liczby (plany filmowe, prace plastyczne, lata na scenie), mocne strony i osiągnięcia.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
