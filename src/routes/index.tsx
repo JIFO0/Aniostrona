@@ -179,7 +179,7 @@ function Index() {
           {[
             { n: 20, s: "+", label: "planów filmowych", note: "na których byłam, uczyłam się rytmu i ciszy między ujęciami" },
             { n: 100, s: "+", label: "prac plastycznych", note: "od szkiców po skończone płótna, każde z własnym nastrojem" },
-            { n: 4, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, mikrofon w ręku" },
+            { n: 4, s: "+", label: "lata na scenie aktorskiej", note: "kursy, warsztaty, plany, reklamy, marketing, mikrofon w ręku" },
           ].map((s, i) => (
             <Reveal key={s.label} delay={i * 120}>
               <div>
