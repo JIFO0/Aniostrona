@@ -279,7 +279,7 @@ function Index() {
                     Instant Challenge <span className="italic">Champion</span>
                   </h4>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    Destination Imagination Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
+                    <a href="https://www.kreatywnosc.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Destination Imagination</a> Global Finals, Knoxville, USA. Moja specjalizacja: <span className="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
                   </p>
                 </div>
               </div>
@@ -288,7 +288,7 @@ function Index() {
             <ul className="space-y-4 text-muted-foreground">
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Award className="w-4 h-4" /></span>
-                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności Destination Imagination, Oczyma Wyobraźni.</span>
+                <span><strong className="text-foreground font-normal">I miejsce w wyzwaniu społecznym</strong>, XI Ogólnopolska Olimpiada Kreatywności <a href="https://www.kreatywnosc.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Destination Imagination</a>, Oczyma Wyobraźni.</span>
               </li>
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Languages className="w-4 h-4" /></span>
@@ -296,7 +296,7 @@ function Index() {
               </li>
               <li className="flex gap-4 items-start">
                 <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage"><Sparkles className="w-4 h-4" /></span>
-                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, Varsztatownia.</span>
+                <span>Warsztaty aktorskie u <strong className="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Varsztatownia</a>.</span>
               </li>
             </ul>
           </Reveal>
@@ -305,10 +305,11 @@ function Index() {
             <h3 className="text-3xl mb-8">Jak działam z ludźmi.</h3>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p><span className="text-foreground">Polski</span> natywnie. <span className="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
-              <p>Szybko się uczę, ogarniam wiele wątków naraz, adaptuję się do zmiany planu w pół dnia. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
-              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. Umiem reprezentować tak siebie, jak i markę, konkretnie, spokojnie, z klasą.</p>
+              <p>Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
+              <p><span className="text-foreground">Doskonale rozładowuję konflikty</span>. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. <span className="text-foreground">Umiem reprezentować tak siebie, jak i markę, także publicznie</span>, konkretnie, spokojnie, z klasą.</p>
             </div>
           </Reveal>
+
 
         </div>
       </section>
