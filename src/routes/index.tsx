@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal, Counter } from "@/components/site/Reveal";
-import { useEffect, useState } from "react";
-import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Trophy, Award, Languages, Sparkles, Mail, Phone, Instagram, Drama, Camera, Briefcase, Palette, FileText, User, ImageIcon } from "lucide-react";
 
 
 
