@@ -151,7 +151,7 @@ function Index() {
                 <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">o mnie</p>
                 <h2 className="text-4xl md:text-5xl mb-8">Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.</h2>
                 <div className="space-y-5 text-[1.0625rem] md:text-lg text-muted-foreground leading-relaxed">
-                  <p>Jestem z Warszawy, z Bemowa. Często jednak znajduję mnie ktoś w Gdyni, bo tam też mam swoje miejsce. Jeżdżę po Polsce z małym aparatem w torbie i wracam z tym, co warto zapamiętać.</p>
+                  <p>Jestem z Warszawy, z Bemowa. Często jednak można mnie znaleźć w Gdyni, bo tam też mam swoje miejsce. W torbie zawsze mały aparat, wracam z tym co warto zapamiętać.</p>
                   <p>Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.</p>
                   <p>Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.</p>
                   <p>Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens.</p>
@@ -331,7 +331,7 @@ function Index() {
           </Reveal>
           <Reveal delay={200}>
             <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed italic font-serif">
-              Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera. Chętnie się tym dzielę, na głos albo w notatkach.
+              Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera czy po prostu chaos na planie jaki musiał panować. Często się tym dzielę na głos.
             </p>
 
           </Reveal>
