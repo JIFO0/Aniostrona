@@ -199,10 +199,29 @@ function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <Reveal>
             <p className="text-sm tracking-[0.25em] uppercase text-sage mb-4">galeria</p>
-            <h2 className="text-4xl md:text-5xl mb-6 max-w-2xl">Kadry z drogi.</h2>
-            <p className="text-muted-foreground max-w-xl mb-14 leading-relaxed">Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.</p>
+            <h2 className="text-4xl md:text-5xl mb-6 max-w-2xl">Ja i moje prace w kadrze.</h2>
+            <p className="text-muted-foreground max-w-xl mb-10 leading-relaxed">Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.</p>
           </Reveal>
-          <div className="columns-2 md:columns-3 gap-4 space-y-4">
+          <Reveal delay={100}>
+            <div className="inline-flex items-center gap-1 p-1 mb-10 rounded-full bg-cream/70 border border-sage/20 shadow-[0_10px_30px_-20px_oklch(0.4_0.02_40/0.3)]">
+              {[
+                { key: "me" as const, label: "Ja", Icon: User },
+                { key: "works" as const, label: "Prace", Icon: ImageIcon },
+              ].map(({ key, label, Icon }) => {
+                const active = galleryTab === key;
+                return (
+                  <button
+                    key={key}
+                    onClick={() => setGalleryTab(key)}
+                    className={`inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm tracking-wide transition-all ${active ? "bg-sage text-primary-foreground shadow" : "text-muted-foreground hover:text-foreground"}`}
+                  >
+                    <Icon className="w-3.5 h-3.5" /> {label}
+                  </button>
+                );
+              })}
+            </div>
+          </Reveal>
+          <div key={galleryTab} className="columns-2 md:columns-3 gap-4 space-y-4 animate-drift-in">
             {gallery.map((g, i) => (
               <Reveal key={g.src} delay={i * 60}>
                 <button
