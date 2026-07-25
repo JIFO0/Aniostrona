@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Anna Weronika Tomaszewska</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Karla"', 'sans-serif'],
+          },
+          colors: {
+            cream: '#f8f5f0',
+            sage: '#3d6b54',
+            rose: '#f7e4df',
+            foreground: '#382f2d',
+            'muted-foreground': '#786c68',
+            border: '#e4dad5',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #f8f5f0;
+      color: #382f2d;
+      font-family: 'Karla', sans-serif;
+      font-weight: 300;
+    }
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .mesh-bg {
+      background:
+        radial-gradient(at 12% 18%, rgba(247, 228, 223, 0.65) 0px, transparent 45%),
+        radial-gradient(at 88% 12%, rgba(248, 245, 240, 0.7) 0px, transparent 50%),
+        radial-gradient(at 70% 90%, rgba(61, 107, 84, 0.18) 0px, transparent 55%),
+        radial-gradient(at 20% 85%, rgba(247, 228, 223, 0.5) 0px, transparent 50%),
+        #f8f5f0;
+    }
+    .soft-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(228, 218, 213, 0.8);
+      box-shadow: 0 20px 50px -30px rgba(61, 107, 84, 0.15);
+    }
+  </style>
+</head>
+<body class="min-h-screen mesh-bg flex flex-col justify-between">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/70 border-b border-border/40">
+    <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="index.html" class="font-serif italic text-lg tracking-wide">Ania Tomaszewska</a>
+      <a href="index.html" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <i data-lucide="arrow-left" class="w-4 h-4"></i> wróć
+      </a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <section class="flex-1 flex items-center justify-center px-6 pt-32 pb-16">
+    <div class="max-w-md w-full">
+      
+      <!-- LOCKED STATE -->
+      <div id="locked-card" class="soft-card rounded-3xl p-10 text-center bg-gradient-to-br from-rose/40 via-cream to-sage/20 border border-sage/25">
+        <div class="mx-auto w-14 h-14 rounded-2xl bg-sage text-white flex items-center justify-center mb-6 shadow-lg">
+          <i data-lucide="lock" class="w-6 h-6"></i>
+        </div>
+        <p class="text-xs tracking-[0.3em] uppercase text-sage mb-3">prywatne</p>
+        <h1 class="font-serif text-3xl md:text-4xl mb-3">CV pod hasłem</h1>
+        <p class="text-sm text-muted-foreground mb-8 leading-relaxed">
+          Wpisz hasło, żeby zobaczyć i pobrać CV.
+        </p>
+        <form id="password-form" onsubmit="handleUnlock(event)" class="space-y-4">
+          <input
+            type="password"
+            id="password-input"
+            autofocus
+            placeholder="hasło"
+            class="w-full px-5 py-3 rounded-full border border-sage/30 bg-cream/70 text-center tracking-wide focus:outline-none focus:border-sage transition-colors"
+          />
+          <p id="error-msg" class="text-xs text-red-600 hidden">Niepoprawne hasło.</p>
+          <button
+            type="submit"
+            class="w-full px-6 py-3 rounded-full bg-sage text-white text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
+          >
+            Odblokuj
+          </button>
+        </form>
+      </div>
+
+      <!-- UNLOCKED STATE -->
+      <div id="unlocked-card" class="soft-card rounded-3xl p-10 text-center bg-gradient-to-br from-rose/40 via-cream to-sage/20 border border-sage/25 hidden">
+        <div class="mx-auto w-14 h-14 rounded-2xl bg-sage text-white flex items-center justify-center mb-6 shadow-lg">
+          <i data-lucide="file-text" class="w-6 h-6"></i>
+        </div>
+        <p class="text-xs tracking-[0.3em] uppercase text-sage mb-3">gotowe</p>
+        <h1 class="font-serif text-3xl md:text-4xl mb-3">Anna Weronika Tomaszewska</h1>
+        <p class="text-sm text-muted-foreground mb-8 leading-relaxed">
+          Pełne CV, do pobrania w PDF.
+        </p>
+        <div class="flex flex-col gap-3">
+          <a
+            href="./assets/Anna-Tomaszewska-CV.pdf"
+            download="Anna-Tomaszewska-CV.pdf"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-sage text-white text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
+          >
+            <i data-lucide="download" class="w-4 h-4"></i> Pobierz CV (PDF)
+          </a>
+          <a
+            href="./assets/Anna-Tomaszewska-CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors"
+          >
+            Otwórz w nowej karcie
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="py-6 text-center text-xs text-muted-foreground border-t border-border/40">
+    <p class="font-serif italic">© <span id="year"></span> Anna Weronika Tomaszewska</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    lucide.createIcons();
+
+    function handleUnlock(e) {
+      e.preventDefault();
+      const input = document.getElementById('password-input').value.trim().toLowerCase();
+      const errorMsg = document.getElementById('error-msg');
+      const lockedCard = document.getElementById('locked-card');
+      const unlockedCard = document.getElementById('unlocked-card');
+
+      if (input === "ilyilyily") {
+        lockedCard.classList.add('hidden');
+        unlockedCard.classList.remove('hidden');
+        errorMsg.classList.add('hidden');
+      } else {
+        errorMsg.classList.remove('hidden');
+      }
+    }
+  </script>
+</body>
+</html>
