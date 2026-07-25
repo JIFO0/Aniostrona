@@ -59,10 +59,11 @@
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
-    color: var(--color-foreground);
+    color: rgb(65 60 59);
     font-family: var(--font-sans);
     font-weight: 300;
     letter-spacing: 0.01em;
+    font-size: 1.0625rem;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-serif);
