@@ -257,13 +257,14 @@ function Index() {
           </Reveal>
           <div className="relative pl-8 md:pl-12 border-l border-sage/30 space-y-12">
             {[
-              { y: "2020 - 2024", t: "Liceum Marii Pawlikowskiej-Jasnorzewskiej", d: "LXXVIII LO w Warszawie. Cztery lata, w których uzbierało się pierwsze sto pomysłów." },
-              { y: "od 2023", t: "Aktorka", d: "Pierwsze plany filmowe, pierwsze noce w bazie, pierwsze wczesne pobudki na charakteryzację." },
-              { y: "2023", t: "Warsztaty z Łukaszem Zubrzyckim", d: "Varsztatownia. Konkretna praca nad warsztatem, bez owijania w bawełnę." },
-              { y: "od 10.2024", t: "Green Caffe Nero, baristka", d: "Barem szybko rządziło się samo. Ludzie, ekspres, tempo, wszystko zapamiętane." },
-              { y: "10.2025 - 03.2026", t: "Uniwersytet Warszawski, filologia polska", d: "Specjalność literaturoznawczo-językoznawcza. Słowo pod lupą." },
-              { y: "od 10.2025", t: "Kierowniczka zmiany, Green Caffe Nero", d: "Awans, który wyszedł naturalnie. Zespół, grafik, decyzje pod presją." },
-              { y: "obecnie", t: "Profesjonalny kurs jubilerstwa, tryb dzienny", d: "Uczę się już teraz przy marce lambadjara.pl. Praca w metalu, kamieniach, drobnym detalu. Ręce zajęte, głowa pracuje inaczej." },
+              { y: "2020 - 2024", t: "Liceum Marii Pawlikowskiej-Jasnorzewskiej", d: "LXVII LO w Warszawie. Napisana matura rozszerzona z polskiego oraz z angielskiego." },
+              { y: "od 2023", t: "Aktorka", d: "Pierwsze kroki filmowe, statystka w wielu produkcjach, gdzie tylko się dało." },
+              { y: "2023", t: "Warsztaty z Łukaszem Zubrzyckim", d: "Varsztatownia, cały kurs ukończony z myślą o karierze aktorskiej." },
+              { y: "od 10.2024", t: "Green Caffe Nero, baristka", d: "Baristka i od samego początku bardzo przykładałam się do pracy." },
+              { y: "10.2025 - 03.2026", t: "Uniwersytet Warszawski, filologia polska", d: "Specjalność literaturoznawczo-językoznawcza, żeby lepiej zapoznać się z tekstami od strony technicznej." },
+              { y: "od 10.2025", t: "Kierowniczka zmiany, Green Caffe Nero", d: "Awans wyszedł naturalnie, bardzo dobrze sobie w tym radziłam." },
+              { y: "od 06.2026", t: "Kreatorka mediów, Lambadjara", d: "Tworzenie contentu wokół marki i narracji, a także samo robienie handmade koralików." },
+              { y: "obecnie", t: "Profesjonalny kurs jubilerstwa, tryb dzienny", d: "Marketing już umiem, teraz uczę się pracować z metalem, żeby kiedyś otworzyć własną markę." },
             ].map((e, i) => (
               <Reveal key={e.t} delay={i * 80}>
                 <div className="relative">
