@@ -85,7 +85,7 @@ function Index() {
               <span className="italic text-sage">Tomaszewska</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-md leading-relaxed mb-8">
-              21-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
+              {age}-letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -99,6 +99,10 @@ function Index() {
               src={meHero.url}
               alt="Ania"
               className="max-h-[560px] w-auto object-contain animate-float-slow drop-shadow-[0_30px_40px_rgba(0,0,0,0.15)]"
+              style={{
+                WebkitMaskImage: "linear-gradient(to bottom, black 78%, transparent 100%)",
+                maskImage: "linear-gradient(to bottom, black 78%, transparent 100%)",
+              }}
             />
           </div>
         </div>
