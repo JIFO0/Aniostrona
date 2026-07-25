@@ -277,7 +277,7 @@ function Index() {
           src={zaraModel.url}
           alt=""
           aria-hidden
-          className="absolute right-0 bottom-0 h-[500px] w-auto opacity-30 pointer-events-none hidden lg:block"
+          className="absolute bottom-0 h-[500px] w-auto opacity-30 pointer-events-none hidden lg:block right-[4rem] xl:right-[6rem] 2xl:right-[8rem]"
         />
         <div className="max-w-4xl mx-auto px-6 relative">
           <Reveal>
