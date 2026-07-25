@@ -126,20 +126,25 @@ function Index() {
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { t: "Aktorstwo", d: "Na planach już od 2022. Warsztat u Łukasza Zubrzyckiego, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze." },
-              { t: "Modeling", d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
-              { t: "Zarządzanie", d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
-              { t: "Sztuka", d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach</span>, poprawiam pojedynczy pociąg pędzla, aż obraz zaczyna oddychać.</> },
-            ].map((c, i) => (
-              <Reveal key={c.t} delay={i * 100}>
-                <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
-                  <div className="w-10 h-10 rounded-full bg-rose/50 mb-6 animate-shimmer" />
-                  <h3 className="text-2xl mb-3">{c.t}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
-                </div>
-              </Reveal>
+              { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</> },
+              { t: "Modeling", icon: Camera, d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
+              { t: "Zarządzanie", icon: Briefcase, d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
+              { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedynczy pociąg pędzla, aż efekt jest perfekcyjny</span>.</> },
+            ].map((c, i) => {
+              const Icon = c.icon;
+              return (
+                <Reveal key={c.t} delay={i * 100}>
+                  <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
+                    <div className="w-11 h-11 rounded-2xl bg-sage/15 text-sage mb-6 flex items-center justify-center">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-2xl mb-3">{c.t}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{c.d}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
 
-            ))}
           </div>
         </div>
       </section>
