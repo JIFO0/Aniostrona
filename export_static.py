@@ -54,6 +54,30 @@ GALLERY_WORKS_SRC = ASSETS_DIR / "gallery-works"
 PICTURES_SRC = ASSETS_DIR / "pictures"
 PDF_SRC = ASSETS_DIR / "pdf"
 
+def auto_fix_path():
+    """Ensure Node.js / npm / bun bin directories are included in os.environ['PATH']."""
+    candidates = [
+        r"C:\Program Files\nodejs",
+        r"C:\Program Files (x86)\nodejs",
+        os.path.expanduser(r"~\AppData\Roaming\npm"),
+        os.path.expanduser(r"~\.bun\bin"),
+        os.path.expanduser(r"~\AppData\Local\Programs\bun"),
+    ]
+    appdata = os.path.expanduser(r"~\AppData\Local")
+    if os.path.exists(appdata):
+        for root, dirs, files in os.walk(appdata):
+            if "npm.cmd" in files or "node.exe" in files:
+                candidates.append(root)
+            if root.count(os.sep) - appdata.count(os.sep) > 5:
+                dirs.clear()
+
+    existing = os.environ.get("PATH", "")
+    new_dirs = [d for d in candidates if os.path.isdir(d) and d.lower() not in existing.lower()]
+    if new_dirs:
+        os.environ["PATH"] = os.pathsep.join(new_dirs) + os.pathsep + existing
+
+auto_fix_path()
+
 LOCAL_ASSET_BASE = "/assets"
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"}
@@ -75,6 +99,11 @@ ROUTES = [
     },
 ]
 
+# Force UTF-8 stdout/stderr encoding on Windows consoles
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+
 # ANSI colours (work fine in Windows Terminal / PowerShell 7)
 CYAN   = "\x1b[36m"
 GREEN  = "\x1b[32m"
@@ -84,9 +113,10 @@ BOLD   = "\x1b[1m"
 RESET  = "\x1b[0m"
 
 def log(msg: str):   print(f"{CYAN}[export]{RESET} {msg}")
-def ok(msg: str):    print(f"{GREEN}[export]{RESET} \u2714 {msg}")
-def warn(msg: str):  print(f"{YELLOW}[export]{RESET} \u26a0 {msg}")
-def err(msg: str):   print(f"{RED}[export]{RESET} \u2718 {msg}", file=sys.stderr)
+def ok(msg: str):    print(f"{GREEN}[export]{RESET} [OK] {msg}")
+def warn(msg: str):  print(f"{YELLOW}[export]{RESET} [WARN] {msg}")
+def err(msg: str):   print(f"{RED}[export]{RESET} [ERR] {msg}", file=sys.stderr)
+
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -161,7 +191,7 @@ def build_gallery_manifest() -> dict:
     works_images = scan_gallery_dir(GALLERY_WORKS_SRC)
 
     manifest = {
-        "generated": __import__("datetime").datetime.utcnow().isoformat() + "Z",
+        "generated": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat(),
         "galleryMe":    [make_gallery_entry(f, "gallery-me")    for f in me_images],
         "galleryWorks": [make_gallery_entry(f, "gallery-works") for f in works_images],
     }
@@ -189,10 +219,13 @@ def run_vite_build():
         "VITE_BUILD_OUTDIR": str(DIST_DIR),
     }
 
+    use_shell = sys.platform == "win32"
+
     # Try npm first, then bun as fallback
-    for cmd in [["npm", "run", "build"], ["bun", "run", "build"]]:
+    for cmd in ["npm run build", "bun run build"]:
         try:
-            result = subprocess.run(cmd, cwd=ROOT, env=env, check=True)
+            cmd_arg = cmd if use_shell else cmd.split()
+            subprocess.run(cmd_arg, cwd=ROOT, env=env, check=True, shell=use_shell)
             ok("Vite build complete.")
             return
         except FileNotFoundError:
@@ -205,12 +238,24 @@ def run_vite_build():
     sys.exit(1)
 
 
+
 # ---------------------------------------------------------------------------
 # Step 3 — Copy assets into dist-static/assets/
 # ---------------------------------------------------------------------------
 
 def copy_assets():
     log("Copying assets into dist-static/assets/...")
+
+    # Copy output from Nitro build if present (.output/public -> dist-static)
+    nitro_pub = ROOT / ".output" / "public"
+    if nitro_pub.exists():
+        for item in nitro_pub.glob("**/*"):
+            if item.is_file():
+                rel = item.relative_to(nitro_pub)
+                dest = DIST_DIR / rel
+                ensure_dir(dest.parent)
+                shutil.copy2(item, dest)
+        ok("Copied .output/public build output → dist-static/")
 
     # Gallery images — copy entire folder (all files, including non-upscaled)
     copy_dir(GALLERY_ME_SRC,    DIST_ASSETS / "gallery-me")
@@ -247,6 +292,7 @@ def copy_assets():
         ok("Copied CV PDF → dist-static/assets/pdf/")
     else:
         warn("assets/pdf/ not found, skipping.")
+
 
 
 # ---------------------------------------------------------------------------
@@ -292,7 +338,7 @@ def build_asset_url_map() -> dict[str, str]:
                 r"[-_ ]*upscaled$", "",
                 Path(original_filename).stem,
                 flags=re.IGNORECASE
-            ).strip().lower()
+            ).strip().lower().replace("_", " ").replace("-", " ")
 
             found_subdir: str | None = None
             found_file:   str | None = None
@@ -313,7 +359,7 @@ def build_asset_url_map() -> dict[str, str]:
                 for f in candidates:
                     cand_stem = re.sub(
                         r"[-_ ]*upscaled$", "", f.stem, flags=re.IGNORECASE
-                    ).strip().lower()
+                    ).strip().lower().replace("_", " ").replace("-", " ")
                     if (cand_stem == orig_stem or orig_stem in cand_stem or cand_stem in orig_stem) \
                             and is_upscaled(f.name):
                         found_subdir, found_file = subdir, f.name
@@ -326,7 +372,7 @@ def build_asset_url_map() -> dict[str, str]:
                 for f in candidates:
                     cand_stem = re.sub(
                         r"[-_ ]*upscaled$", "", f.stem, flags=re.IGNORECASE
-                    ).strip().lower()
+                    ).strip().lower().replace("_", " ").replace("-", " ")
                     if cand_stem == orig_stem or orig_stem in cand_stem or cand_stem in orig_stem:
                         found_subdir, found_file = subdir, f.name
                         # don't break — keep looking for upscaled in next dir
@@ -392,8 +438,37 @@ def rewrite_asset_urls():
 def generate_route_html_files():
     root_html_path = DIST_DIR / "index.html"
     if not root_html_path.exists():
-        warn("dist-static/index.html not found — skipping per-route HTML generation.")
-        return
+        css_files = [f.name for f in DIST_ASSETS.glob("styles-*.css")] if DIST_ASSETS.exists() else []
+        js_files  = [f.name for f in DIST_ASSETS.glob("index-*.js")] if DIST_ASSETS.exists() else []
+        css_link  = f'<link rel="stylesheet" href="/assets/{css_files[0]}" />' if css_files else ""
+        js_script = f'<script type="module" src="/assets/{js_files[0]}"></script>' if js_files else ""
+
+        template = f"""<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ania Tomaszewska — aktorka, artystka, obserwatorka</title>
+    <meta name="description" content="Strona Anny Weroniki Tomaszewskiej. Aktorka, modelka, kierowniczka zmiany, autorka ponad stu prac plastycznych. Warszawa, Gdynia, plany filmowe." />
+    <meta property="og:title" content="Ania Tomaszewska — aktorka, artystka, obserwatorka" />
+    <meta property="og:description" content="Miejsce, w którym mieszczą się plany filmowe, płótna, sceny i cichy proces twórczy." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://annatomaszewska.pl/" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="canonical" href="https://annatomaszewska.pl/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500;600&family=Montserrat:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" />
+    {css_link}
+  </head>
+  <body>
+    <div id="root"></div>
+    {js_script}
+  </body>
+</html>"""
+        root_html_path.write_text(template, encoding="utf-8")
+        ok("Generated dist-static/index.html from bundled assets.")
+
 
     root_html = root_html_path.read_text(encoding="utf-8")
 
@@ -508,8 +583,10 @@ def generate_spa_fallbacks():
 # ---------------------------------------------------------------------------
 
 def cleanup_manifest():
-    if MANIFEST_PATH.exists():
-        MANIFEST_PATH.unlink()
+    default_manifest = {"generated": "never", "galleryMe": [], "galleryWorks": []}
+    MANIFEST_PATH.parent.mkdir(parents=True, exist_ok=True)
+    MANIFEST_PATH.write_text(json.dumps(default_manifest, indent=2), encoding="utf-8")
+
 
 
 # ---------------------------------------------------------------------------
@@ -571,7 +648,7 @@ def main():
 
     print()
     print(f"{BOLD}{CYAN}{'=' * 47}{RESET}")
-    print(f"{BOLD}{CYAN}  Aniastrona  \u2192  Static HTML Export (Python){RESET}")
+    print(f"{BOLD}{CYAN}  Aniastrona  ->  Static HTML Export (Python){RESET}")
     print(f"{BOLD}{CYAN}{'=' * 47}{RESET}")
     print()
 
@@ -593,13 +670,14 @@ def main():
 
         print()
         print(f"{BOLD}{GREEN}{'=' * 47}{RESET}")
-        print(f"{BOLD}{GREEN}  \u2714 Export complete!  \u2192  dist-static/{RESET}")
+        print(f"{BOLD}{GREEN}  [OK] Export complete!  ->  dist-static/{RESET}")
         print(f"{BOLD}{GREEN}{'=' * 47}{RESET}")
         print()
         print("  Preview:   py export_static.py --preview")
         print("             or: py -m http.server 3000 --directory dist-static")
         print("  Deploy:    upload dist-static/ to any static host")
         print()
+
 
     except Exception as e:
         err(f"Fatal error: {e}")

@@ -7,6 +7,8 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/tanstack/vite";
 
+const isExport = process.env.EXPORT_STATIC === "1";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
@@ -14,7 +16,8 @@ export default defineConfig({
     server: { entry: "server" },
   },
   vite: {
-    plugins: [mcpPlugin()],
+    // Disable mcpPlugin during static export build to avoid Windows path separator bug in @lovable.dev/mcp-js
+    plugins: isExport ? [] : [mcpPlugin()],
     // Allow the export script to override the output directory via env variable.
     build: {
       outDir: process.env.VITE_BUILD_OUTDIR ?? "dist",
@@ -26,4 +29,5 @@ export default defineConfig({
     },
   },
 });
+
 
