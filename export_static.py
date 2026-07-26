@@ -844,7 +844,7 @@ def generate_route_html_files():
             </div>
             <div class="reveal" data-delay="200">
               <p class="text-lg text-muted-foreground max-w-2xl leading-relaxed italic font-serif">
-                Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera. Chętnie się tym dzielę, na głos albo w notatkach.
+                Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera czy po prostu chaos na planie jaki musiał panować. Często się tym dzielę na głos.
               </p>
             </div>
           </div>
@@ -855,7 +855,7 @@ def generate_route_html_files():
           <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16">
             <div class="reveal">
               <p class="text-sm tracking-[0.25em] uppercase text-sage mb-4">osiągnięcia</p>
-              <h3 class="text-3xl mb-8">Rzeczy, o których warto wspomnieć.</h3>
+              <h2 class="text-3xl mb-8">Rzeczy, o których warto wspomnieć.</h2>
               
               <div class="relative rounded-2xl p-6 mb-6 bg-gradient-to-br from-rose/70 via-cream to-sage/25 border border-sage/30 shadow-[0_25px_60px_-30px_oklch(0.4_0.04_155/0.4)] overflow-hidden">
                 <div class="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-sage/15 blur-2xl"></div>
@@ -865,9 +865,9 @@ def generate_route_html_files():
                   </div>
                   <div>
                     <p class="text-xs tracking-[0.25em] uppercase text-sage mb-2">najważniejsze</p>
-                    <h4 class="font-serif text-2xl md:text-3xl mb-2 text-foreground">
+                    <h3 class="font-serif text-2xl md:text-3xl mb-2 text-foreground">
                       Instant Challenge <span class="italic">Champion</span>
-                    </h4>
+                    </h3>
                     <p class="text-sm text-muted-foreground leading-relaxed">
                       <a href="https://www.kreatywnosc.pl/" target="_blank" rel="noopener noreferrer" class="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Destination Imagination</a> Global Finals, Knoxville, USA. Moja specjalizacja: <span class="text-foreground">szybkie rozwiązywanie bardzo skomplikowanych problemów</span>, pod presją, w zespole, na czas.
                     </p>
@@ -890,7 +890,7 @@ def generate_route_html_files():
                 </li>
                 <li class="flex gap-4 items-start">
                   <span class="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-4 h-4"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-4 h-4"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 0 .963L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
                   </span>
                   <span>Warsztaty aktorskie u <strong class="text-foreground font-normal">Łukasza Zubrzyckiego</strong>, <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" class="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Varsztatownia</a>.</span>
                 </li>
@@ -899,7 +899,7 @@ def generate_route_html_files():
 
             <div class="reveal" data-delay="150">
               <p class="text-sm tracking-[0.25em] uppercase text-sage mb-4">języki i praca w zespole</p>
-              <h3 class="text-3xl mb-8">Jak działam z ludźmi.</h3>
+              <h2 class="text-3xl mb-8">Jak działam z ludźmi.</h2>
               <div class="space-y-4 text-muted-foreground leading-relaxed">
                 <p><span class="text-foreground">Polski</span> natywnie. <span class="text-foreground">Angielski</span> biegle, w mowie i piśmie.</p>
                 <p>Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.</p>
@@ -975,8 +975,11 @@ def generate_route_html_files():
         </footer>
 
         <!-- LIGHTBOX -->
-        <div id="lightbox" onclick="closeLightbox(event)" class="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-6 animate-drift-in hidden">
-          <img id="lightbox-img" src="" alt="" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl" />
+        <div id="lightbox" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie w galerii" onclick="closeLightbox(event)" class="fixed inset-0 z-50 bg-foreground/80 backdrop-blur-sm flex items-center justify-center p-6 animate-drift-in hidden cursor-pointer">
+          <button type="button" onclick="closeLightbox(event)" aria-label="Zamknij podgląd zdjęcia" class="absolute top-4 right-4 text-cream hover:text-white p-2 rounded-full bg-black/40 hover:bg-black/60 transition-colors cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+          <img id="lightbox-img" src="" alt="Powiększone zdjęcie w galerii" class="max-h-[90vh] max-w-full rounded-lg shadow-2xl" onclick="event.stopPropagation()" />
         </div>
       </main>
     """
@@ -1042,7 +1045,7 @@ def generate_route_html_files():
               <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera w-5 h-5"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
               </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Headshot to podstawa</h3>
+              <h2 class="font-serif text-lg font-medium mb-2">Headshot to podstawa</h2>
               <p class="text-sm text-muted-foreground leading-relaxed">
                 Czysty portret pokazujący Twoje prawdziwe emocje bez zbędnego retuszu i przerysowanych stylizacji.
               </p>
@@ -1052,7 +1055,7 @@ def generate_route_html_files():
               <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shirt w-5 h-5"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
               </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Stonowana garderoba</h3>
+              <h2 class="font-serif text-lg font-medium mb-2">Stonowana garderoba</h2>
               <p class="text-sm text-muted-foreground leading-relaxed">
                 Wybieraj gładkie kolory, które podkreślają oczy i karnację. Unikaj wielkich logo oraz pasków.
               </p>
@@ -1062,7 +1065,7 @@ def generate_route_html_files():
               <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check w-5 h-5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
               </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Naturalność w oczach</h3>
+              <h2 class="font-serif text-lg font-medium mb-2">Naturalność w oczach</h2>
               <p class="text-sm text-muted-foreground leading-relaxed">
                 Reżyserzy obsady szukają prawdy i energii. Pokaż różne warianty swoich możliwości komediowych i dramatycznych.
               </p>
@@ -1116,11 +1119,11 @@ def generate_route_html_files():
             </p>
             <div class="grid md:grid-cols-2 gap-4 pt-2">
               <div class="p-4 rounded-xl bg-background/50 border border-border/50">
-                <h4 class="font-serif font-medium text-foreground mb-1">Spojrzenie ciepłe / otwarte</h4>
+                <h3 class="font-serif font-medium text-foreground mb-1">Spojrzenie ciepłe / otwarte</h3>
                 <p class="text-sm text-muted-foreground">Sugeruje przyjazną postać, bliskość, delikatność i otwartość na drugiego człowieka.</p>
               </div>
               <div class="p-4 rounded-xl bg-background/50 border border-border/50">
-                <h4 class="font-serif font-medium text-foreground mb-1">Spojrzenie tajemnicze / surowe</h4>
+                <h3 class="font-serif font-medium text-foreground mb-1">Spojrzenie tajemnicze / surowe</h3>
                 <p class="text-sm text-muted-foreground">Świetne do ról dramatycznych, poważnych, antagonistów lub postaci skomplikowanych wewnętrznie.</p>
               </div>
             </div>
