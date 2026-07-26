@@ -7,12 +7,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://annatomaszewska.pl/poradnik-portfolio-aktorskie</loc>
-    <lastmod>2026-07-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://annatomaszewska.pl/cv</loc>
     <lastmod>2026-07-25</lastmod>
     <changefreq>monthly</changefreq>
@@ -27,12 +21,6 @@
   <url>
     <loc>https://annatomaszewska.pl/.mcp/list-tools</loc>
     <lastmod>2026-07-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://annatomaszewska.pl/.mcp/invoke-tool/$tool</loc>
-    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

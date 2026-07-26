@@ -77,7 +77,7 @@ function ActingPortfolioGuidePage() {
             <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
               <Camera className="w-5 h-5" />
             </div>
-            <h2 className="font-serif text-lg font-medium mb-2">Headshot to podstawa</h2>
+            <h3 className="font-serif text-lg font-medium mb-2">Headshot to podstawa</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Czysty portret pokazujący Twoje prawdziwe emocje bez zbędnego retuszu i przerysowanych stylizacji.
             </p>
@@ -87,7 +87,7 @@ function ActingPortfolioGuidePage() {
             <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
               <Shirt className="w-5 h-5" />
             </div>
-            <h2 className="font-serif text-lg font-medium mb-2">Stonowana garderoba</h2>
+            <h3 className="font-serif text-lg font-medium mb-2">Stonowana garderoba</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Wybieraj gładkie kolory, które podkreślają oczy i karnację. Unikaj wielkich logo oraz pasków.
             </p>
@@ -97,7 +97,7 @@ function ActingPortfolioGuidePage() {
             <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
               <UserCheck className="w-5 h-5" />
             </div>
-            <h2 className="font-serif text-lg font-medium mb-2">Naturalność w oczach</h2>
+            <h3 className="font-serif text-lg font-medium mb-2">Naturalność w oczach</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Reżyserzy obsady szukają prawdy i energii. Pokaż różne warianty swoich możliwości komediowych i dramatycznych.
             </p>
@@ -154,11 +154,11 @@ function ActingPortfolioGuidePage() {
           </p>
           <div className="grid md:grid-cols-2 gap-4 pt-2">
             <div className="p-4 rounded-xl bg-background/50 border border-border/50">
-              <h3 className="font-serif font-medium text-foreground mb-1">Spojrzenie ciepłe / otwarte</h3>
+              <h4 className="font-serif font-medium text-foreground mb-1">Spojrzenie ciepłe / otwarte</h4>
               <p className="text-sm text-muted-foreground">Sugeruje przyjazną postać, bliskość, delikatność i otwartość na drugiego człowieka.</p>
             </div>
             <div className="p-4 rounded-xl bg-background/50 border border-border/50">
-              <h3 className="font-serif font-medium text-foreground mb-1">Spojrzenie tajemnicze / surowe</h3>
+              <h4 className="font-serif font-medium text-foreground mb-1">Spojrzenie tajemnicze / surowe</h4>
               <p className="text-sm text-muted-foreground">Świetne do ról dramatycznych, poważnych, antagonistów lub postaci skomplikowanych wewnętrznie.</p>
             </div>
           </div>
