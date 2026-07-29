@@ -1,17 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createHash, timingSafeEqual } from "node:crypto";
-import cvAsset from "@/assets/cv.pdf.asset.json";
 
 function passwordMatches(input: string, expected: string): boolean {
   const a = createHash("sha256").update(input, "utf8").digest();
   const b = createHash("sha256").update(expected, "utf8").digest();
   return timingSafeEqual(a, b);
-}
-
-async function resolveCvUrl(request: Request): Promise<string> {
-  // In dev/prod, cvAsset.url is a relative Lovable CDN path served from same origin.
-  const url = new URL(cvAsset.url, request.url);
-  return url.toString();
 }
 
 export const Route = createFileRoute("/api/public/cv")({
