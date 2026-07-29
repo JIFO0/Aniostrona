@@ -91,6 +91,7 @@ function Index() {
             <a href="#czym" className="hover:text-foreground transition-colors">czym się zajmuję</a>
             <a href="#galeria" className="hover:text-foreground transition-colors">galeria</a>
             <a href="#sciezka" className="hover:text-foreground transition-colors">ścieżka</a>
+            <Link to="/poradnik-wizytowka" className="hover:text-foreground transition-colors">poradnik</Link>
             <a href="#kontakt" className="hover:text-foreground transition-colors">kontakt</a>
             <Link to="/cv" className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
               <FileText className="w-3.5 h-3.5" /> CV
@@ -185,7 +186,7 @@ function Index() {
           </Reveal>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</> },
+              { t: "Aktorstwo", icon: Drama, d: <>Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze. <Link to="/poradnik-wizytowka" className="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Jak nagrać filmik-wizytówkę</Link>.</> },
               { t: "Modeling", icon: Camera, d: "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu." },
               { t: "Zarządzanie", icon: Briefcase, d: "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie." },
               { t: "Sztuka", icon: Palette, d: <>Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. <span className="text-foreground bg-rose/50 px-1.5 rounded">Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny</span>.</> },
@@ -465,6 +466,10 @@ function Index() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 text-xs text-muted-foreground">
+            <Link to="/poradnik-wizytowka" className="hover:text-foreground transition-colors underline decoration-sage/40 underline-offset-2">
+              poradnik wizytówka
+            </Link>
+            <span className="hidden sm:inline text-muted-foreground/30">•</span>
             <p className="font-serif italic">© {new Date().getFullYear()} Anna Weronika Tomaszewska</p>
             <span className="hidden sm:inline text-muted-foreground/30">•</span>
             <a

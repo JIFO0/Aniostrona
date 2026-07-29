@@ -92,10 +92,10 @@ ROUTES = [
         "canonical": "https://annatomaszewska.pl/cv",
     },
     {
-        "path": "poradnik-portfolio-aktorskie",
-        "title": "Jak przygotowa\u0107 si\u0119 do sesji portfolio aktorskiego? Poradnik | Anna Tomaszewska",
+        "path": "poradnik-wizytowka",
+        "title": "Filmik-wizyt\u00f3wka: jak nagra\u0107 zg\u0142oszenie na uczelni\u0119 i do agencji | Anna Tomaszewska",
         "noindex": False,
-        "canonical": "https://annatomaszewska.pl/poradnik-portfolio-aktorskie",
+        "canonical": "https://annatomaszewska.pl/poradnik-wizytowka",
     },
 ]
 
@@ -281,6 +281,11 @@ def copy_assets():
 
         for src_file in best.values():
             shutil.copy2(src_file, dest_pics / src_file.name)
+
+        # Nested folders (e.g. pictures/poradnik/) — copy as-is
+        for sub in PICTURES_SRC.iterdir():
+            if sub.is_dir():
+                copy_dir(sub, dest_pics / sub.name)
 
         ok(f"Copied {len(best)} picture(s) → dist-static/assets/pictures/")
     else:
@@ -562,7 +567,7 @@ def generate_route_html_files():
               <a href="#czym" class="hover:text-foreground transition-colors">czym się zajmuję</a>
               <a href="#galeria" class="hover:text-foreground transition-colors">galeria</a>
               <a href="#sciezka" class="hover:text-foreground transition-colors">ścieżka</a>
-              <a href="poradnik-portfolio-aktorskie/index.html" class="hover:text-foreground transition-colors">poradnik</a>
+              <a href="poradnik-wizytowka/index.html" class="hover:text-foreground transition-colors">poradnik</a>
               <a href="#kontakt" class="hover:text-foreground transition-colors">kontakt</a>
               <a href="cv/index.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-3.5 h-3.5"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg> CV
@@ -652,7 +657,7 @@ def generate_route_html_files():
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-drama w-5 h-5"><path d="M10 11h.01"/><path d="M14 11h.01"/><path d="M10 15c.5 1 1.5 1.5 2 1.5s1.5-.5 2-1.5"/><path d="M12 2a10 10 0 0 0-10 10c0 4.5 3 8 7 9.5"/><path d="M12 2a10 10 0 0 1 10 10c0 4.5-3 8-7 9.5"/></svg>
                   </div>
                   <h3 class="text-2xl mb-3">Aktorstwo</h3>
-                  <p class="text-sm text-muted-foreground leading-relaxed">Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" class="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze.</p>
+                  <p class="text-sm text-muted-foreground leading-relaxed">Na planach już od 2022. Warsztat u <a href="https://varsztatovnia.pl/" target="_blank" rel="noopener noreferrer" class="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Łukasza Zubrzyckiego</a>, weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze. <a href="poradnik-wizytowka/index.html" class="text-foreground underline decoration-sage/50 underline-offset-2 hover:decoration-sage">Jak nagrać filmik-wizytówkę</a>.</p>
                 </div>
               </div>
               <div class="reveal" data-delay="100">
@@ -963,6 +968,8 @@ def generate_route_html_files():
             </div>
 
             <div class="flex flex-col sm:flex-row items-center gap-3 text-xs text-muted-foreground">
+              <a href="poradnik-wizytowka/index.html" class="hover:text-foreground transition-colors underline decoration-sage/40 underline-offset-2">poradnik wizytówka</a>
+              <span class="hidden sm:inline text-muted-foreground/30">•</span>
               <p class="font-serif italic">© 2026 Anna Weronika Tomaszewska</p>
               <span class="hidden sm:inline text-muted-foreground/30">•</span>
               <a href="https://jifo.dev" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-foreground transition-colors group">
@@ -1012,163 +1019,153 @@ def generate_route_html_files():
     # 2. Sub-routes HTML
     poradnik_body_markup = """
       <main class="grain min-h-screen mesh-bg flex flex-col text-foreground">
-        <!-- NAV -->
         <nav class="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
           <div class="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
             <a href="../index.html" class="font-serif italic text-lg tracking-wide">Ania Tomaszewska</a>
-            <a href="../index.html" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Powrót do portfolio
-            </a>
+            <div class="flex items-center gap-4">
+              <a href="../cv/index.html" class="hidden sm:inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">CV</a>
+              <a href="../index.html" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Powrót do portfolio
+              </a>
+            </div>
           </div>
         </nav>
 
-        <!-- HEADER SECTION -->
         <header class="pt-32 pb-16 md:pt-40 md:pb-24 px-6 max-w-4xl mx-auto text-center">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage text-xs tracking-wider uppercase mb-6">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles w-3.5 h-3.5"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg> Poradnik Aktorstwa &amp; Fotografii
+            Poradnik · filmik-wizytówka
           </div>
           <h1 class="font-serif text-4xl md:text-6xl leading-tight mb-6">
-            Jak przygotować się do sesji portfolio aktorskiego?
+            Jak nagrać filmik, który ktoś w ogóle zapamięta
           </h1>
           <p class="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Dobre zdjęcia to pierwsze wrażenie u reżysera obsady. Poznaj najważniejsze zasady udanej sesji castingowej, doboru garderoby oraz pracy z obiektywem.
+            O samonagrywaniu wizytówek: do uczelni aktorskich, do agencji, albo po prostu wtedy, kiedy ktoś prosi o „krótki filmik o sobie”. Tu nie chodzi o sprzęt za kilka tysięcy — chodzi o kadr, miejsce i to, <em>co</em> w tym kadrze robisz.
           </p>
         </header>
 
-        <!-- ARTICLE CONTENT -->
         <article class="pb-24 px-6 max-w-4xl mx-auto space-y-16">
           <div class="grid md:grid-cols-3 gap-6">
             <div class="soft-card rounded-2xl p-6 bg-gradient-to-br from-cream via-rose/20 to-cream border border-sage/20">
-              <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-camera w-5 h-5"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
-              </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Headshot to podstawa</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Czysty portret pokazujący Twoje prawdziwe emocje bez zbędnego retuszu i przerysowanych stylizacji.
-              </p>
+              <h3 class="font-serif text-lg font-medium mb-2">Miejsce i światło</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">Domowy kąt wystarczy. Ważne, żeby tło nie walczyło z Tobą o uwagę, a światło nie robiło z Ciebie cienia pod okiem.</p>
             </div>
-
             <div class="soft-card rounded-2xl p-6 bg-gradient-to-br from-cream via-sage/15 to-cream border border-sage/20">
-              <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shirt w-5 h-5"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
-              </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Stonowana garderoba</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Wybieraj gładkie kolory, które podkreślają oczy i karnację. Unikaj wielkich logo oraz pasków.
-              </p>
+              <h3 class="font-serif text-lg font-medium mb-2">Kto trzyma telefon</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">Weź kogoś ze zmysłem estetycznym. Nie osobę, która „umie nagrać”, tylko kogoś, kto widzi, gdzie kończy się kadr.</p>
             </div>
-
             <div class="soft-card rounded-2xl p-6 bg-gradient-to-br from-cream via-rose/20 to-cream border border-sage/20">
-              <div class="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-check w-5 h-5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
-              </div>
-              <h3 class="font-serif text-lg font-medium mb-2">Naturalność w oczach</h3>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                Reżyserzy obsady szukają prawdy i energii. Pokaż różne warianty swoich możliwości komediowych i dramatycznych.
-              </p>
+              <h3 class="font-serif text-lg font-medium mb-2">Co mówisz / grasz</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">Jeśli nie powiedzą dokładnie co — zrób coś, co da się zapamiętać. Bezpieczny tekst, który grają wszyscy, ginie w stosie.</p>
             </div>
           </div>
 
           <section class="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
             <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
               <span class="flex items-center justify-center w-8 h-8 rounded-full bg-sage text-primary-foreground text-sm font-sans font-semibold">1</span>
-              Czym różni się portfolio aktorskie od sesji modowej?
+              Po co w ogóle ten filmik
             </h2>
             <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
-              W fotografii modowej to ubiór jest bohaterem kadru, a model/ka przyjmuje często pozę zastygłą i zdystansowaną. W portfolio aktorskim najistotniejszy jest człowiek — Twoja mimika, spojrzenie, charyzma oraz autentyczność.
+              Wizytówka osobista to nie showreel z planów. Nie musisz mieć montażu z pięciu produkcji. Często wystarczy jeden, dwa, trzy minuty: Ty, spokojne tło, słyszalny głos i decyzja, <em>kim</em> w tym momencie jesteś.
             </p>
             <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
-              Reżyserzy obsady i reżyserzy filmowi potrzebują widzieć Twój prawdziwy typ urody (tzw. <em>typecasting</em>). Fotografie nie mogą być przeliftingowane w programach graficznych — jeżeli na żywo wyglądasz inaczej niż na zdjęciach, casting zazwyczaj kończy się rozczarowaniem obu stron.
+              Agencja modelingowa i uczelnia aktorska chcą trochę innych rzeczy. Agencja: czytelna prezencja, proporcje, ruch, spokój przed kamerą. Uczelnia: czy masz coś w sobie, czy umiesz zagrać tekst, czy nie boisz się ryzyka. Ale baza techniczna jest ta sama: czysty kadr, słyszalny dźwięk, zero chaosu w tle.
+            </p>
+            <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
+              Ludzie przeglądają te nagrania szybko. Jeśli przez pierwsze dwadzieścia sekund nie wiadomo, na co patrzeć — odpadasz, zanim zdążysz dojść do „ważnej” części.
             </p>
           </section>
 
-          <section class="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
+          <section class="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-8">
             <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
               <span class="flex items-center justify-center w-8 h-8 rounded-full bg-sage text-primary-foreground text-sm font-sans font-semibold">2</span>
-              Garderoba i makijaż — złote zasady
+              Miejsce, światło i ramy kadru
             </h2>
             <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
-              Dobrze dobrany strój powinien dopełniać Twoją osobowość, ale nie odciągać uwagi od twarzy i oczu:
+              Nie potrzebujesz studia. Telefon na statywie, dzień z miękkim światłem, tło które nie krzyczy. Biały ekran, ściana, spokojna zasłona — cokolwiek, byle nie widać w kadrze pół mieszkania i kabli pod nogami.
             </p>
-            <ul class="space-y-4 text-muted-foreground text-base md:text-lg">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0 mt-1"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span><strong>Kolory neutralne i ziemiste:</strong> beże, czernie, głęboki granat, oliwka, zgaszona błękit czy grafit zazwyczaj prezentują się świetnie przed obiektywem.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0 mt-1"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span><strong>Kroje podkreślające sylwetkę:</strong> przynieś klika klasycznych T-shirtów, prosty golf, koszulę lub klasyczny żakiet/ramoneskę.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0 mt-1"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span><strong>Makijaż typu "no-makeup":</strong> ma jedynie wyrównać koloryt skóry i ukryć błyszczenie. Zapomnij o mocnym konturowaniu czy doklejanych rzęsach.</span>
-              </li>
-            </ul>
+            <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
+              <strong>Weź kogoś do pomocy.</strong> Kogoś ze zmysłem estetycznym. Nie wystarczy osoba, która umie nacisnąć czerwony przycisk. Potrzebujesz kogoś, kto spojrzy na podgląd i powie: „tu ucina Ci rękę”, „tło wchodzi za bardzo”, „cofnij się o pół kroku”.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 items-start">
+              <div class="space-y-3">
+                <div id="setup-cycle" class="relative overflow-hidden rounded-2xl bg-cream/40 aspect-[3/4] shadow-sm border border-sage/15">
+                  <img data-setup src="../assets/pictures/poradnik/setup-01.png" alt="Domowy setup do nagrania filmiku-wizytówki" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-300" />
+                  <img data-setup src="../assets/pictures/poradnik/setup-02.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" />
+                  <img data-setup src="../assets/pictures/poradnik/setup-03.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" />
+                  <img data-setup src="../assets/pictures/poradnik/setup-04.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" />
+                  <img data-setup src="../assets/pictures/poradnik/setup-05.png" alt="" aria-hidden="true" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300" />
+                </div>
+                <p class="text-xs text-muted-foreground text-center leading-relaxed px-2">
+                  Setup od kuchni: telefon, tło, mikrofon, laptop do podglądu. Pokój żyje swoim życiem — w filmiku ma zostać tylko to, co celowo zostawisz.
+                </p>
+              </div>
+              <div class="space-y-3">
+                <div class="overflow-hidden rounded-2xl bg-cream/40 border border-sage/15 shadow-sm aspect-[3/4]">
+                  <img src="../assets/pictures/poradnik/wkadrze.png" alt="Jak wygląda ten sam setup w kadrze kamery" class="w-full h-full object-cover" />
+                </div>
+                <p class="text-xs text-muted-foreground text-center leading-relaxed px-2">
+                  A tak wygląda ten sam setup <em class="not-italic text-foreground">w kadrze</em>. Ogród, kabel, krzesło — wszystko poza ramą. W telefonie widać tylko wycinek.
+                </p>
+              </div>
+            </div>
+            <div class="p-5 rounded-2xl bg-sage/10 border border-sage/25 space-y-2">
+              <h3 class="font-serif text-lg font-medium text-foreground">Wiedzieć, gdzie kończy się kadr</h3>
+              <p class="text-sm text-muted-foreground leading-relaxed">
+                Zanim naciśniesz rec, stań w miejscu i poproś, żeby ktoś pokazał Ci dokładnie granice. Gdzie jest górna krawędź. Gdzie lewa. Czy w ruchu ręką nie wychodzisz poza tło. To brzmi banalnie, a właśnie tu pada większość domowych nagrań.
+              </p>
+            </div>
           </section>
 
           <section class="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
             <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
               <span class="flex items-center justify-center w-8 h-8 rounded-full bg-sage text-primary-foreground text-sm font-sans font-semibold">3</span>
-              Praca z emocjami przed aparatem
+              Co mówić, co grać
             </h2>
             <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
-              Nie pozuj nieruchomo. Traktuj każdy kadr jak mikroscenę filmową. Pomyśl o konkretnej sytuacji, dialogu lub relacji z kimś bliskim. Zmieniaj mikro-ekspresje:
+              Jeśli w briefie jest konkret — rób konkret. Gorzej, kiedy nie mówią dokładnie, co masz zrobić. Wtedy jedyne sensowne kryterium: <em>czy to nagranie da się zapamiętać</em>.
+            </p>
+            <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
+              Teksty, które z natury są trochę dziwne, dają więcej przestrzeni. Paradoks: lepiej wrecytować <em>Lokomotywę</em> tak, że zostaje w głowie, niż kolejny raz ten sam fragment, który wszyscy biorą „bo Tokarczuk” albo „bo tak się robi na egzaminach”.
             </p>
             <div class="grid md:grid-cols-2 gap-4 pt-2">
               <div class="p-4 rounded-xl bg-background/50 border border-border/50">
-                <h4 class="font-serif font-medium text-foreground mb-1">Spojrzenie ciepłe / otwarte</h4>
-                <p class="text-sm text-muted-foreground">Sugeruje przyjazną postać, bliskość, delikatność i otwartość na drugiego człowieka.</p>
+                <h4 class="font-serif font-medium text-foreground mb-1">Uczelnia</h4>
+                <p class="text-sm text-muted-foreground">Ryzyko, charakter, decyzja aktorska. Wolisz być zapamiętana za coś ostrego niż za poprawny, szary przeciętniak.</p>
               </div>
               <div class="p-4 rounded-xl bg-background/50 border border-border/50">
-                <h4 class="font-serif font-medium text-foreground mb-1">Spojrzenie tajemnicze / surowe</h4>
-                <p class="text-sm text-muted-foreground">Świetne do ról dramatycznych, poważnych, antagonistów lub postaci skomplikowanych wewnętrznie.</p>
+                <h4 class="font-serif font-medium text-foreground mb-1">Agencja</h4>
+                <p class="text-sm text-muted-foreground">Krócej, spokojniej, mniej teatru. Nadal: czyste tło, dobry kadr, słyszalny głos.</p>
               </div>
             </div>
           </section>
 
+          <section class="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
+            <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
+              <span class="flex items-center justify-center w-8 h-8 rounded-full bg-sage text-primary-foreground text-sm font-sans font-semibold">4</span>
+              Jak to nagrać, żeby nie zwariować
+            </h2>
+            <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
+              Najpierw ustawienie, potem take'y. Oglądaj na większym ekranie. Lepiej trochę brzydszy kadr ze słyszalnym tekstem niż piękny obraz i mamrotanie. Na koniec wybierz <strong>jeden</strong> plik.
+            </p>
+          </section>
+
           <section class="rounded-3xl p-8 md:p-12 bg-gradient-to-br from-rose/30 via-cream to-sage/25 border border-sage/30 space-y-6">
-            <div class="flex items-center gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb w-6 h-6 text-sage"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground">
-                Checklist: Dzień przed sesją zdjęciową
-              </h2>
-            </div>
+            <h2 class="font-serif text-2xl md:text-3xl font-medium text-foreground">Checklist przed wysłaniem</h2>
             <div class="space-y-3 font-sans text-base">
-              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span class="text-foreground/90 font-medium">Zadbaj o nawodnienie organizmu i wyśpij się minimum 7-8 godzin.</span>
-              </div>
-              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span class="text-foreground/90 font-medium">Przymierz przygotowane ubrania i upewnij się, że są wyprasowane i czyste.</span>
-              </div>
-              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span class="text-foreground/90 font-medium">Zabierz ze sobą 3-4 różne góry (T-shirt, golf, koszula, marynarka/kurtka).</span>
-              </div>
-              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span class="text-foreground/90 font-medium">Spakuj szczotkę do włosów, puder matujący oraz krople nawilżające do oczu.</span>
-              </div>
-              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle2 w-5 h-5 text-sage shrink-0"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-                <span class="text-foreground/90 font-medium">Nastaw się pozytywnie — traktuj sesję jako okazję do twórczej zabawy.</span>
-              </div>
+              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"><span class="text-foreground/90 font-medium">Sprawdź orientację i przycięcie — nic ważnego nie ginie na krawędzi.</span></div>
+              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"><span class="text-foreground/90 font-medium">Obejrzyj na dużym ekranie i ze słuchawkami.</span></div>
+              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"><span class="text-foreground/90 font-medium">Nazwa pliku z imieniem i nazwiskiem, nie IMG_4832.</span></div>
+              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"><span class="text-foreground/90 font-medium">Link działa i nie wymaga logowania na siłę.</span></div>
+              <div class="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"><span class="text-foreground/90 font-medium">Jedna wersja. Jedna decyzja.</span></div>
             </div>
           </section>
 
           <div class="rounded-3xl p-8 md:p-12 text-center bg-gradient-to-br from-sage/20 via-cream to-rose/20 border border-sage/30 space-y-6">
-            <h2 class="font-serif text-3xl md:text-4xl">Szukasz aktorki lub modelki do swojego projektu?</h2>
-            <p class="text-muted-foreground text-lg max-w-xl mx-auto">
-              Chętnie wezmę udział w wartościowych produkcjach filmowych, reklamowych oraz autorskich sesjach fotograficznych.
-            </p>
+            <h2 class="font-serif text-3xl md:text-4xl">Masz pytanie albo chcesz feedback?</h2>
+            <p class="text-muted-foreground text-lg max-w-xl mx-auto">Napisz. Czasem wystarczy świeże oko na kadr albo na to, czy tekst w ogóle „siedzi”.</p>
             <div class="flex flex-wrap justify-center gap-4 pt-2">
-              <a href="../index.html" class="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">
-                Zobacz moje portfolio
-              </a>
-              <a href="../cv/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text w-4 h-4"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg> Zobacz CV
-              </a>
+              <a href="../index.html#kontakt" class="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]">Napisz do mnie</a>
+              <a href="../cv/index.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors">Zobacz CV</a>
             </div>
           </div>
         </article>
@@ -1273,9 +1270,26 @@ def generate_route_html_files():
                 });
               </script>
             """
-        elif route["path"] == "poradnik-portfolio-aktorskie":
+        elif route["path"] == "poradnik-wizytowka":
             route_body_markup = poradnik_body_markup
-            extra_script = ""
+            extra_script = """
+              <script>
+                (function () {
+                  var frames = document.querySelectorAll('#setup-cycle [data-setup]');
+                  if (!frames.length) return;
+                  var i = 0;
+                  setInterval(function () {
+                    frames[i].classList.remove('opacity-100');
+                    frames[i].classList.add('opacity-0');
+                    frames[i].setAttribute('aria-hidden', 'true');
+                    i = (i + 1) % frames.length;
+                    frames[i].classList.remove('opacity-0');
+                    frames[i].classList.add('opacity-100');
+                    frames[i].removeAttribute('aria-hidden');
+                  }, 800);
+                })();
+              </script>
+            """
         else:
             route_body_markup = main_body_markup
             extra_script = common_static_script
@@ -1304,6 +1318,20 @@ def generate_route_html_files():
 
         route_html_path.write_text(sub_html, encoding="utf-8")
         ok(f"Generated route HTML → dist-static/{route['path']}/index.html")
+
+    # Redirect from old poradnik URL
+    old_poradnik_dir = DIST_DIR / "poradnik-portfolio-aktorskie"
+    ensure_dir(old_poradnik_dir)
+    (old_poradnik_dir / "index.html").write_text(
+        '<!DOCTYPE html><html lang="pl"><head>'
+        '<meta charset="utf-8" />'
+        '<meta http-equiv="refresh" content="0; url=../poradnik-wizytowka/" />'
+        '<link rel="canonical" href="https://annatomaszewska.pl/poradnik-wizytowka" />'
+        '<title>Przekierowanie…</title></head>'
+        '<body><p><a href="../poradnik-wizytowka/">Przejdź do poradnika</a></p></body></html>\n',
+        encoding="utf-8",
+    )
+    ok("Generated redirect → dist-static/poradnik-portfolio-aktorskie/index.html")
 
     # 3. Create double-clickable offline Windows launcher in dist-static/
     launcher_bat = DIST_DIR / "start_offline_site.bat"

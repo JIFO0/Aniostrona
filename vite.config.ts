@@ -15,7 +15,7 @@ export default defineConfig({
     server: { entry: "server" },
     // Enable SSG prerendering during static export so pages build as fully populated HTML.
     prerender: isExport ? {
-      routes: ["/", "/cv", "/poradnik-portfolio-aktorskie"],
+      routes: ["/", "/cv", "/poradnik-wizytowka"],
     } : undefined,
   },
   vite: {

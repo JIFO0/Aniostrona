@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PoradnikWizytowkaRouteImport } from './routes/poradnik-wizytowka'
 import { Route as PoradnikPortfolioAktorskieRouteImport } from './routes/poradnik-portfolio-aktorskie'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as CvRouteImport } from './routes/cv'
@@ -18,6 +19,11 @@ import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]
 import { Route as ApiPublicCvRouteImport } from './routes/api/public/cv'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
 
+const PoradnikWizytowkaRoute = PoradnikWizytowkaRouteImport.update({
+  id: '/poradnik-wizytowka',
+  path: '/poradnik-wizytowka',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PoradnikPortfolioAktorskieRoute =
   PoradnikPortfolioAktorskieRouteImport.update({
     id: '/poradnik-portfolio-aktorskie',
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
   '/mcp': typeof McpRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -77,6 +84,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
   '/mcp': typeof McpRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
   '/mcp': typeof McpRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cv'
     | '/mcp'
+    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cv'
     | '/mcp'
+    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -120,6 +131,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cv'
     | '/mcp'
+    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
@@ -131,6 +143,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CvRoute: typeof CvRoute
   McpRoute: typeof McpRoute
+  PoradnikWizytowkaRoute: typeof PoradnikWizytowkaRoute
   PoradnikPortfolioAktorskieRoute: typeof PoradnikPortfolioAktorskieRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
@@ -140,6 +153,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/poradnik-wizytowka': {
+      id: '/poradnik-wizytowka'
+      path: '/poradnik-wizytowka'
+      fullPath: '/poradnik-wizytowka'
+      preLoaderRoute: typeof PoradnikWizytowkaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/poradnik-portfolio-aktorskie': {
       id: '/poradnik-portfolio-aktorskie'
       path: '/poradnik-portfolio-aktorskie'
@@ -203,6 +223,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CvRoute: CvRoute,
   McpRoute: McpRoute,
+  PoradnikWizytowkaRoute: PoradnikWizytowkaRoute,
   PoradnikPortfolioAktorskieRoute: PoradnikPortfolioAktorskieRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
