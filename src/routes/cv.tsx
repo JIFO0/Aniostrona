@@ -1,12 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lock, Download, ArrowLeft, FileText } from "lucide-react";
-import cvAsset from "@/assets/cv.pdf.asset.json";
-
-// In static export mode the PDF lives at /assets/pdf/CV.pdf.
-// In Lovable dev mode we use the Lovable CDN URL from the asset JSON.
-const EXPORT_STATIC = import.meta.env.EXPORT_STATIC === "1";
-const cvUrl = EXPORT_STATIC ? "/assets/pdf/CV.pdf" : cvAsset.url;
 
 export const Route = createFileRoute("/cv")({
   head: () => ({
@@ -25,21 +19,51 @@ export const Route = createFileRoute("/cv")({
   component: CVPage,
 });
 
-const PASSWORD = "ilyilyily";
-
 function CVPage() {
   const [unlocked, setUnlocked] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function fetchPdf(password: string): Promise<Blob | null> {
+    const res = await fetch("/api/public/cv", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ password }),
+    });
+    if (res.status === 401) return null;
+    if (!res.ok) throw new Error("Nie udało się pobrać CV.");
+    return await res.blob();
+  }
+
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (value.trim().toLowerCase() === PASSWORD) {
+    setLoading(true);
+    try {
+      const blob = await fetchPdf(value);
+      if (!blob) {
+        setError(true);
+        return;
+      }
+      setBlobUrl(URL.createObjectURL(blob));
       setUnlocked(true);
       setError(false);
-    } else {
+    } catch {
       setError(true);
+    } finally {
+      setLoading(false);
     }
+  }
+
+  function download() {
+    if (!blobUrl) return;
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = "Anna-Tomaszewska-CV.pdf";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   }
 
   return (
@@ -80,9 +104,10 @@ function CVPage() {
                 {error && <p className="text-xs text-destructive">Niepoprawne hasło.</p>}
                 <button
                   type="submit"
-                  className="w-full px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
+                  disabled={loading}
+                  className="w-full px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02] disabled:opacity-60"
                 >
-                  Odblokuj
+                  {loading ? "Sprawdzam..." : "Odblokuj"}
                 </button>
               </form>
             </div>
@@ -97,21 +122,22 @@ function CVPage() {
                 Pełne CV, do pobrania w PDF.
               </p>
               <div className="flex flex-col gap-3">
-                <a
-                  href={cvUrl}
-                  download="Anna-Tomaszewska-CV.pdf"
+                <button
+                  onClick={download}
                   className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
                 >
                   <Download className="w-4 h-4" /> Pobierz CV (PDF)
-                </a>
-                <a
-                  href={cvUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors"
-                >
-                  Otwórz w nowej karcie
-                </a>
+                </button>
+                {blobUrl && (
+                  <a
+                    href={blobUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors"
+                  >
+                    Otwórz w nowej karcie
+                  </a>
+                )}
               </div>
             </div>
           )}
