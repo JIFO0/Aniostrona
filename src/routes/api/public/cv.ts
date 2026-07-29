@@ -31,7 +31,8 @@ export const Route = createFileRoute("/api/public/cv")({
           });
         }
 
-        const upstream = await fetch(await resolveCvUrl(request));
+        const { getCvAssetUrl } = await import("@/lib/cv-source.server");
+        const upstream = await fetch(getCvAssetUrl(request.url));
         if (!upstream.ok || !upstream.body) {
           return new Response("Upstream CV fetch failed", { status: 502 });
         }
