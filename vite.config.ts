@@ -29,6 +29,9 @@ export default defineConfig({
     // Expose EXPORT_STATIC to import.meta.env so cv.tsx can detect static export mode.
     define: {
       "import.meta.env.EXPORT_STATIC": JSON.stringify(process.env.EXPORT_STATIC ?? ""),
+      "import.meta.env.CV_STATIC_PASSWORD": JSON.stringify(
+        isExport ? (process.env.CV_PASSWORD ?? process.env.CV_STATIC_PASSWORD ?? "") : "",
+      ),
     },
   },
 });

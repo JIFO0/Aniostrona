@@ -1,0 +1,237 @@
+{
+  "seo": {
+    "title": "Ania Tomaszewska — aktorka, artystka, obserwatorka",
+    "description": "Strona Anny Weroniki Tomaszewskiej. Aktorka, modelka, kierowniczka zmiany, autorka ponad stu prac plastycznych. Warszawa, Gdynia, plany filmowe.",
+    "ogTitle": "Ania Tomaszewska — aktorka, artystka, obserwatorka",
+    "ogDescription": "Miejsce, w którym mieszczą się plany filmowe, płótna, sceny i cichy proces twórczy."
+  },
+  "nav": {
+    "links": [
+      { "href": "#o-mnie", "label": "o mnie" },
+      { "href": "#czym", "label": "czym się zajmuję" },
+      { "href": "#galeria", "label": "galeria" },
+      { "href": "#sciezka", "label": "ścieżka" },
+      { "href": "/poradnik-wizytowka", "label": "poradnik", "route": true },
+      { "href": "#kontakt", "label": "kontakt" }
+    ],
+    "cvLabel": "CV"
+  },
+  "hero": {
+    "kicker": "Warszawa · Gdynia · w drodze",
+    "firstName": "Anna Weronika",
+    "lastName": "Tomaszewska",
+    "roles": "Aktorka · Modelka · Artystka",
+    "leadAfterAge": "letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.",
+    "ctaPrimary": "Napisz do mnie",
+    "ctaSecondary": "Zobacz galerię",
+    "image": "/__l5e/assets-v1/b989c94f-3845-46eb-b9c6-a33b64d165f6/me-nobg.png",
+    "imageAlt": "Anna Weronika Tomaszewska — portret aktorski i artystyczny"
+  },
+  "about": {
+    "kicker": "o mnie",
+    "title": "Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.",
+    "image": "/__l5e/assets-v1/36ff264e-e958-4038-a2d0-eaee8ef510c6/Orchid-me.png",
+    "imageAlt": "Ania z orchideą",
+    "paragraphs": [
+      "Jestem z Warszawy, z Bemowa. Często jednak można mnie znaleźć w Gdyni, bo tam też mam swoje miejsce. W torbie zawsze mały aparat, wracam z tym co warto zapamiętać.",
+      "Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.",
+      "Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.",
+      "Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens."
+    ],
+    "quote": "Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży."
+  },
+  "whatIDo": {
+    "kicker": "czym się zajmuję",
+    "titleBefore": "Rzeczy, z którymi można mi ",
+    "titleHighlight": "zaufać",
+    "titleAfter": ".",
+    "items": [
+      {
+        "id": "acting",
+        "title": "Aktorstwo",
+        "description": "Na planach już od 2022. Warsztat u [Łukasza Zubrzyckiego](https://varsztatovnia.pl/), weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze. [Jak nagrać filmik-wizytówkę](/poradnik-wizytowka)."
+      },
+      {
+        "id": "modeling",
+        "title": "Modeling",
+        "description": "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu."
+      },
+      {
+        "id": "management",
+        "title": "Zarządzanie",
+        "description": "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie."
+      },
+      {
+        "id": "art",
+        "title": "Sztuka",
+        "description": "Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. ==Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny==."
+      }
+    ]
+  },
+  "stats": [
+    {
+      "value": 20,
+      "suffix": "+",
+      "label": "planów filmowych",
+      "note": "na których byłam, uczyłam się rytmu i ciszy między ujęciami"
+    },
+    {
+      "value": 100,
+      "suffix": "+",
+      "label": "prac plastycznych",
+      "note": "od szkiców po skończone płótna, każde z własnym nastrojem"
+    },
+    {
+      "value": 4,
+      "suffix": "+",
+      "label": "lata na scenie aktorskiej",
+      "note": "kursy, warsztaty, plany, reklamy, marketing, mikrofon w ręku"
+    }
+  ],
+  "gallery": {
+    "kicker": "galeria",
+    "title": "Ja i moje prace w kadrze.",
+    "lead": "Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.",
+    "tabMe": "Ja",
+    "tabWorks": "Prace",
+    "me": [
+      {
+        "src": "/__l5e/assets-v1/36ff264e-e958-4038-a2d0-eaee8ef510c6/Orchid-me.png",
+        "alt": "Portret z białą orchideą",
+        "tall": true
+      },
+      {
+        "src": "/__l5e/assets-v1/8cb5864a-c113-4a56-846d-d4cc71269f59/guitar-me.png",
+        "alt": "Z gitarą w białej sukni",
+        "tall": false
+      },
+      {
+        "src": "/__l5e/assets-v1/593fc492-32e6-43ec-a402-0d7c1610f234/Silver_glitter-me.png",
+        "alt": "Srebrny brokat, sesja portretowa",
+        "tall": true
+      },
+      {
+        "src": "/__l5e/assets-v1/8eb6908a-8b22-46c6-ab5f-71b66a953c00/Peaceful_evening-me.png",
+        "alt": "Wieczorne czytanie przy oknie",
+        "tall": false
+      }
+    ],
+    "works": [
+      {
+        "src": "/__l5e/assets-v1/33e277fa-f7b2-4616-a4aa-6c4dc9a266e0/Movie_set_life.jpg",
+        "alt": "Kadr z planu filmowego",
+        "tall": false
+      },
+      {
+        "src": "/__l5e/assets-v1/2a17916a-2d21-458f-94d6-1ae4b8bab510/Late-night_painting.jpg",
+        "alt": "Malarstwo, obraz w toku",
+        "tall": true
+      },
+      {
+        "src": "/__l5e/assets-v1/4cce8401-3b9c-4e05-b8a5-7fa88a51ac5d/Dried_rose_in_the_golden_hour.jpg",
+        "alt": "Sucha róża w złotej godzinie",
+        "tall": true
+      }
+    ]
+  },
+  "path": {
+    "kicker": "ścieżka",
+    "title": "Krótka historia, w kolejności.",
+    "items": [
+      {
+        "period": "2020 - 2024",
+        "title": "Liceum Marii Pawlikowskiej-Jasnorzewskiej",
+        "description": "LXVII LO w Warszawie. Napisana matura rozszerzona z polskiego oraz z angielskiego."
+      },
+      {
+        "period": "od 2023",
+        "title": "Aktorka",
+        "description": "Pierwsze kroki filmowe, statystka w wielu produkcjach, gdzie tylko się dało."
+      },
+      {
+        "period": "2023",
+        "title": "Warsztaty z Łukaszem Zubrzyckim",
+        "description": "Varsztatownia, cały kurs ukończony z myślą o karierze aktorskiej."
+      },
+      {
+        "period": "od 10.2024",
+        "title": "Green Caffe Nero, baristka",
+        "description": "Baristka i od samego początku bardzo przykładałam się do pracy."
+      },
+      {
+        "period": "10.2025 - 03.2026",
+        "title": "Uniwersytet Warszawski, filologia polska",
+        "description": "Specjalność literaturoznawczo-językoznawcza, żeby lepiej zapoznać się z tekstami od strony technicznej."
+      },
+      {
+        "period": "od 10.2025",
+        "title": "Kierowniczka zmiany, Green Caffe Nero",
+        "description": "Awans wyszedł naturalnie, bardzo dobrze sobie w tym radziłam."
+      },
+      {
+        "period": "od 06.2026",
+        "title": "Kreatorka mediów, Lambadjara",
+        "description": "Tworzenie contentu wokół marki i narracji o niej, a także samo robienie handmade koralików."
+      },
+      {
+        "period": "obecnie",
+        "title": "Profesjonalny kurs jubilerstwa, tryb dzienny",
+        "description": "Marketing już umiem, teraz uczę się pracować z metalem, żeby kiedyś otworzyć własną markę."
+      }
+    ]
+  },
+  "interests": {
+    "kicker": "zainteresowania",
+    "title": "Rzeczy, które zajmują mi głowę.",
+    "tags": [
+      "estetyka",
+      "marketing",
+      "psychologia",
+      "malarstwo",
+      "aktorstwo",
+      "jubilerstwo",
+      "ludzie",
+      "muzyka",
+      "literatura"
+    ],
+    "note": "Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera czy po prostu chaos na planie jaki musiał panować. Często się tym dzielę na głos.",
+    "backgroundImage": "/__l5e/assets-v1/09c7da71-1ada-4775-bcb7-ff85d3e2ef9f/Ok_Zara_model_nobg.png"
+  },
+  "achievements": {
+    "kicker": "osiągnięcia",
+    "title": "Rzeczy, o których warto wspomnieć.",
+    "featuredKicker": "najważniejsze",
+    "featuredTitle": "Instant Challenge *Champion*",
+    "featuredDescription": "[Destination Imagination](https://www.kreatywnosc.pl/) Global Finals, Knoxville, USA. Moja specjalizacja: **szybkie rozwiązywanie bardzo skomplikowanych problemów**, pod presją, w zespole, na czas.",
+    "items": [
+      {
+        "icon": "award",
+        "text": "**I miejsce w wyzwaniu społecznym**, XI Ogólnopolska Olimpiada Kreatywności [Destination Imagination](https://www.kreatywnosc.pl/), Oczyma Wyobraźni."
+      },
+      {
+        "icon": "languages",
+        "text": "Cambridge English Level 1 Certificate in ESOL, poziom B2, dziś realnie bliżej C1."
+      },
+      {
+        "icon": "sparkles",
+        "text": "Warsztaty aktorskie u **Łukasza Zubrzyckiego**, [Varsztatownia](https://varsztatovnia.pl/)."
+      }
+    ]
+  },
+  "teamwork": {
+    "kicker": "języki i praca w zespole",
+    "title": "Jak działam z ludźmi.",
+    "paragraphs": [
+      "**Polski** natywnie. **Angielski** biegle, w mowie i piśmie.",
+      "Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.",
+      "**Doskonale rozładowuję konflikty**. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. **Umiem reprezentować tak siebie, jak i markę, także publicznie**."
+    ]
+  },
+  "contact": {
+    "kicker": "kontakt",
+    "titleBefore": "Napisz, ",
+    "titleItalic": "jeśli masz coś ciekawego.",
+    "lead": "Plan, sesja, rola, projekt, a może szukasz kogoś kto zgrabnie rozpromuje Twoją markę? Szybko odpiszę, nawet między zajęciami i zmianami.",
+    "footerLocations": "Warszawa · Gdynia · mobilna po całej Polsce"
+  }
+}

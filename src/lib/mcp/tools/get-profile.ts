@@ -1,27 +1,6 @@
 import { defineTool } from "@lovable.dev/mcp-js";
-
-const profile = {
-  name: "Anna Weronika Tomaszewska",
-  nickname: "Ania",
-  tagline: "aktorka, artystka, czasem niespełniona",
-  bio: [
-    "21-letnia aktorka i artystka. Wszędzie z małym aparatem, kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.",
-    "Jestem z Warszawy, z Bemowa. Często jednak można mnie znaleźć w Gdyni. W torbie zawsze mały aparat, wracam z tym co warto zapamiętać.",
-    "Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.",
-    "Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś, co nie do końca ma sens.",
-    "Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł, nawet jeżeli jest w zupełnie innej branży.",
-  ],
-  locations: ["Warszawa (Bemowo)", "Gdynia", "w drodze"],
-  contact: {
-    email: "aniat1090@gmail.com",
-    phone: "518 357 491",
-    instagram: "https://instagram.com/ann.veronique",
-  },
-  languages: [
-    { name: "polski", level: "natywny" },
-    { name: "angielski", level: "C1 (Cambridge B2, dziś biegły)" },
-  ],
-};
+import { ageFromBirth } from "@/lib/content";
+import { readHome, readSite } from "@/lib/content/load.server";
 
 export default defineTool({
   name: "get_profile",
@@ -30,8 +9,26 @@ export default defineTool({
     "Zwraca podstawowe informacje o Ani Tomaszewskiej: krótkie bio, lokalizacje, kontakt (email, telefon, Instagram) oraz języki.",
   inputSchema: {},
   annotations: { readOnlyHint: true, idempotentHint: true, openWorldHint: false },
-  handler: () => ({
-    content: [{ type: "text", text: JSON.stringify(profile, null, 2) }],
-    structuredContent: profile,
-  }),
+  handler: () => {
+    const site = readSite();
+    const home = readHome();
+    const age = ageFromBirth(site.birthYear, site.birthMonth);
+    const profile = {
+      name: site.name,
+      nickname: site.nickname,
+      tagline: site.tagline,
+      bio: [`${age}-${home.hero.leadAfterAge}`, ...home.about.paragraphs, home.about.quote],
+      locations: [site.locationNote, ...site.locations.filter((l) => l !== "Warszawa")],
+      contact: {
+        email: site.contact.email,
+        phone: site.contact.phone,
+        instagram: site.contact.instagramUrl,
+      },
+      languages: site.languages,
+    };
+    return {
+      content: [{ type: "text" as const, text: JSON.stringify(profile, null, 2) }],
+      structuredContent: profile,
+    };
+  },
 });

@@ -16,6 +16,9 @@ dist-static
 .tanstack/**
 .nitro
 *.local
+.env
+.env.*
+!.env.example
 .node-modules/
 *.node-modules
 

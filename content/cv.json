@@ -1,0 +1,24 @@
+{
+  "seo": {
+    "title": "CV — Anna Weronika Tomaszewska",
+    "description": "Prywatne CV i dorobek artystyczny Anny Weroniki Tomaszewskiej. Zobacz lub pobierz pełne CV w formacie PDF."
+  },
+  "locked": {
+    "kicker": "prywatne",
+    "title": "CV pod hasłem",
+    "lead": "Wpisz hasło, żeby zobaczyć i pobrać CV.",
+    "placeholder": "hasło",
+    "submit": "Odblokuj",
+    "loading": "Sprawdzam...",
+    "error": "Niepoprawne hasło."
+  },
+  "unlocked": {
+    "kicker": "gotowe",
+    "title": "Anna Weronika Tomaszewska",
+    "lead": "Pełne CV, do pobrania w PDF.",
+    "download": "Pobierz CV (PDF)",
+    "open": "Otwórz w nowej karcie",
+    "filename": "Anna-Tomaszewska-CV.pdf"
+  },
+  "pdf": "/__l5e/assets-v1/a7cdb567-cee3-4cc7-9f31-556fc8adada8/Anna-Tomaszewska-CV.pdf"
+}

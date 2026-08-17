@@ -40,7 +40,7 @@ The output appears in **`dist-static/`**, ready to deploy.
 | 3 | Runs `npm run build` / `bun run build` to produce a bundled SPA |
 | 4 | Copies upscaled hero images, gallery images, and `assets/pdf/CV.pdf` into `dist-static/assets/` |
 | 5 | Rewrites all Lovable `/__l5e/` CDN URLs in HTML/JS/CSS to local `/assets/` paths |
-| 6 | Creates per-route HTML entry files (`cv/index.html`, `poradnik-wizytowka/index.html`) |
+| 6 | Keeps Vite-prerendered HTML (copy comes from `content/*.json`) and writes the old poradnik redirect |
 | 7 | Verifies crawler files: `robots.txt`, `sitemap.xml`, `llms.txt`, `favicon.ico` |
 | 8 | Generates SPA routing fallbacks: `_redirects` (Netlify), `404.html` (GitHub Pages), `vercel.json`, `.htaccess` (Apache) |
 

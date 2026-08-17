@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /edycja
+Disallow: /api/cms/
 
 Sitemap: https://annatomaszewska.pl/sitemap.xml
 

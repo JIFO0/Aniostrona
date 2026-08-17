@@ -31,20 +31,36 @@ export const Route = createFileRoute("/api/public/cv")({
           });
         }
 
+        const { readCv } = await import("@/lib/content/load.server");
+        const pdfPath = readCv().pdf;
+        const filename = "Anna-Tomaszewska-CV.pdf";
+        const headers = {
+          "content-type": "application/pdf",
+          "content-disposition": `attachment; filename="${filename}"`,
+          "cache-control": "private, no-store",
+        };
+
+        if (pdfPath.startsWith("/uploads/")) {
+          const { readFile } = await import("node:fs/promises");
+          const { resolve } = await import("node:path");
+          const root = process.env.CMS_ROOT || process.cwd();
+          const abs = resolve(root, "public", pdfPath.replace(/^\/+/, ""));
+          const data = await readFile(abs);
+          return new Response(data, { status: 200, headers });
+        }
+
         const { getCvAssetUrl } = await import("@/lib/cv-source.server");
-        const upstream = await fetch(getCvAssetUrl(request.url));
+        const source = pdfPath.startsWith("http")
+          ? pdfPath
+          : pdfPath.startsWith("/")
+            ? new URL(pdfPath, request.url).toString()
+            : getCvAssetUrl(request.url);
+        const upstream = await fetch(source);
         if (!upstream.ok || !upstream.body) {
           return new Response("Upstream CV fetch failed", { status: 502 });
         }
 
-        return new Response(upstream.body, {
-          status: 200,
-          headers: {
-            "content-type": "application/pdf",
-            "content-disposition": 'attachment; filename="Anna-Tomaszewska-CV.pdf"',
-            "cache-control": "private, no-store",
-          },
-        });
+        return new Response(upstream.body, { status: 200, headers });
       },
     },
   },

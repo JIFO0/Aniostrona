@@ -7,4 +7,7 @@
 >
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
+>
+> Public copy lives in `content/*.json`. Do not hardcode that text back into React.
+> Do not hand-edit `tina/__generated__/`.
 <!-- LOVABLE:END -->
