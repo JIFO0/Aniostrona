@@ -434,12 +434,65 @@ def rewrite_asset_urls():
             filepath.write_text(content, encoding="utf-8")
 
 def generate_route_html_files():
-    log("Keeping Vite prerendered HTML; copy lives in content/*.json")
+    log("Rendering static HTML pages from React / SSR bundle...")
 
-    if not (DIST_DIR / "index.html").exists():
-        warn("dist-static/index.html missing after Vite build.")
-    else:
-        ok("Using prerendered dist-static/index.html")
+    ssr_script = ROOT / ".render_routes_temp.mjs"
+    routes_to_render = ["/"] + [f"/{r['path']}" for r in ROUTES]
+
+    render_code = f"""
+import fs from 'node:fs';
+import path from 'node:path';
+import {{ fileURLToPath }} from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const distDir = path.resolve(__dirname, 'dist-static');
+
+try {{
+  const ssrMod = await import('./.output/server/_ssr/ssr.mjs');
+  const handler = ssrMod.default;
+  const routes = {json.dumps(routes_to_render)};
+
+  for (const route of routes) {{
+    const url = `http://localhost${{route.startsWith('/') ? route : '/' + route}}`;
+    const res = await handler.fetch(new Request(url));
+    if (res.status >= 400) {{
+      console.warn(`[render-warning] ${{route}} returned status ${{res.status}}`);
+      continue;
+    }}
+    const html = await res.text();
+    const cleanRoute = route.replace(/^\\/+/, '');
+    const outPath = cleanRoute === ''
+      ? path.join(distDir, 'index.html')
+      : path.join(distDir, cleanRoute, 'index.html');
+
+    fs.mkdirSync(path.dirname(outPath), {{ recursive: true }});
+    fs.writeFileSync(outPath, html, 'utf-8');
+    console.log(`[render-ok] ${{route}} -> ${{path.relative(__dirname, outPath)}} (${{html.length}} bytes)`);
+  }}
+}} catch (err) {{
+  console.error('[render-error]', err);
+  process.exit(1);
+}}
+"""
+    try:
+        ssr_script.write_text(render_code, encoding="utf-8")
+        result = subprocess.run(["node", str(ssr_script)], cwd=ROOT, capture_output=True, text=True, check=True)
+        for line in result.stdout.splitlines():
+            if "[render-ok]" in line:
+                ok(line.replace("[render-ok]", "").strip())
+            elif "[render-warning]" in line:
+                warn(line.replace("[render-warning]", "").strip())
+    except Exception as e:
+        err(f"Failed to render static routes via Node SSR: {e}")
+        if 'result' in locals() and result.stderr:
+            err(result.stderr)
+        raise
+    finally:
+        if ssr_script.exists():
+            try:
+                ssr_script.unlink()
+            except Exception:
+                pass
 
     old_poradnik_dir = DIST_DIR / "poradnik-portfolio-aktorskie"
     ensure_dir(old_poradnik_dir)
@@ -471,7 +524,6 @@ def generate_route_html_files():
         encoding="utf-8",
     )
     ok("Generated double-clickable launcher → dist-static/start_offline_site.bat")
-
 
 
 def copy_crawler_files():
@@ -563,9 +615,13 @@ def serve_preview(port: int = 3000):
             super().end_headers()
 
     server = http.server.HTTPServer(("", port), SilentHandler)
+    url = f"http://localhost:{port}"
     print()
-    print(f"{BOLD}{GREEN}  Preview server running at http://localhost:{port}{RESET}")
-    print(f"  Press Ctrl+C to stop.\n")
+    print(f"{BOLD}{GREEN}  Preview server running at {url}{RESET}")
+    print(f"  Opening browser automatically... Press Ctrl+C to stop.\n")
+
+    import webbrowser
+    threading.Timer(0.6, lambda: webbrowser.open(url)).start()
 
     try:
         server.serve_forever()
@@ -617,8 +673,8 @@ def main():
         build_gallery_manifest()
         run_vite_build()
         copy_assets()
-        rewrite_asset_urls()
         generate_route_html_files()
+        rewrite_asset_urls()
         copy_crawler_files()
         generate_spa_fallbacks()
 

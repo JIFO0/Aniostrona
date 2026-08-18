@@ -9,19 +9,41 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PoradnikWizytowkaRouteImport } from './routes/poradnik-wizytowka'
-import { Route as PoradnikPortfolioAktorskieRouteImport } from './routes/poradnik-portfolio-aktorskie'
-import { Route as McpRouteImport } from './routes/mcp'
-import { Route as CvRouteImport } from './routes/cv'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as CvRouteImport } from './routes/cv'
+import { Route as EdycjaRouteImport } from './routes/edycja'
+import { Route as McpRouteImport } from './routes/mcp'
+import { Route as PoradnikPortfolioAktorskieRouteImport } from './routes/poradnik-portfolio-aktorskie'
+import { Route as PoradnikWizytowkaRouteImport } from './routes/poradnik-wizytowka'
 import { Route as Char91DotmcpChar93ListToolsRouteImport } from './routes/[.mcp]/list-tools'
-import { Route as ApiPublicCvRouteImport } from './routes/api/public/cv'
+import { Route as Char91DotwellKnownChar93OauthProtectedResourceRouteImport } from './routes/[.well-known]/oauth-protected-resource'
+import { Route as SSlugRouteImport } from './routes/s/$slug'
+import { Route as UploadsSplatRouteImport } from './routes/uploads/$'
 import { Route as Char91DotmcpChar93InvokeToolToolRouteImport } from './routes/[.mcp]/invoke-tool/$tool'
+import { Route as ApiCmsLoginRouteImport } from './routes/api/cms/login'
+import { Route as ApiCmsLogoutRouteImport } from './routes/api/cms/logout'
+import { Route as ApiCmsSaveRouteImport } from './routes/api/cms/save'
+import { Route as ApiCmsUploadRouteImport } from './routes/api/cms/upload'
+import { Route as ApiPublicCvRouteImport } from './routes/api/public/cv'
 
-const PoradnikWizytowkaRoute = PoradnikWizytowkaRouteImport.update({
-  id: '/poradnik-wizytowka',
-  path: '/poradnik-wizytowka',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CvRoute = CvRouteImport.update({
+  id: '/cv',
+  path: '/cv',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EdycjaRoute = EdycjaRouteImport.update({
+  id: '/edycja',
+  path: '/edycja',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const McpRoute = McpRouteImport.update({
+  id: '/mcp',
+  path: '/mcp',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PoradnikPortfolioAktorskieRoute =
@@ -30,36 +52,31 @@ const PoradnikPortfolioAktorskieRoute =
     path: '/poradnik-portfolio-aktorskie',
     getParentRoute: () => rootRouteImport,
   } as any)
-const McpRoute = McpRouteImport.update({
-  id: '/mcp',
-  path: '/mcp',
+const PoradnikWizytowkaRoute = PoradnikWizytowkaRouteImport.update({
+  id: '/poradnik-wizytowka',
+  path: '/poradnik-wizytowka',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CvRoute = CvRouteImport.update({
-  id: '/cv',
-  path: '/cv',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const Char91DotwellKnownChar93OauthProtectedResourceRoute =
-  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
-    id: '/.well-known/oauth-protected-resource',
-    path: '/.well-known/oauth-protected-resource',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const Char91DotmcpChar93ListToolsRoute =
   Char91DotmcpChar93ListToolsRouteImport.update({
     id: '/.mcp/list-tools',
     path: '/.mcp/list-tools',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ApiPublicCvRoute = ApiPublicCvRouteImport.update({
-  id: '/api/public/cv',
-  path: '/api/public/cv',
+const Char91DotwellKnownChar93OauthProtectedResourceRoute =
+  Char91DotwellKnownChar93OauthProtectedResourceRouteImport.update({
+    id: '/.well-known/oauth-protected-resource',
+    path: '/.well-known/oauth-protected-resource',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const SSlugRoute = SSlugRouteImport.update({
+  id: '/s/$slug',
+  path: '/s/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UploadsSplatRoute = UploadsSplatRouteImport.update({
+  id: '/uploads/$',
+  path: '/uploads/$',
   getParentRoute: () => rootRouteImport,
 } as any)
 const Char91DotmcpChar93InvokeToolToolRoute =
@@ -68,39 +85,85 @@ const Char91DotmcpChar93InvokeToolToolRoute =
     path: '/.mcp/invoke-tool/$tool',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ApiCmsLoginRoute = ApiCmsLoginRouteImport.update({
+  id: '/api/cms/login',
+  path: '/api/cms/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCmsLogoutRoute = ApiCmsLogoutRouteImport.update({
+  id: '/api/cms/logout',
+  path: '/api/cms/logout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCmsSaveRoute = ApiCmsSaveRouteImport.update({
+  id: '/api/cms/save',
+  path: '/api/cms/save',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCmsUploadRoute = ApiCmsUploadRouteImport.update({
+  id: '/api/cms/upload',
+  path: '/api/cms/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicCvRoute = ApiPublicCvRouteImport.update({
+  id: '/api/public/cv',
+  path: '/api/public/cv',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/edycja': typeof EdycjaRoute
   '/mcp': typeof McpRoute
-  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/s/$slug': typeof SSlugRoute
+  '/uploads/$': typeof UploadsSplatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/cms/login': typeof ApiCmsLoginRoute
+  '/api/cms/logout': typeof ApiCmsLogoutRoute
+  '/api/cms/save': typeof ApiCmsSaveRoute
+  '/api/cms/upload': typeof ApiCmsUploadRoute
   '/api/public/cv': typeof ApiPublicCvRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/edycja': typeof EdycjaRoute
   '/mcp': typeof McpRoute
-  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/s/$slug': typeof SSlugRoute
+  '/uploads/$': typeof UploadsSplatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/cms/login': typeof ApiCmsLoginRoute
+  '/api/cms/logout': typeof ApiCmsLogoutRoute
+  '/api/cms/save': typeof ApiCmsSaveRoute
+  '/api/cms/upload': typeof ApiCmsUploadRoute
   '/api/public/cv': typeof ApiPublicCvRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/cv': typeof CvRoute
+  '/edycja': typeof EdycjaRoute
   '/mcp': typeof McpRoute
-  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/poradnik-portfolio-aktorskie': typeof PoradnikPortfolioAktorskieRoute
+  '/poradnik-wizytowka': typeof PoradnikWizytowkaRoute
   '/.mcp/list-tools': typeof Char91DotmcpChar93ListToolsRoute
   '/.well-known/oauth-protected-resource': typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  '/s/$slug': typeof SSlugRoute
+  '/uploads/$': typeof UploadsSplatRoute
   '/.mcp/invoke-tool/$tool': typeof Char91DotmcpChar93InvokeToolToolRoute
+  '/api/cms/login': typeof ApiCmsLoginRoute
+  '/api/cms/logout': typeof ApiCmsLogoutRoute
+  '/api/cms/save': typeof ApiCmsSaveRoute
+  '/api/cms/upload': typeof ApiCmsUploadRoute
   '/api/public/cv': typeof ApiPublicCvRoute
 }
 export interface FileRouteTypes {
@@ -108,70 +171,84 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cv'
+    | '/edycja'
     | '/mcp'
-    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
+    | '/poradnik-wizytowka'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/s/$slug'
+    | '/uploads/$'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/cms/login'
+    | '/api/cms/logout'
+    | '/api/cms/save'
+    | '/api/cms/upload'
     | '/api/public/cv'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/cv'
+    | '/edycja'
     | '/mcp'
-    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
+    | '/poradnik-wizytowka'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/s/$slug'
+    | '/uploads/$'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/cms/login'
+    | '/api/cms/logout'
+    | '/api/cms/save'
+    | '/api/cms/upload'
     | '/api/public/cv'
   id:
     | '__root__'
     | '/'
     | '/cv'
+    | '/edycja'
     | '/mcp'
-    | '/poradnik-wizytowka'
     | '/poradnik-portfolio-aktorskie'
+    | '/poradnik-wizytowka'
     | '/.mcp/list-tools'
     | '/.well-known/oauth-protected-resource'
+    | '/s/$slug'
+    | '/uploads/$'
     | '/.mcp/invoke-tool/$tool'
+    | '/api/cms/login'
+    | '/api/cms/logout'
+    | '/api/cms/save'
+    | '/api/cms/upload'
     | '/api/public/cv'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CvRoute: typeof CvRoute
+  EdycjaRoute: typeof EdycjaRoute
   McpRoute: typeof McpRoute
-  PoradnikWizytowkaRoute: typeof PoradnikWizytowkaRoute
   PoradnikPortfolioAktorskieRoute: typeof PoradnikPortfolioAktorskieRoute
+  PoradnikWizytowkaRoute: typeof PoradnikWizytowkaRoute
   Char91DotmcpChar93ListToolsRoute: typeof Char91DotmcpChar93ListToolsRoute
   Char91DotwellKnownChar93OauthProtectedResourceRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRoute
+  SSlugRoute: typeof SSlugRoute
+  UploadsSplatRoute: typeof UploadsSplatRoute
   Char91DotmcpChar93InvokeToolToolRoute: typeof Char91DotmcpChar93InvokeToolToolRoute
+  ApiCmsLoginRoute: typeof ApiCmsLoginRoute
+  ApiCmsLogoutRoute: typeof ApiCmsLogoutRoute
+  ApiCmsSaveRoute: typeof ApiCmsSaveRoute
+  ApiCmsUploadRoute: typeof ApiCmsUploadRoute
   ApiPublicCvRoute: typeof ApiPublicCvRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/poradnik-wizytowka': {
-      id: '/poradnik-wizytowka'
-      path: '/poradnik-wizytowka'
-      fullPath: '/poradnik-wizytowka'
-      preLoaderRoute: typeof PoradnikWizytowkaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/poradnik-portfolio-aktorskie': {
-      id: '/poradnik-portfolio-aktorskie'
-      path: '/poradnik-portfolio-aktorskie'
-      fullPath: '/poradnik-portfolio-aktorskie'
-      preLoaderRoute: typeof PoradnikPortfolioAktorskieRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mcp': {
-      id: '/mcp'
-      path: '/mcp'
-      fullPath: '/mcp'
-      preLoaderRoute: typeof McpRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cv': {
@@ -181,18 +258,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CvRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/edycja': {
+      id: '/edycja'
+      path: '/edycja'
+      fullPath: '/edycja'
+      preLoaderRoute: typeof EdycjaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/.well-known/oauth-protected-resource': {
-      id: '/.well-known/oauth-protected-resource'
-      path: '/.well-known/oauth-protected-resource'
-      fullPath: '/.well-known/oauth-protected-resource'
-      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+    '/mcp': {
+      id: '/mcp'
+      path: '/mcp'
+      fullPath: '/mcp'
+      preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poradnik-portfolio-aktorskie': {
+      id: '/poradnik-portfolio-aktorskie'
+      path: '/poradnik-portfolio-aktorskie'
+      fullPath: '/poradnik-portfolio-aktorskie'
+      preLoaderRoute: typeof PoradnikPortfolioAktorskieRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/poradnik-wizytowka': {
+      id: '/poradnik-wizytowka'
+      path: '/poradnik-wizytowka'
+      fullPath: '/poradnik-wizytowka'
+      preLoaderRoute: typeof PoradnikWizytowkaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.mcp/list-tools': {
@@ -202,11 +293,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotmcpChar93ListToolsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/api/public/cv': {
-      id: '/api/public/cv'
-      path: '/api/public/cv'
-      fullPath: '/api/public/cv'
-      preLoaderRoute: typeof ApiPublicCvRouteImport
+    '/.well-known/oauth-protected-resource': {
+      id: '/.well-known/oauth-protected-resource'
+      path: '/.well-known/oauth-protected-resource'
+      fullPath: '/.well-known/oauth-protected-resource'
+      preLoaderRoute: typeof Char91DotwellKnownChar93OauthProtectedResourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/s/$slug': {
+      id: '/s/$slug'
+      path: '/s/$slug'
+      fullPath: '/s/$slug'
+      preLoaderRoute: typeof SSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/uploads/$': {
+      id: '/uploads/$'
+      path: '/uploads/$'
+      fullPath: '/uploads/$'
+      preLoaderRoute: typeof UploadsSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/.mcp/invoke-tool/$tool': {
@@ -216,19 +321,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91DotmcpChar93InvokeToolToolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/cms/login': {
+      id: '/api/cms/login'
+      path: '/api/cms/login'
+      fullPath: '/api/cms/login'
+      preLoaderRoute: typeof ApiCmsLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cms/logout': {
+      id: '/api/cms/logout'
+      path: '/api/cms/logout'
+      fullPath: '/api/cms/logout'
+      preLoaderRoute: typeof ApiCmsLogoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cms/save': {
+      id: '/api/cms/save'
+      path: '/api/cms/save'
+      fullPath: '/api/cms/save'
+      preLoaderRoute: typeof ApiCmsSaveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/cms/upload': {
+      id: '/api/cms/upload'
+      path: '/api/cms/upload'
+      fullPath: '/api/cms/upload'
+      preLoaderRoute: typeof ApiCmsUploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/cv': {
+      id: '/api/public/cv'
+      path: '/api/public/cv'
+      fullPath: '/api/public/cv'
+      preLoaderRoute: typeof ApiPublicCvRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CvRoute: CvRoute,
+  EdycjaRoute: EdycjaRoute,
   McpRoute: McpRoute,
-  PoradnikWizytowkaRoute: PoradnikWizytowkaRoute,
   PoradnikPortfolioAktorskieRoute: PoradnikPortfolioAktorskieRoute,
+  PoradnikWizytowkaRoute: PoradnikWizytowkaRoute,
   Char91DotmcpChar93ListToolsRoute: Char91DotmcpChar93ListToolsRoute,
   Char91DotwellKnownChar93OauthProtectedResourceRoute:
     Char91DotwellKnownChar93OauthProtectedResourceRoute,
+  SSlugRoute: SSlugRoute,
+  UploadsSplatRoute: UploadsSplatRoute,
   Char91DotmcpChar93InvokeToolToolRoute: Char91DotmcpChar93InvokeToolToolRoute,
+  ApiCmsLoginRoute: ApiCmsLoginRoute,
+  ApiCmsLogoutRoute: ApiCmsLogoutRoute,
+  ApiCmsSaveRoute: ApiCmsSaveRoute,
+  ApiCmsUploadRoute: ApiCmsUploadRoute,
   ApiPublicCvRoute: ApiPublicCvRoute,
 }
 export const routeTree = rootRouteImport

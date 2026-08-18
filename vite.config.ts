@@ -13,10 +13,6 @@ export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     server: { entry: "server" },
-    // Enable SSG prerendering during static export so pages build as fully populated HTML.
-    prerender: isExport ? {
-      routes: ["/", "/cv", "/poradnik-wizytowka"],
-    } : undefined,
   },
   vite: {
     // Disable mcpPlugin during static export build to avoid Windows path separator bug in @lovable.dev/mcp-js
@@ -30,7 +26,7 @@ export default defineConfig({
     define: {
       "import.meta.env.EXPORT_STATIC": JSON.stringify(process.env.EXPORT_STATIC ?? ""),
       "import.meta.env.CV_STATIC_PASSWORD": JSON.stringify(
-        isExport ? (process.env.CV_PASSWORD ?? process.env.CV_STATIC_PASSWORD ?? "") : "",
+        isExport ? (process.env.CV_PASSWORD ?? process.env.CV_STATIC_PASSWORD ?? "ilyilyily") : "",
       ),
     },
   },
