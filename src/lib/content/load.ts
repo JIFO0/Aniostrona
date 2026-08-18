@@ -9,7 +9,8 @@ export function getSite(): SiteContent {
 }
 
 export function getHome(): HomeContent {
-  return homeJson as HomeContent;
+  const home = homeJson as HomeContent;
+  return { ...home, extra: Array.isArray(home.extra) ? home.extra : [] };
 }
 
 export function getCv(): CvContent {

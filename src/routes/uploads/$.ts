@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { readFile } from "node:fs/promises";
 import { extname, resolve } from "node:path";
+import { contentRoot } from "@/lib/content/load.server";
 
 const MIME: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -17,7 +18,7 @@ export const Route = createFileRoute("/uploads/$")({
     handlers: {
       GET: async ({ params }) => {
         const relative = String(params._splat || "").replace(/^\/+/, "");
-        const root = resolve(process.env.CMS_ROOT || process.cwd(), "public", "uploads");
+        const root = resolve(contentRoot(), "public", "uploads");
         const abs = resolve(root, relative);
         if (!abs.startsWith(root) || relative.includes("..")) {
           return new Response("Forbidden", { status: 403 });

@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { SetupCycle } from "@/components/site/SetupCycle";
+import { ExtraBlockView, BlockImage } from "@/components/site/ExtraBlocks";
 import { readPoradnik, readSite } from "@/lib/content/load.server";
 import {
   poradnikOgImage,
@@ -130,6 +131,11 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
             text={block.lead}
             className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           />
+          <BlockImage
+            src={block.image}
+            alt={block.imageAlt}
+            className="mt-10 w-full max-h-[28rem] object-cover rounded-3xl"
+          />
         </header>
       );
     case "introCards":
@@ -146,9 +152,13 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
                   key={card.id}
                   className={`soft-card rounded-2xl p-6 bg-gradient-to-br ${tint} border border-sage/20`}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5" />
-                  </div>
+                  {card.image ? (
+                    <BlockImage src={card.image} className="w-full h-36 object-cover rounded-xl mb-4" />
+                  ) : (
+                    <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  )}
                   <h3 className="font-serif text-lg font-medium mb-2">{card.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{card.text}</p>
                 </div>
@@ -169,6 +179,7 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
                 {block.title}
               </h2>
             )}
+            <BlockImage src={block.image} alt={block.imageAlt} className="w-full rounded-2xl object-cover max-h-96" />
             {block.paragraphs.map((p) => (
               <RichText
                 key={p}
@@ -190,6 +201,7 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
                 {block.title}
               </h2>
             </div>
+            <BlockImage src={block.image} className="w-full rounded-2xl object-cover max-h-80" />
             <div className="space-y-3 font-sans text-base">
               {block.items.map((item) => (
                 <div
@@ -208,6 +220,7 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
         <div className="rounded-3xl p-8 md:p-12 text-center bg-gradient-to-br from-sage/20 via-cream to-rose/20 border border-sage/30 space-y-6">
             <h2 className="font-serif text-3xl md:text-4xl">{block.title}</h2>
             <p className="text-muted-foreground text-lg max-w-xl mx-auto">{block.lead}</p>
+            <BlockImage src={block.image} className="w-full max-h-72 object-cover rounded-2xl" />
             <div className="flex flex-wrap justify-center gap-4 pt-2">
               <a
                 href="/#kontakt"
@@ -225,7 +238,7 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
         </div>
       );
     default:
-      return null;
+      return <ExtraBlockView block={block} bare />;
   }
 }
 
@@ -275,6 +288,7 @@ function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {
               text={block.text}
               className="text-sm text-muted-foreground leading-relaxed"
             />
+            <BlockImage src={block.image} className="w-full rounded-xl object-cover max-h-56" />
           </div>
         </div>
       );
@@ -282,11 +296,13 @@ function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {
     case "twoCol":
       return (
         <div className="grid md:grid-cols-2 gap-4 pt-2">
-          <div className="p-4 rounded-xl bg-background/50 border border-border/50">
+          <div className="p-4 rounded-xl bg-background/50 border border-border/50 space-y-3">
+            <BlockImage src={block.leftImage} className="w-full rounded-lg object-cover max-h-48" />
             <h4 className="font-serif font-medium text-foreground mb-1">{block.leftTitle}</h4>
             <p className="text-sm text-muted-foreground">{block.leftText}</p>
           </div>
-          <div className="p-4 rounded-xl bg-background/50 border border-border/50">
+          <div className="p-4 rounded-xl bg-background/50 border border-border/50 space-y-3">
+            <BlockImage src={block.rightImage} className="w-full rounded-lg object-cover max-h-48" />
             <h4 className="font-serif font-medium text-foreground mb-1">{block.rightTitle}</h4>
             <p className="text-sm text-muted-foreground">{block.rightText}</p>
           </div>
@@ -299,6 +315,9 @@ function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {
           className="text-muted-foreground leading-relaxed text-base md:text-lg"
         />
       );
+    case "image":
+    case "gallery":
+      return <ExtraBlockView block={block} bare />;
     default:
       return null;
   }

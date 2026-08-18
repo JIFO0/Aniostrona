@@ -43,8 +43,8 @@ export const Route = createFileRoute("/api/public/cv")({
         if (pdfPath.startsWith("/uploads/")) {
           const { readFile } = await import("node:fs/promises");
           const { resolve } = await import("node:path");
-          const root = process.env.CMS_ROOT || process.cwd();
-          const abs = resolve(root, "public", pdfPath.replace(/^\/+/, ""));
+          const { contentRoot } = await import("@/lib/content/load.server");
+          const abs = resolve(contentRoot(), "public", pdfPath.replace(/^\/+/, ""));
           const data = await readFile(abs);
           return new Response(data, { status: 200, headers });
         }

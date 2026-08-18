@@ -21,6 +21,7 @@ import {
 } from "lucide-react";
 import galleryManifest from "../gallery-manifest.json";
 import { ageFromBirth, RichText } from "@/lib/content";
+import { ExtraBlocks } from "@/components/site/ExtraBlocks";
 import { readHome, readSite } from "@/lib/content/load.server";
 
 const WHAT_I_DO_ICONS: Record<string, ComponentType<{ className?: string }>> = {
@@ -88,25 +89,15 @@ function Index() {
             {site.shortName}
           </a>
           <div className="hidden md:flex gap-8 text-sm text-muted-foreground items-center">
-            {home.nav.links.map((link) =>
-              link.route ? (
-                <Link
-                  key={link.href}
-                  to={link.href as "/poradnik-wizytowka"}
-                  className="hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-foreground transition-colors"
-                >
-                  {link.label}
-                </a>
-              ),
-            )}
+            {home.nav.links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-foreground transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
             <Link
               to="/cv"
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage hover:bg-sage/20 transition-colors"
@@ -161,6 +152,7 @@ function Index() {
           </div>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="hero" />
 
       <section id="o-mnie" className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
@@ -204,6 +196,7 @@ function Index() {
           </div>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="o-mnie" />
 
       <section id="czym" className="py-24 md:py-32 bg-gradient-to-b from-transparent via-rose/10 to-transparent">
         <div className="max-w-6xl mx-auto px-6">
@@ -223,9 +216,13 @@ function Index() {
               return (
                 <Reveal key={c.id} delay={i * 100}>
                   <div className="soft-card rounded-2xl p-7 h-full hover:-translate-y-1 transition-transform duration-500">
-                    <div className="w-11 h-11 rounded-2xl bg-sage/15 text-sage mb-6 flex items-center justify-center">
-                      <Icon className="w-5 h-5" />
-                    </div>
+                    {c.image ? (
+                      <img src={c.image} alt="" className="w-full h-36 object-cover rounded-xl mb-5" />
+                    ) : (
+                      <div className="w-11 h-11 rounded-2xl bg-sage/15 text-sage mb-6 flex items-center justify-center">
+                        <Icon className="w-5 h-5" />
+                      </div>
+                    )}
                     <h3 className="text-2xl mb-3">{c.title}</h3>
                     <RichText
                       text={c.description}
@@ -238,6 +235,7 @@ function Index() {
           </div>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="czym" />
 
       <section className="py-24 md:py-32">
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
@@ -256,6 +254,7 @@ function Index() {
           ))}
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="stats" />
 
       <section id="galeria" className="py-24 md:py-32 mesh-bg">
         <div className="max-w-6xl mx-auto px-6">
@@ -304,6 +303,7 @@ function Index() {
           </div>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="galeria" />
 
       <section id="sciezka" className="py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-6">
@@ -318,6 +318,9 @@ function Index() {
                   <span className="absolute -left-[41px] md:-left-[57px] top-2 w-3 h-3 rounded-full bg-sage ring-4 ring-cream" />
                   <p className="text-xs tracking-[0.2em] uppercase text-sage mb-2">{e.period}</p>
                   <h3 className="text-2xl mb-2">{e.title}</h3>
+                  {e.image ? (
+                    <img src={e.image} alt="" className="w-full max-w-md rounded-xl object-cover mb-3" />
+                  ) : null}
                   <p className="text-muted-foreground leading-relaxed">{e.description}</p>
                 </div>
               </Reveal>
@@ -325,6 +328,7 @@ function Index() {
           </div>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="sciezka" />
 
       <section className="py-24 md:py-32 relative overflow-hidden">
         <img
@@ -357,6 +361,7 @@ function Index() {
           </Reveal>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="interests" />
 
       <section className="py-24 md:py-32 bg-gradient-to-b from-transparent via-sage/5 to-transparent">
         <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 gap-16">
@@ -390,9 +395,13 @@ function Index() {
                 const Icon = ACHIEVEMENT_ICONS[item.icon] ?? Sparkles;
                 return (
                   <li key={item.text} className="flex gap-4 items-start">
-                    <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage">
-                      <Icon className="w-4 h-4" />
-                    </span>
+                    {item.image ? (
+                      <img src={item.image} alt="" className="w-14 h-14 rounded-xl object-cover shrink-0" />
+                    ) : (
+                      <span className="shrink-0 w-9 h-9 rounded-full bg-rose/50 flex items-center justify-center text-sage">
+                        <Icon className="w-4 h-4" />
+                      </span>
+                    )}
                     <RichText as="span" text={item.text} />
                   </li>
                 );
@@ -410,6 +419,7 @@ function Index() {
           </Reveal>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="achievements" />
 
       <section id="kontakt" className="mesh-bg py-24 md:py-32">
         <div className="max-w-3xl mx-auto px-6 text-center">
@@ -454,6 +464,7 @@ function Index() {
           </Reveal>
         </div>
       </section>
+      <ExtraBlocks blocks={home.extra} after="kontakt" />
 
       <footer className="py-12 border-t border-border/40 bg-cream/40">
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">

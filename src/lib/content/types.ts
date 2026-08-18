@@ -59,7 +59,7 @@ export type HomeContent = {
     titleBefore: string;
     titleHighlight: string;
     titleAfter: string;
-    items: { id: string; title: string; description: string }[];
+    items: { id: string; title: string; description: string; image?: string }[];
   };
   stats: { value: number; suffix: string; label: string; note: string }[];
   gallery: {
@@ -74,7 +74,7 @@ export type HomeContent = {
   path: {
     kicker: string;
     title: string;
-    items: { period: string; title: string; description: string }[];
+    items: { period: string; title: string; description: string; image?: string }[];
   };
   interests: {
     kicker: string;
@@ -89,7 +89,7 @@ export type HomeContent = {
     featuredKicker: string;
     featuredTitle: string;
     featuredDescription: string;
-    items: { icon: string; text: string }[];
+    items: { icon: string; text: string; image?: string }[];
   };
   teamwork: {
     kicker: string;
@@ -103,6 +103,7 @@ export type HomeContent = {
     lead: string;
     footerLocations: string;
   };
+  extra: ExtraBlock[];
 };
 
 export type CvContent = {
@@ -127,6 +128,43 @@ export type CvContent = {
   pdf: string;
 };
 
+export type ExtraBlockBody =
+  | {
+      _template: "heading";
+      kicker: string;
+      title: string;
+      lead: string;
+      image?: string;
+      imageAlt?: string;
+    }
+  | { _template: "text"; body: string; image?: string; imageAlt?: string }
+  | { _template: "image"; src: string; alt: string; caption: string }
+  | {
+      _template: "imageText";
+      src: string;
+      alt: string;
+      title: string;
+      body: string;
+      imageSide: "left" | "right";
+    }
+  | { _template: "gallery"; title: string; images: { src: string; alt: string }[] }
+  | { _template: "cards"; title: string; items: { title: string; text: string; image: string }[] }
+  | { _template: "quote"; text: string; cite: string; image?: string }
+  | { _template: "list"; title: string; items: string[]; image?: string }
+  | {
+      _template: "ctaBox";
+      title: string;
+      lead: string;
+      buttonLabel: string;
+      buttonHref: string;
+      image?: string;
+    };
+
+export type ExtraBlock = ExtraBlockBody & {
+  id: string;
+  after?: string;
+};
+
 export type PoradnikInnerBlock =
   | {
       _template: "imagePair";
@@ -142,6 +180,7 @@ export type PoradnikInnerBlock =
       icon: string;
       title: string;
       text: string;
+      image?: string;
     }
   | {
       _template: "twoCol";
@@ -149,8 +188,12 @@ export type PoradnikInnerBlock =
       leftText: string;
       rightTitle: string;
       rightText: string;
+      leftImage?: string;
+      rightImage?: string;
     }
-  | { _template: "prose"; text: string };
+  | { _template: "prose"; text: string }
+  | { _template: "image"; src: string; alt: string; caption: string }
+  | { _template: "gallery"; title: string; images: { src: string; alt: string }[] };
 
 export type PoradnikBlock =
   | {
@@ -158,26 +201,32 @@ export type PoradnikBlock =
       badge: string;
       title: string;
       lead: string;
+      image?: string;
+      imageAlt?: string;
     }
   | {
       _template: "introCards";
-      cards: { id: string; title: string; text: string }[];
+      cards: { id: string; title: string; text: string; image?: string }[];
     }
   | {
       _template: "richSection";
       number: string;
       title: string;
       paragraphs: string[];
+      image?: string;
+      imageAlt?: string;
       inner?: PoradnikInnerBlock[];
     }
-  | { _template: "checklist"; title: string; items: string[] }
+  | { _template: "checklist"; title: string; items: string[]; image?: string }
   | {
       _template: "cta";
       title: string;
       lead: string;
       primary: string;
       secondary: string;
-    };
+      image?: string;
+    }
+  | ExtraBlockBody;
 
 export type PoradnikContent = {
   seo: {
@@ -190,4 +239,12 @@ export type PoradnikContent = {
   jsonLdDescription: string;
   navBack: string;
   blocks: PoradnikBlock[];
+};
+
+export type CustomPage = {
+  slug: string;
+  title: string;
+  navLabel: string;
+  seo: { title: string; description: string };
+  blocks: ExtraBlock[];
 };

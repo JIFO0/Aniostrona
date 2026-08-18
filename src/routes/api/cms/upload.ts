@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { mkdir, writeFile } from "node:fs/promises";
 import { extname, join } from "node:path";
 import { hasValidSession } from "@/lib/cms/auth.server";
+import { contentRoot } from "@/lib/content/load.server";
 
 const ALLOWED = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif", ".pdf", ".avif"]);
 
@@ -23,11 +24,11 @@ export const Route = createFileRoute("/api/cms/upload")({
         }
         const safeBase = file.name.replace(/[^a-zA-Z0-9._-]/g, "-").replace(/-+/g, "-");
         const name = `${Date.now()}-${safeBase}`;
-        const dir = join(process.env.CMS_ROOT || process.cwd(), "public", "uploads");
+        const dir = join(contentRoot(), "public", "uploads");
         await mkdir(dir, { recursive: true });
         const buffer = Buffer.from(await file.arrayBuffer());
-        if (buffer.byteLength > 8 * 1024 * 1024) {
-          return Response.json({ ok: false, error: "Plik większy niż 8 MB." }, { status: 400 });
+        if (buffer.byteLength > 16 * 1024 * 1024) {
+          return Response.json({ ok: false, error: "Plik większy niż 16 MB." }, { status: 400 });
         }
         await writeFile(join(dir, name), buffer);
         return Response.json({ ok: true, url: `/uploads/${name}` });
