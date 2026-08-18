@@ -1,13 +1,21 @@
 {
   "name": "Anna Weronika Tomaszewska",
-  "shortName": "Ania Tomaszewska",
+  "shortName": "Anna Tomaszewska",
   "footerBrand": "Anna Tomaszewska",
-  "nickname": "Ania",
-  "roles": ["Aktorka", "Modelka", "Artystka"],
-  "tagline": "aktorka, artystka, czasem niespełniona",
+  "nickname": "Ania, Anusia",
+  "roles": [
+    "Aktorka",
+    "Modelka",
+    "Artystka"
+  ],
+  "tagline": "aktorka, artystka, sztuka jest wszechobecna",
   "birthYear": 2004,
   "birthMonth": 11,
-  "locations": ["Warszawa", "Gdynia", "w drodze"],
+  "locations": [
+    "Warszawa",
+    "Gdynia",
+    "w drodze"
+  ],
   "locationNote": "Warszawa (Bemowo)",
   "contact": {
     "email": "aniat1090@gmail.com",
@@ -18,10 +26,16 @@
     "facebookUrl": "https://www.facebook.com/anna.tomaszewska.180072"
   },
   "languages": [
-    { "name": "polski", "level": "natywny" },
-    { "name": "angielski", "level": "C1 (Cambridge B2, dziś biegły)" }
+    {
+      "name": "polski",
+      "level": "natywny"
+    },
+    {
+      "name": "angielski",
+      "level": "C1 (Cambridge B2, dziś biegły)"
+    }
   ],
-  "siteUrl": "https://annatomaszewska.pl",
+  "siteUrl": "https://ann.veronique.com",
   "footer": {
     "creditLabel": "Made by boyfriend",
     "creditUrl": "https://jifo.dev"
