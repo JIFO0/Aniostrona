@@ -1,18 +1,37 @@
 {
   "seo": {
-    "title": "Ania Tomaszewska — aktorka, artystka, obserwatorka",
-    "description": "Strona Anny Weroniki Tomaszewskiej. Aktorka, modelka, kierowniczka zmiany, autorka ponad stu prac plastycznych. Warszawa, Gdynia, plany filmowe.",
-    "ogTitle": "Ania Tomaszewska — aktorka, artystka, obserwatorka",
-    "ogDescription": "Miejsce, w którym mieszczą się plany filmowe, płótna, sceny i cichy proces twórczy."
+    "title": "Anna Tomaszewska- aktorka, artystka",
+    "description": "Strona Anny Weroniki Tomaszewskiej. Aktorka, modelka, koordynatorka, autorka niezliczonych prac plastycznych. Warszawa, Gdynia, plany filmowe.",
+    "ogTitle": "Anna Tomaszewska- aktorka, artystka",
+    "ogDescription": "Plany filmowe, płótna, sceny backstage i piękny proces twórczy."
   },
   "nav": {
     "links": [
-      { "href": "#o-mnie", "label": "o mnie" },
-      { "href": "#czym", "label": "czym się zajmuję" },
-      { "href": "#galeria", "label": "galeria" },
-      { "href": "#sciezka", "label": "ścieżka" },
-      { "href": "/poradnik-wizytowka", "label": "poradnik", "route": true },
-      { "href": "#kontakt", "label": "kontakt" }
+      {
+        "href": "#o-mnie",
+        "label": "O mnie"
+      },
+      {
+        "href": "#czym",
+        "label": "Czym się zajmuję"
+      },
+      {
+        "href": "#galeria",
+        "label": "Galeria"
+      },
+      {
+        "href": "#sciezka",
+        "label": "Moja droga"
+      },
+      {
+        "href": "/poradnik-wizytowka",
+        "label": "Poradnik",
+        "route": true
+      },
+      {
+        "href": "#kontakt",
+        "label": "Kontakt"
+      }
     ],
     "cvLabel": "CV"
   },
@@ -21,77 +40,58 @@
     "firstName": "Anna Weronika",
     "lastName": "Tomaszewska",
     "roles": "Aktorka · Modelka · Artystka",
-    "leadAfterAge": "letnia aktorka, artystka, czasem niespełniona. Wszędzie z małym aparatem i kupuję stosy płótna, w głowie koncepty i ludzie, których jeszcze nie zagrałam.",
-    "ctaPrimary": "Napisz do mnie",
+    "leadAfterAge": "letnia aktorka, artystka. Kupuję stoooosy płótna. W głowie koncepty, które stworzę i role, które odegram.",
+    "ctaPrimary": "Napisz do mnie!",
     "ctaSecondary": "Zobacz galerię",
     "image": "/__l5e/assets-v1/b989c94f-3845-46eb-b9c6-a33b64d165f6/me-nobg.png",
     "imageAlt": "Anna Weronika Tomaszewska — portret aktorski i artystyczny"
   },
   "about": {
     "kicker": "o mnie",
-    "title": "Lubię swój święty spokój, ale wyzwania kocham jeszcze bardziej.",
+    "title": "Uwielbiam swój święty spokój, a wyzwania kuszą jeszcze bardziej.",
     "image": "/__l5e/assets-v1/36ff264e-e958-4038-a2d0-eaee8ef510c6/Orchid-me.png",
     "imageAlt": "Ania z orchideą",
     "paragraphs": [
-      "Jestem z Warszawy, z Bemowa. Często jednak można mnie znaleźć w Gdyni, bo tam też mam swoje miejsce. W torbie zawsze mały aparat, wracam z tym co warto zapamiętać.",
-      "Radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem. Nie ugina mnie tłum ani kamera, mówię publicznie tak samo spokojnie, jak piszę.",
-      "Jestem bardzo uważna co do detali. Zauważę wszystko to, o czym nawet nie pomyślisz: drobiazg w kadrze, ton w rozmowie, czyjaś niepewność, czy po prostu coś co nie do końca ma sens.",
-      "Najlepiej pracuje mi się przy czymś artystycznym i konkretnym jednocześnie. Plany filmowe, sesje, projekty, które mają rytm i sens."
+      "Jestem z Warszawy, z Bemowa. Często jednak można mnie znaleźć w Gdyni, bo tam też mam swoje miejsce. Chyba, że akurat jestem na wsi, albo gdzieś na backstage'u. Rozumiecie koncept.",
+      "Świetnie radzę sobie z presją. Na scenie, na egzaminie, w ciężki dzień za barem kawiarni. Nie straszny mi tłum, kamera, ani ciężka praca.",
+      "Zwracam dużą uwagę na detal. Zauważę to nawet to, o czym być może nie pomyślałaś. Piękno otaczającego nas świata, mikroekspresję, przestrzeń na rozwój, a przede wszystkim to, jak można komuś pomóc.",
+      "Pracuję przy projektach artystycznych i konkretnych jednocześnie. Plany filmowe, sesje, projekty, które mają swój rytm i dają satysfakcję."
     ],
-    "quote": "Jak mam jakiś projekt, wkładam w niego całą siebie i użyję wszystkich umiejętności, jakie mam, żeby się powiódł. Nawet jeżeli jest w zupełnie innej branży."
+    "quote": "Gdy tworzę projekt, wkładam w niego całą siebie. Wykorzystam wszystkie umiejętności i nauczę się nowych. Mam pewność, że się powiedzie. Nawet jeżeli jest w zupełnie innej branży."
   },
   "whatIDo": {
-    "kicker": "czym się zajmuję",
-    "titleBefore": "Rzeczy, z którymi można mi ",
-    "titleHighlight": "zaufać",
-    "titleAfter": ".",
+    "kicker": "Czym się zajmuję",
+    "titleBefore": "To, co oddasz w moją opiekę.",
+    "titleHighlight": "",
+    "titleAfter": "",
     "items": [
       {
         "id": "acting",
         "title": "Aktorstwo",
-        "description": "Na planach już od 2022. Warsztat u [Łukasza Zubrzyckiego](https://varsztatovnia.pl/), weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych już w drodze. [Jak nagrać filmik-wizytówkę](/poradnik-wizytowka)."
+        "description": "Na planach rozkwitam, odżywam, analogicznie bez nich więdnę. W tym jednym życiu można przeżyć ich tysiące. Przeżyć sytuacje i emocje, które nie byłyby nam dane. Warsztat u [Łukasza Zubrzyckiego](https://varsztatovnia.pl/), weekendowy tryb w Warszawskim Studium Aktorskim. Egzaminy do szkół artystycznych?  [Jak nagrać filmik-wizytówkę](/poradnik-wizytowka)."
       },
       {
         "id": "modeling",
         "title": "Modeling",
-        "description": "Byłam twarzą wielu sesji zdjęciowych. Dobrze czuję się przed aparatem, kamerą i światłem. Zgłaszałam się do agencji, bywam po drugiej stronie obiektywu."
+        "description": "Świetnie czuję się przed aparatem, kamerą i światłem (tak! nawet tą ogromną lampą!). Bywam po drugiej stronie obiektywu, co pozwala mi uchwycić otaczającą mnie rzeczywistość, piękno świata. Spojrzeć moimi oczami, które są szeroko otwarte i chłoną każdy detal."
       },
       {
         "id": "management",
-        "title": "Zarządzanie",
+        "title": "Gastro i b2b",
         "description": "Green Caffe Nero, baristka od października 2024, kierowniczka zmiany od października 2025. Pięcie się po szczeblach wyszło naturalnie."
       },
       {
         "id": "art",
         "title": "Sztuka",
-        "description": "Ponad sto skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. ==Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny==."
+        "description": "Niezliczona ilość skończonych prac plastycznych. Farba, płótno, nocne siedzenie do rana. ==Dłubię przy detalach, poprawiam pojedyncze pociągnięcie pędzla, aż efekt jest perfekcyjny==."
       }
     ]
   },
-  "stats": [
-    {
-      "value": 20,
-      "suffix": "+",
-      "label": "planów filmowych",
-      "note": "na których byłam, uczyłam się rytmu i ciszy między ujęciami"
-    },
-    {
-      "value": 100,
-      "suffix": "+",
-      "label": "prac plastycznych",
-      "note": "od szkiców po skończone płótna, każde z własnym nastrojem"
-    },
-    {
-      "value": 4,
-      "suffix": "+",
-      "label": "lata na scenie aktorskiej",
-      "note": "kursy, warsztaty, plany, reklamy, marketing, mikrofon w ręku"
-    }
-  ],
+  "stats": [],
   "gallery": {
-    "kicker": "galeria",
-    "title": "Ja i moje prace w kadrze.",
-    "lead": "Wożę ze sobą mały aparat i łapię to, co warte zapamiętania. Trochę planu, trochę farby, trochę siebie.",
+    "kicker": "GALERIA",
+    "title": "Ja i moje prace.",
+    "lead": "Trochę farby, trochę siebie.",
     "tabMe": "Ja",
     "tabWorks": "Prace",
     "me": [
@@ -135,43 +135,43 @@
     ]
   },
   "path": {
-    "kicker": "ścieżka",
-    "title": "Krótka historia, w kolejności.",
+    "kicker": "Moja droga",
+    "title": "Czyli jak tu dotarłam.",
     "items": [
       {
         "period": "2020 - 2024",
         "title": "Liceum Marii Pawlikowskiej-Jasnorzewskiej",
-        "description": "LXVII LO w Warszawie. Napisana matura rozszerzona z polskiego oraz z angielskiego."
+        "description": "LXVII LO w Warszawie. Matura rozszerzona z polskiego oraz z angielskiego."
       },
       {
-        "period": "od 2023",
+        "period": "do dziś",
         "title": "Aktorka",
-        "description": "Pierwsze kroki filmowe, statystka w wielu produkcjach, gdzie tylko się dało."
+        "description": "Kiedy praca jest też Twoją pasją, towarzyszą jej nieskończone zasoby energii i nowe wyzwania."
       },
       {
         "period": "2023",
         "title": "Warsztaty z Łukaszem Zubrzyckim",
-        "description": "Varsztatownia, cały kurs ukończony z myślą o karierze aktorskiej."
+        "description": "Varsztatownia, kurs ukończony z myślą o karierze samorozwoju i otwartości."
       },
       {
         "period": "od 10.2024",
         "title": "Green Caffe Nero, baristka",
-        "description": "Baristka i od samego początku bardzo przykładałam się do pracy."
+        "description": "Baristka i od samego początku bardzo przykładałam się do pracy. Ogromny rozwój kompetencji miękkich, inteligencji społecznej i świadomości socjologicznej. I ROBIĘ PYSZNĄ KAWĘ (a jakie latte art'y)"
       },
       {
         "period": "10.2025 - 03.2026",
         "title": "Uniwersytet Warszawski, filologia polska",
-        "description": "Specjalność literaturoznawczo-językoznawcza, żeby lepiej zapoznać się z tekstami od strony technicznej."
+        "description": "Specjalność literaturoznawczo-językoznawcza. Wersyfikacja przychodzi mi intuicyjnie."
       },
       {
         "period": "od 10.2025",
         "title": "Kierowniczka zmiany, Green Caffe Nero",
-        "description": "Awans wyszedł naturalnie, bardzo dobrze sobie w tym radziłam."
+        "description": "Awans wyszedł naturalnie, bardzo dobrze sobie radziłam. Jestem kompetentna i odpowiedzialna. Nawet w najbardziej niesprzyjających warunkach."
       },
       {
         "period": "od 06.2026",
         "title": "Kreatorka mediów, Lambadjara",
-        "description": "Tworzenie contentu wokół marki i narracji o niej, a także samo robienie handmade koralików."
+        "description": "Tworzenie contentu wokół marki i narracji o niej, a także samo robienie handmade koralików. Są piękne! same sprawdźcie."
       },
       {
         "period": "obecnie",
@@ -181,8 +181,8 @@
     ]
   },
   "interests": {
-    "kicker": "zainteresowania",
-    "title": "Rzeczy, które zajmują mi głowę.",
+    "kicker": "Zainteresowania",
+    "title": "Zawsze ze mną",
     "tags": [
       "estetyka",
       "marketing",
@@ -194,13 +194,13 @@
       "muzyka",
       "literatura"
     ],
-    "note": "Zawsze jak oglądam jakiś film, myślę o tym, jak został nakręcony. Kadr, cięcie, światło, decyzja reżysera czy po prostu chaos na planie jaki musiał panować. Często się tym dzielę na głos.",
+    "note": "Zawsze gdy oglądam film, myślę o tym, jak powstawał. Kadr, cięcie, oświetlenie, decyzja reżysera i atmosfera na planie.",
     "backgroundImage": "/__l5e/assets-v1/09c7da71-1ada-4775-bcb7-ff85d3e2ef9f/Ok_Zara_model_nobg.png"
   },
   "achievements": {
     "kicker": "osiągnięcia",
     "title": "Rzeczy, o których warto wspomnieć.",
-    "featuredKicker": "najważniejsze",
+    "featuredKicker": "Najważniejsze",
     "featuredTitle": "Instant Challenge *Champion*",
     "featuredDescription": "[Destination Imagination](https://www.kreatywnosc.pl/) Global Finals, Knoxville, USA. Moja specjalizacja: **szybkie rozwiązywanie bardzo skomplikowanych problemów**, pod presją, w zespole, na czas.",
     "items": [
@@ -219,19 +219,19 @@
     ]
   },
   "teamwork": {
-    "kicker": "języki i praca w zespole",
-    "title": "Jak działam z ludźmi.",
+    "kicker": "Języki i praca w zespole",
+    "title": "Warto wspomnieć",
     "paragraphs": [
       "**Polski** natywnie. **Angielski** biegle, w mowie i piśmie.",
       "Szybko się uczę, jestem wielozadaniowa i świetnie mi idzie adaptacja do środowiska. Cierpliwa, kulturalna, konkretna. Umiem prowadzić zespół i umiem być jego częścią.",
-      "**Doskonale rozładowuję konflikty**. Świetnie się na nich znam, wiem, skąd się biorą i jak je zamknąć, żeby zespół dalej działał. **Umiem reprezentować tak siebie, jak i markę, także publicznie**."
+      "**Doskonale rozładowuję konflikty**. Rozumiem i wiem, skąd się biorą i jak je załagodzić, żeby zespół działał. **Umiem reprezentować tak siebie, jak i markę, także publicznie**."
     ]
   },
   "contact": {
-    "kicker": "kontakt",
-    "titleBefore": "Napisz, ",
-    "titleItalic": "jeśli masz coś ciekawego.",
-    "lead": "Plan, sesja, rola, projekt, a może szukasz kogoś kto zgrabnie rozpromuje Twoją markę? Szybko odpiszę, nawet między zajęciami i zmianami.",
+    "kicker": "Kontakt",
+    "titleBefore": "Napisz!",
+    "titleItalic": "bo masz coś ciekawego.",
+    "lead": "Plan, sesja, rola, projekt, a może szukasz kogoś kto zgrabnie rozpromuje Twoją markę? Szybko odpiszę, nawet między zajęciami.",
     "footerLocations": "Warszawa · Gdynia · mobilna po całej Polsce"
   },
   "extra": []
