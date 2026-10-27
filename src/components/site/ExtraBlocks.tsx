@@ -8,13 +8,29 @@ export function BlockImage({
   src,
   alt,
   className = "w-full rounded-2xl object-cover",
+  loading = "lazy",
+  width,
+  height,
 }: {
   src?: string;
   alt?: string;
   className?: string;
+  loading?: "lazy" | "eager";
+  width?: number | string;
+  height?: number | string;
 }) {
   if (!src) return null;
-  return <img src={resolveMedia(src)} alt={alt || ""} className={className} />;
+  return (
+    <img
+      src={resolveMedia(src)}
+      alt={alt || ""}
+      className={className}
+      loading={loading}
+      decoding="async"
+      width={width}
+      height={height}
+    />
+  );
 }
 
 export function ExtraBlocks({
@@ -125,6 +141,8 @@ export function ExtraBlockView({
                   key={`${img.src}-${i}`}
                   src={resolveMedia(img.src)}
                   alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full rounded-xl break-inside-avoid"
                 />
               ))}
@@ -151,7 +169,7 @@ export function ExtraBlockView({
         <blockquote className="soft-card rounded-3xl p-8 md:p-12 text-center space-y-4">
           <BlockImage src={block.image} className="w-full max-h-64 object-cover rounded-2xl mb-4" />
           <RichText text={block.text} className="font-serif italic text-xl md:text-2xl leading-relaxed" />
-          {block.cite ? <p className="text-sm text-sage">— {block.cite}</p> : null}
+          {block.cite ? <p className="text-sm text-sage">{block.cite}</p> : null}
         </blockquote>,
       );
     case "list":

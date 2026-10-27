@@ -161,7 +161,8 @@ def scan_gallery_dir(directory: Path) -> list[str]:
         stem = Path(f).stem
         norm = re.sub(r"[-_ ]*upscaled$", "", stem, flags=re.IGNORECASE).strip().lower()
         existing = preferred.get(norm)
-        if existing is None or is_upscaled(f):
+        # Prefer web-optimized images for performance; use upscaled only if no web version exists
+        if existing is None or (is_upscaled(existing) and not is_upscaled(f)):
             preferred[norm] = f
 
     return sorted(preferred.values())
@@ -276,7 +277,8 @@ def copy_assets():
                 continue
             norm = re.sub(r"[-_ ]*upscaled$", "", f.stem, flags=re.IGNORECASE).strip().lower()
             existing = best.get(norm)
-            if existing is None or is_upscaled(f.name):
+            # Prefer web-optimized images for performance
+            if existing is None or (is_upscaled(existing.name) and not is_upscaled(f.name)):
                 best[norm] = f
 
         for src_file in best.values():
@@ -360,26 +362,27 @@ def build_asset_url_map() -> dict[str, str]:
                 candidates = [f for f in src_dir.iterdir()
                               if f.is_file() and f.suffix.lower() in IMAGE_EXTS]
 
-                # Prefer upscaled match
+                # Prefer web-optimized match (not upscaled) for fast load times
                 for f in candidates:
                     cand_stem = re.sub(
                         r"[-_ ]*upscaled$", "", f.stem, flags=re.IGNORECASE
                     ).strip().lower().replace("_", " ").replace("-", " ")
                     if (cand_stem == orig_stem or orig_stem in cand_stem or cand_stem in orig_stem) \
-                            and is_upscaled(f.name):
+                            and not is_upscaled(f.name):
                         found_subdir, found_file = subdir, f.name
                         break
 
                 if found_file:
                     break
 
-                # Fall back to any match
+                # Fall back to upscaled match if that is all we have
                 for f in candidates:
                     cand_stem = re.sub(
                         r"[-_ ]*upscaled$", "", f.stem, flags=re.IGNORECASE
                     ).strip().lower().replace("_", " ").replace("-", " ")
                     if cand_stem == orig_stem or orig_stem in cand_stem or cand_stem in orig_stem:
                         found_subdir, found_file = subdir, f.name
+                        break
                         # don't break — keep looking for upscaled in next dir
 
             if found_file and found_subdir:

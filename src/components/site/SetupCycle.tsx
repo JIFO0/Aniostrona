@@ -33,6 +33,10 @@ export function SetupCycle({
           src={src}
           alt={i === index ? alt : ""}
           aria-hidden={i !== index}
+          loading="lazy"
+          decoding="async"
+          width={600}
+          height={800}
           className={`w-full h-full object-cover transition-opacity duration-300 ${
             i === 0 ? "relative" : "absolute inset-0"
           } ${i === index ? "opacity-100" : "opacity-0"}`}

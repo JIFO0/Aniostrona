@@ -3,137 +3,130 @@
     "title": "Filmik-wizytówka: jak nagrać zgłoszenie na uczelnię i do agencji | Anna Tomaszewska",
     "description": "Poradnik o filmikach-wizytówkach: samonagrywanie, ramy kadru, wybór miejsca i tekstu do zgłoszeń na uczelnie aktorskie oraz wizytówki do agencji modelingowych.",
     "ogTitle": "Filmik-wizytówka: jak nagrać zgłoszenie na uczelnię i do agencji | Anna Tomaszewska",
-    "ogDescription": "Praktycznie o nagrywaniu wizytówki: kto ma trzymać telefon, gdzie kończy się kadr i czemu lepiej zapamiętać Lokomotywę niż kolejny „bezpieczny” tekst."
+    "ogDescription": "Praktycznie o nagrywaniu wizytówki: jak ustawić kadr, na co uważać ze światłem i dźwiękiem oraz jak wybrać tekst, który zapada w pamięć."
   },
   "jsonLdHeadline": "Filmik-wizytówka: jak nagrać zgłoszenie na uczelnię aktorską i do agencji",
-  "jsonLdDescription": "Poradnik o samonagrywaniu filmików do zgłoszeń na uczelnie aktorskie i wizytówek osobistych do agencji modelingowych — miejsce, kadr, tekst, dźwięk.",
+  "jsonLdDescription": "Poradnik o samonagrywaniu filmików do zgłoszeń na uczelnie aktorskie i wizytówek osobistych do agencji modelingowych: miejsce, kadr, tekst, dźwięk.",
   "navBack": "Powrót do portfolio",
   "blocks": [
     {
       "_template": "hero",
-      "badge": "Poradnik · filmik-wizytówka",
-      "title": "Jak nagrać filmik, który ktoś w ogóle zapamięta",
-      "lead": "O samonagrywaniu wizytówek: do uczelni aktorskich, do agencji, albo po prostu wtedy, kiedy ktoś prosi o „krótki filmik o sobie”. Tu nie chodzi o sprzęt za kilka tysięcy — chodzi o kadr, miejsce i to, *co* w tym kadrze robisz."
+      "badge": "Poradnik aktorski",
+      "title": "Jak nagrać filmik-wizytówkę, która zapadnie w pamięć",
+      "lead": "Kilka szczerych uwag o samonagrywaniu: do szkół teatralnych, do agencji i na castingi. Nie potrzebujesz studia ani drogiego sprzętu, bo o efekcie decydują proste wybory: czysty kadr, naturalne światło i to, z czym właściwie stajesz przed kamerą."
     },
     {
       "_template": "introCards",
       "cards": [
         {
           "id": "place",
-          "title": "Miejsce i światło",
-          "text": "Domowy kąt wystarczy. Ważne, żeby tło nie walczyło z Tobą o uwagę, a światło nie robiło z Ciebie cienia pod okiem."
+          "title": "Światło i tło",
+          "text": "Zwykły kąt w pokoju w zupełności wystarczy. Ważne, aby tło nie odciągało uwagi od Ciebie, a światło dzienne z okna równomiernie doświetlało twarz."
         },
         {
           "id": "who",
-          "title": "Kto trzyma telefon",
-          "text": "Weź kogoś ze zmysłem estetycznym. Nie osobę, która „umie nagrać”, tylko kogoś, kto widzi, gdzie kończy się kadr."
+          "title": "Oko z zewnątrz",
+          "text": "Warto poprosić kogoś ze zmysłem estetycznym o pomoc przy podglądzie. Kiedy stoisz przed obiektywem, nie widzisz, gdzie dokładnie kończy się kadr."
         },
         {
           "id": "what",
-          "title": "Co mówisz / grasz",
-          "text": "Jeśli nie powiedzą dokładnie co — zrób coś, co da się zapamiętać. Bezpieczny tekst, który grają wszyscy, ginie w stosie."
+          "title": "Wybór tekstu",
+          "text": "Jeśli nie masz sztywnego zadania, postaw na tekst z charakterem i rytmem. Bezpieczne klasyki powtarzane przez co drugą osobę łatwo zlewają się w jedno."
         }
       ]
     },
     {
       "_template": "richSection",
       "number": "1",
-      "title": "Po co w ogóle ten filmik",
+      "title": "Czym tak naprawdę jest dobra wizytówka",
       "paragraphs": [
-        "Wizytówka osobista to nie showreel z planów. Nie musisz mieć montażu z pięciu produkcji. Często wystarczy jeden, dwa, trzy minuty: Ty, spokojne tło, słyszalny głos i decyzja, *kim* w tym momencie jesteś.",
-        "Agencja modelingowa i uczelnia aktorska chcą trochę innych rzeczy. Agencja: czytelna prezencja, proporcje, ruch, spokój przed kamerą — bez „sceny egzaminacyjnej”. Uczelnia: czy masz coś w sobie, czy umiesz zagrać tekst, czy nie boisz się ryzyka. Ale baza techniczna jest ta sama: czysty kadr, słyszalny dźwięk, zero chaosu w tle.",
-        "Ludzie przeglądają te nagrania szybko. Jeśli przez pierwsze dwadzieścia sekund nie wiadomo, na co patrzeć — odpadasz, zanim zdążysz dojść do „ważnej” części."
+        "Wizytówka nie ma być widowiskowym montażem z planów filmowych ani skrótem całego dorobku. Wystarczą dwie minuty: spokojne tło, czysty i wyraźny głos oraz świadomość, jaką energię chcesz w tej chwili przekazać.",
+        "Agencja modelingowa i uczelnia aktorska zwracają uwagę na nieco inne kwestie. W agencji liczą się naturalna prezencja, proporcje, swoboda ruchu i spokój przed obiektywem, bez niepotrzebnego napięcia. Z kolei na uczelni komisja sprawdza wrażliwość, interpretację tekstu i odwagę sceniczną. W obu przypadkach techniczna baza jest jednak identyczna: czytelny kadr, brak domowego chaosu w tle i dźwięk, który nie męczy ucha.",
+        "Osoby prowadzące nabór oglądają dziesiątki takich nagrań pod rząd. Jeśli przez pierwsze kilkanaście sekund obraz rozprasza albo w kadrze panuje bałagan, oglądający traci uwagę, zanim zdążysz przejść do właściwej wypowiedzi."
       ]
     },
     {
       "_template": "richSection",
       "number": "2",
-      "title": "Miejsce, światło i ramy kadru",
+      "title": "Miejsce, światło i świadomość ramy kadru",
       "paragraphs": [
-        "Nie potrzebujesz studia. Telefon na statywie (albo na czymś stabilnym, nawet na pniu stołu, byle na wysokości oczu), dzień z miękkim światłem, tło które nie krzyczy. Biały ekran, ściana, spokojna zasłona — cokolwiek, byle nie widać w kadrze pół mieszkania i kabli pod nogami.",
-        "**Weź kogoś do pomocy.** Kogoś ze zmysłem estetycznym. Nie wystarczy osoba, która umie nacisnąć czerwony przycisk. Potrzebujesz kogoś, kto spojrzy na podgląd i powie: „tu ucina Ci rękę”, „tło wchodzi za bardzo”, „cofnij się o pół kroku”. Samemu tego nie zobaczysz, bo stoisz po drugiej stronie."
+        "Do dobrego nagrania nie jest potrzebne profesjonalne studio. Wystarczy telefon oparty stabilnie na wysokości oczu, jasny dzień z miękkim światłem i tło, które nie konkuruje z Twoją twarzą. Sprawdzi się jednolita ściana, gładka zasłona czy uporządkowany fragment pokoju, byle w kadrze nie pojawiły się sprzęty domowe, suszarka z praniem czy plątanina kabli.",
+        "Bardzo pomaga obecność zaufanej osoby za kamerą. Ktoś patrzący w ekran na bieżąco zauważy rzeczy, których nie widać z perspektywy mówiącego: ucięty gest ręki, niepotrzebny cień na ścianie albo potrzebę zrobienia pół kroku w bok."
       ],
       "inner": [
         {
           "_template": "imagePair",
-          "cycleAlt": "Domowy setup do nagrania filmiku-wizytówki",
-          "cycleCaption": "Setup od kuchni: telefon, tło, mikrofon, laptop do podglądu. Pokój żyje swoim życiem — w filmiku ma zostać tylko to, co celowo zostawisz.",
-          "cycleImages": [
-            "poradnik/setup-01.png",
-            "poradnik/setup-02.png",
-            "poradnik/setup-03.png",
-            "poradnik/setup-04.png",
-            "poradnik/setup-05.png"
-          ],
+          "cycleAlt": "Przygotowanie domowego planu do nagrania wizytówki",
+          "cycleCaption": "Kulisy domowego planu: telefon, statyw, proste tło i laptop do bieżącej kontroli. Pokój może tętnić codziennością, ale w kadrze znajdzie się tylko to, co zaplanowane.",
           "stillImage": "poradnik/wkadrze.png",
-          "stillAlt": "Jak wygląda ten sam setup w kadrze kamery",
-          "stillCaption": "A tak wygląda ten sam setup **w kadrze**. Ogród, kabel, krzesło, jajko z wikliny — wszystko poza ramą. W telefonie widać tylko wycinek."
+          "stillAlt": "Gotowy wycinek kadru w kamerze",
+          "stillCaption": "Ten sam kadr widziany okiem kamery. Całe otoczenie znika poza krawędzią ekranu, pozostawiając czystą, spokojną przestrzeń dla Ciebie."
         },
         {
           "_template": "callout",
           "icon": "frame",
-          "title": "Wiedzieć, gdzie kończy się kadr",
-          "text": "Zanim naciśniesz rec, stań w miejscu i poproś, żeby ktoś pokazał Ci dokładnie granice. Gdzie jest górna krawędź. Gdzie lewa. Czy w ruchu ręką nie wychodzisz poza tło. To brzmi banalnie, a właśnie tu pada większość domowych nagrań: ładna osoba, i nagle w rogu wisi suszarka albo ucięta głowa."
+          "title": "Wyznaczenie granic kadru przed włączeniem nagrywania",
+          "text": "Zanim włączysz nagrywanie, stań w wyznaczonym punkcie i poproś drugą osobę o wskazanie dokładnych granic widzenia kamery. Upewnij się, jak wysoko sięga kadr i czy przy naturalnej gestykulacji nie wychodzisz dłońmi poza tło. Drobne przeoczenie tego elementu potrafi zepsuć nawet najbardziej udane ujęcie."
         }
       ]
     },
     {
       "_template": "richSection",
       "number": "3",
-      "title": "Co mówić, co grać",
+      "title": "Dobór repertuaru: co mówić i jak grać",
       "paragraphs": [
-        "Jeśli w briefie jest konkret — rób konkret. Monolog z listy, autoprezentacja w limicie minut, trzy ujęcia w określonym formacie. Nie kombinuj na siłę „oryginalniej”, kiedy ktoś prosi o coś prostego.",
-        "Gorzej, kiedy **nie mówią dokładnie, co masz zrobić**. Uczelnie lubią zostawiać luz. Wtedy jedyne sensowne kryterium brzmi: **czy to nagranie da się zapamiętać**. Nie „czy jest poprawne”. Czy ktoś po obejrzeniu dwudziestu innych nadal wie, która to byłaś Ty.",
-        "Teksty, które z natury są trochę dziwne, dają więcej przestrzeni. Masz gdzie się odbić, gdzie zaryzykować rytm, gdzie nie grać „ładnie i bezpiecznie”. Paradoks: lepiej wrecytować *Lokomotywę* tak, że zostaje w głowie, niż kolejny raz ten sam fragment, który wszyscy biorą „bo Tokarczuk” albo „bo tak się robi na egzaminach”. Komisja słyszała to już dziś rano."
+        "Gdy w wytycznych dostajesz konkretne zadanie, wykonaj je precyzyjnie. Krótki monolog ze wskazanej listy, określony limit czasu czy zadana forma to test uważności i profesjonalnego podejścia. Nie ma wtedy potrzeby przekombinowywania formy.",
+        "Więcej swobody pojawia się w naborach, gdzie temat pozostaje otwarty. W takiej sytuacji najważniejszym celem staje się zapadnięcie w pamięć. Nie wystarczy poprawność techniczna, chodzi o to, by po obejrzeniu wielu kandydatów komisja dokładnie pamiętała Twoją obecność i barwę.",
+        "Ciekawy rytmicznie lub nietypowy tekst daje o wiele więcej przestrzeni do poszukiwań. Pozwala zaryzykować własną interpretację i uniknąć monotonii. Czasem klasyczny wiersz powiedziany ze świeżą energią i własnym rytmem zostanie zapamiętany znacznie mocniej niż kolejny bezpieczny monolog z kanonu lektur, który komisja zdążyła już usłyszeć tego samego poranka."
       ],
       "inner": [
         {
           "_template": "twoCol",
-          "leftTitle": "Uczelnia",
-          "leftText": "Ryzyko, charakter, decyzja aktorska. Wolisz być zapamiętana za coś ostrego niż za poprawny, szary przeciętniak.",
-          "rightTitle": "Agencja",
-          "rightText": "Krócej, spokojniej, mniej teatru. Nadal: czyste tło, dobry kadr, słyszalny głos. Nie musisz grać monologu — musisz być czytelna."
+          "leftTitle": "Zgłoszenie do szkoły aktorskiej",
+          "leftText": "Liczy się odwaga, prawda emocjonalna i wyrazista decyzja aktorska. Lepiej zaryzykować mocniejszą formę niż zagrać bezpiecznie i bezbarwnie.",
+          "rightTitle": "Wizytówka do agencji",
+          "rightText": "Krócej, naturalniej i z uśmiechem. Zamiast budować wielką scenę dramatyczną, pokaż swobodę przed obiektywem, sylwetkę oraz czystą mowę ciała."
         }
       ]
     },
     {
       "_template": "richSection",
       "number": "4",
-      "title": "Jak to nagrać, żeby nie zwariować",
+      "title": "Organizacja nagrania i selekcja ujęć",
       "paragraphs": [
-        "Najpierw ustawienie: odległość, wysokość kamery, tło, dźwięk. Dopiero potem take’y. Zrób kilka — nie jeden „idealny”, bo pierwszy prawie zawsze jest sztywny. Potem oglądaj na większym ekranie, nie tylko na telefonie. Na laptopie widać rzeczy, które na małym wyświetlaczu giną."
+        "Pracę najwygodniej podzielić na dwa etapy: najpierw precyzyjne ustawienie techniczne (wysokość obiektywu, światło, odległość i sprawdzenie dźwięku), a dopiero potem właściwe podejścia aktorskie. Warto nagrać kilka prób bez pośpiechu, ponieważ pierwsze ujęcie niemal zawsze bywa jeszcze lekko usztywnione."
       ],
       "inner": [
         {
           "_template": "callout",
           "icon": "mic",
-          "title": "",
-          "text": "**Dźwięk.** Lepiej trochę brzydszy kadr ze słyszalnym tekstem niż piękny obraz i mamrotanie. Zamknij okno, wyłącz lodówkę jeśli buczy, podejdź bliżej mikrofonu albo telefonu. Agencja i uczelnia wybaczą domowe tło. Nie wybaczą, że nie słychać, co mówisz."
+          "title": "Jakość dźwięku decyduje o odbiorze",
+          "text": "Oglądający wybaczy skromniejsze warunki w tle, ale niewyraźny lub dudniący dźwięk natychmiast utrudnia skupienie na tekście. Warto zamknąć okna na czas nagrania, odsunąć się od szumiących sprzętów i zadbać o to, by mikrofon znajdował się stosunkowo blisko."
         },
         {
           "_template": "prose",
-          "text": "Na koniec wybierz **jeden** plik. Nie pięć „prawie dobrych” z prośbą „wybierzcie sami”. To Twoja decyzja — część pracy."
+          "text": "Na koniec zgraj materiał i przejrzyj nagrania na większym ekranie, słuchając w słuchawkach. Na małym wyświetlaczu telefonu łatwo przeoczyć drobne błędy ostrości lub szum otoczenia. Wybierz jedno, najpewniejsze ujęcie: wysyłanie kilku niemal identycznych plików z prośbą o samodzielny wybór sprawia wrażenie braku artystycznej decyzji."
         }
       ]
     },
     {
       "_template": "checklist",
-      "title": "Checklist przed wysłaniem",
+      "title": "Lista kontrolna przed wysłaniem materiału",
       "items": [
-        "Sprawdź orientację i przycięcie — nic ważnego nie ginie na krawędzi.",
-        "Obejrzyj na dużym ekranie i ze słuchawkami; złap szumy i cięcia.",
-        "Nazwa pliku z imieniem i nazwiskiem, nie IMG_4832.",
-        "Link działa (Drive / WeTransfer / Vimeo) i nie wymaga logowania na siłę.",
-        "Plik nie waży kosmosu — 4K-gigant nikogo nie imponuje, tylko wisi.",
-        "Jedna wersja. Jedna decyzja. Bez „a tu jeszcze wariant B”."
+        "Kadr i proporcje: upewnij się, że głowa ani dłonie w trakcie gestów nie są ucinane przez krawędzie obrazu.",
+        "Odsłuch w słuchawkach: sprawdź czystość mowy, poziom pogłosu i ewentualne trzaski w tle.",
+        "Nazwa pliku: zamiast domyślnego numeru z telefonu wpisz swoje imię, nazwisko oraz rodzaj zgłoszenia.",
+        "Sprawdzenie odnośnika: upewnij się w oknie incognito przeglądarki, że link do pliku otwiera się bez konieczności logowania.",
+        "Waga nagrania: plik powinien mieć czytelną jakość, ale nie może ważyć wielu gigabajtów, które uniemożliwiają szybkie otwarcie.",
+        "Jedno wybrane ujęcie: prześlij dokładnie ten wariant, za którym w pełni stoisz."
       ]
     },
     {
       "_template": "cta",
-      "title": "Masz pytanie albo chcesz feedback?",
-      "lead": "Napisz. Czasem wystarczy świeże oko na kadr albo na to, czy tekst w ogóle „siedzi” — zanim wyślesz to w świat.",
+      "title": "Chcesz skonsultować swój kadr lub materiał?",
+      "lead": "Czasem jedno życzliwe spojrzenie z zewnątrz pozwala szybko wychwycić detal w tle albo doprecyzować rytm wypowiedzi przed oficjalną wysyłką. Napisz do mnie śmiało.",
       "primary": "Napisz do mnie",
-      "secondary": "Zobacz CV"
+      "secondary": "Zobacz moje CV"
     }
   ]
 }

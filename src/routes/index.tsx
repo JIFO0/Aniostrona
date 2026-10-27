@@ -32,17 +32,23 @@ function GlitterCanvas() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let animId: number;
+    let animId = 0;
     let width = 0;
     let height = 0;
+    let isVisible = true;
 
     const resize = () => {
       if (!canvas) return;
       const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       width = rect.width;
       height = rect.height;
       canvas.width = rect.width * dpr;
@@ -50,38 +56,45 @@ function GlitterCanvas() {
       ctx.scale(dpr, dpr);
     };
     resize();
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
-    // 120 shimmering fine glitter specks (drobinki brokatu)
-    const count = 130;
+    const isMobile = window.innerWidth < 768;
+    const count = isMobile ? 40 : 100;
+    const colors = [
+      "255, 235, 205",
+      "255, 255, 255",
+      "232, 200, 245",
+      "255, 218, 228",
+      "240, 230, 255",
+    ];
+
     const particles = Array.from({ length: count }, () => ({
       x: Math.random() * (width || 1200),
       y: Math.random() * (height || 800),
-      size: Math.random() * 2.2 + 0.8, // drobinki od 0.8px do 3.0px
+      size: Math.random() * 2.2 + 0.8,
       baseAlpha: Math.random() * 0.35 + 0.15,
       sparkleSpeed: Math.random() * 0.045 + 0.018,
       phase: Math.random() * Math.PI * 2,
       driftX: (Math.random() - 0.5) * 0.25,
       driftY: -Math.random() * 0.22 - 0.06,
-      color: [
-        "255, 235, 205", // champagne gold
-        "255, 255, 255", // diamond white
-        "232, 200, 245", // pastel lilac
-        "255, 218, 228", // rose gold
-        "240, 230, 255", // opal crystal
-      ][Math.floor(Math.random() * 5)],
-      isStar: Math.random() > 0.62, // diamond 4-pointed stars
+      color: colors[Math.floor(Math.random() * colors.length)],
+      isStar: Math.random() > 0.65,
     }));
 
     const render = () => {
+      if (!isVisible) {
+        animId = 0;
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
-      for (const p of particles) {
+      for (let i = 0; i < count; i++) {
+        const p = particles[i];
         p.phase += p.sparkleSpeed;
         p.x += p.driftX;
         p.y += p.driftY;
 
-        // Wrap around smoothly
         if (p.y < -10) {
           p.y = height + 10;
           p.x = Math.random() * width;
@@ -89,52 +102,59 @@ function GlitterCanvas() {
         if (p.x < -10) p.x = width + 10;
         if (p.x > width + 10) p.x = -10;
 
-        // Exponential shimmering pulse curve for sharp sparkling flare
-        const sinVal = (Math.sin(p.phase) + 1) / 2; // 0 to 1
-        const sparkleIntensity = Math.pow(sinVal, 3.2); // peak shimmer
+        const sinVal = (Math.sin(p.phase) + 1) / 2;
+        const sparkleIntensity = sinVal * sinVal * sinVal;
         const alpha = Math.min(1, p.baseAlpha * 0.4 + sparkleIntensity * 0.85);
 
         if (alpha <= 0.03) continue;
 
-        ctx.save();
         ctx.fillStyle = `rgba(${p.color}, ${alpha})`;
-        ctx.shadowColor = `rgba(${p.color}, ${alpha * 0.9})`;
-        ctx.shadowBlur = (p.size * 2 + 3) * (0.4 + sparkleIntensity * 0.8);
 
-        if (p.isStar && sparkleIntensity > 0.25) {
-          // 4-point diamond sparkle star
-          const arm = p.size * (1.2 + sparkleIntensity * 2.2);
+        if (p.isStar && sparkleIntensity > 0.35) {
+          const s = p.size * (1 + sparkleIntensity * 1.4);
           ctx.beginPath();
-          ctx.moveTo(p.x, p.y - arm);
-          ctx.quadraticCurveTo(p.x, p.y, p.x + arm, p.y);
-          ctx.quadraticCurveTo(p.x, p.y, p.x, p.y + arm);
-          ctx.quadraticCurveTo(p.x, p.y, p.x - arm, p.y);
-          ctx.quadraticCurveTo(p.x, p.y, p.x, p.y - arm);
+          ctx.moveTo(p.x, p.y - s * 1.8);
+          ctx.lineTo(p.x + s * 0.45, p.y);
+          ctx.lineTo(p.x, p.y + s * 1.8);
+          ctx.lineTo(p.x - s * 0.45, p.y);
+          ctx.closePath();
           ctx.fill();
 
-          // Intense core dot
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size * 0.5, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, alpha + 0.3)})`;
+          ctx.moveTo(p.x - s * 1.8, p.y);
+          ctx.lineTo(p.x, p.y + s * 0.45);
+          ctx.lineTo(p.x + s * 1.8, p.y);
+          ctx.lineTo(p.x, p.y - s * 0.45);
+          ctx.closePath();
           ctx.fill();
         } else {
-          // Circular glistening speck
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size * (0.8 + sparkleIntensity * 0.5), 0, Math.PI * 2);
           ctx.fill();
         }
-
-        ctx.restore();
       }
 
       animId = requestAnimationFrame(render);
     };
 
-    render();
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible && !animId) {
+          animId = requestAnimationFrame(render);
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
+
+    animId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener("resize", resize);
-      cancelAnimationFrame(animId);
+      observer.disconnect();
+      if (animId) cancelAnimationFrame(animId);
     };
   }, []);
 
@@ -177,7 +197,15 @@ export const Route = createFileRoute("/")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: home.hero.image },
       ],
-      links: [{ rel: "canonical", href: `${site.siteUrl}/` }],
+      links: [
+        { rel: "canonical", href: `${site.siteUrl}/` },
+        {
+          rel: "preload",
+          as: "image",
+          href: home.hero.image,
+          ...({ fetchpriority: "high" } as any),
+        },
+      ],
     };
   },
   component: Index,
@@ -297,6 +325,10 @@ function Index() {
               <img
                 src={home.hero.image}
                 alt={home.hero.imageAlt}
+                width={675}
+                height={900}
+                fetchPriority="high"
+                decoding="async"
                 className="h-[540px] sm:h-[650px] md:h-[760px] lg:h-[840px] xl:h-[900px] w-auto object-contain drop-shadow-[0_35px_55px_rgba(0,0,0,0.25)] select-none pointer-events-none"
                 style={{
                   WebkitMaskImage: "linear-gradient(to bottom, black 84%, transparent 100%)",
@@ -350,6 +382,10 @@ function Index() {
                   <img
                     src={home.about.image}
                     alt={home.about.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={800}
                     className="relative rounded-3xl object-cover aspect-[3/4] w-full shadow-2xl border-2 border-border/60"
                   />
                 </div>
@@ -512,6 +548,9 @@ function Index() {
                     src={g.src}
                     alt={g.alt}
                     loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={g.tall ? 800 : 450}
                     className="gallery-card-img w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </button>
@@ -561,6 +600,10 @@ function Index() {
           src={home.interests.backgroundImage}
           alt=""
           aria-hidden
+          loading="lazy"
+          decoding="async"
+          width={400}
+          height={520}
           className="absolute bottom-0 h-[520px] w-auto opacity-20 pointer-events-none hidden lg:block right-[4rem] xl:right-[6rem] 2xl:right-[8rem]"
         />
         <div className="max-w-4xl mx-auto px-6 relative z-10 space-y-8">

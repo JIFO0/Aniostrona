@@ -1,17 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowLeft,
-  CheckCircle2,
-  Clapperboard,
-  FileText,
-  Frame,
-  Lightbulb,
-  MapPin,
-  Mic2,
-  Sparkles,
-  Users,
-  type LucideIcon,
-} from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 import { SetupCycle } from "@/components/site/SetupCycle";
 import { ExtraBlockView, BlockImage } from "@/components/site/ExtraBlocks";
 import { readPoradnik, readSite } from "@/lib/content/load.server";
@@ -22,17 +10,6 @@ import {
   type PoradnikBlock,
   type PoradnikInnerBlock,
 } from "@/lib/content";
-
-const INTRO_ICONS: Record<string, LucideIcon> = {
-  place: MapPin,
-  who: Users,
-  what: Clapperboard,
-};
-
-const CALLOUT_ICONS: Record<string, LucideIcon> = {
-  frame: Frame,
-  mic: Mic2,
-};
 
 export const Route = createFileRoute("/poradnik-wizytowka")({
   loader: () => ({ poradnik: readPoradnik(), site: readSite() }),
@@ -85,7 +62,7 @@ function PoradnikWizytowkaPage() {
 
   return (
     <main className="grain min-h-screen mesh-bg flex flex-col text-foreground">
-      <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
+      <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/70 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif italic text-lg tracking-wide">
             {site.shortName}
@@ -109,7 +86,7 @@ function PoradnikWizytowkaPage() {
 
       {poradnik.blocks[0] ? <PoradnikBlockView block={poradnik.blocks[0]} /> : null}
 
-      <article className="pb-24 px-6 max-w-4xl mx-auto space-y-16">
+      <article className="pb-24 px-6 max-w-4xl mx-auto space-y-12 md:space-y-16">
         {poradnik.blocks.slice(1).map((block, index) => (
           <PoradnikBlockView key={`${block._template}-${index}`} block={block} />
         ))}
@@ -122,120 +99,143 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
   switch (block._template) {
     case "hero":
       return (
-        <header className="pt-32 pb-16 md:pt-40 md:pb-24 px-6 max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sage/10 border border-sage/30 text-sage text-xs tracking-wider uppercase mb-6">
-            <Sparkles className="w-3.5 h-3.5" /> {block.badge}
-          </div>
-          <h1 className="font-serif text-4xl md:text-6xl leading-tight mb-6">{block.title}</h1>
+        <header className="pt-32 pb-12 md:pt-40 md:pb-16 px-6 max-w-3xl mx-auto text-center">
+          {block.badge ? (
+            <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-sans font-medium mb-4">
+              {block.badge}
+            </p>
+          ) : null}
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.18] text-foreground mb-6 font-normal tracking-tight">
+            {block.title}
+          </h1>
+          <div className="w-12 h-px bg-sage/40 mx-auto mb-6" />
           <RichText
             text={block.lead}
-            className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-foreground/80 leading-relaxed font-light"
           />
-          <BlockImage
-            src={block.image}
-            alt={block.imageAlt}
-            className="mt-10 w-full max-h-[28rem] object-cover rounded-3xl"
-          />
+          {block.image && (
+            <BlockImage
+              src={block.image}
+              alt={block.imageAlt}
+              className="mt-10 w-full max-h-[28rem] object-cover rounded-2xl border border-sage/15 shadow-sm"
+            />
+          )}
         </header>
       );
     case "introCards":
       return (
-          <div className="grid md:grid-cols-3 gap-6">
-            {block.cards.map((card, i) => {
-              const Icon = INTRO_ICONS[card.id] ?? Sparkles;
-              const tint =
-                i === 1
-                  ? "from-cream via-sage/15 to-cream"
-                  : "from-cream via-rose/20 to-cream";
-              return (
-                <div
-                  key={card.id}
-                  className={`soft-card rounded-2xl p-6 bg-gradient-to-br ${tint} border border-sage/20`}
-                >
+        <div className="grid md:grid-cols-3 gap-5">
+          {block.cards.map((card, i) => {
+            const romanNumerals = ["I", "II", "III", "IV", "V", "VI"];
+            const indexLabel = romanNumerals[i] ?? `0${i + 1}`;
+            return (
+              <div
+                key={card.id}
+                className="rounded-2xl p-6 bg-cream/75 border border-sage/20 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="mb-3 text-sage/70 font-serif italic text-sm">
+                    {indexLabel}
+                  </div>
                   {card.image ? (
                     <BlockImage src={card.image} className="w-full h-36 object-cover rounded-xl mb-4" />
-                  ) : (
-                    <div className="w-10 h-10 rounded-xl bg-sage/15 text-sage flex items-center justify-center mb-4">
-                      <Icon className="w-5 h-5" />
-                    </div>
-                  )}
-                  <h3 className="font-serif text-lg font-medium mb-2">{card.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{card.text}</p>
+                  ) : null}
+                  <h3 className="font-serif text-lg font-medium text-foreground mb-2">{card.title}</h3>
+                  <p className="text-sm text-foreground/75 leading-relaxed font-light">{card.text}</p>
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
+        </div>
       );
     case "richSection":
       return (
-        <section className="soft-card rounded-3xl p-8 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
-            {(block.number || block.title) && (
-              <h2 className="font-serif text-2xl md:text-3xl font-medium text-foreground flex items-center gap-3">
-                {block.number ? (
-                  <span className="flex items-center justify-center w-8 h-8 rounded-full bg-sage text-primary-foreground text-sm font-sans font-semibold">
-                    {block.number}
-                  </span>
-                ) : null}
+        <section className="rounded-3xl p-7 sm:p-10 md:p-12 bg-cream/70 border border-sage/20 space-y-6">
+          {(block.number || block.title) && (
+            <div className="border-b border-sage/15 pb-4">
+              {block.number && (
+                <span className="text-xs uppercase tracking-[0.25em] text-sage font-medium block mb-1">
+                  Część {block.number}
+                </span>
+              )}
+              <h2 className="font-serif text-2xl sm:text-3xl font-normal text-foreground leading-snug">
                 {block.title}
               </h2>
-            )}
+            </div>
+          )}
+          {block.image && (
             <BlockImage src={block.image} alt={block.imageAlt} className="w-full rounded-2xl object-cover max-h-96" />
-            {block.paragraphs.map((p) => (
+          )}
+          <div className="space-y-4">
+            {block.paragraphs.map((p, idx) => (
               <RichText
-                key={p}
+                key={idx}
                 text={p}
-                className="text-muted-foreground leading-relaxed text-base md:text-lg"
+                className="text-foreground/80 leading-relaxed text-base sm:text-lg font-light"
               />
             ))}
-            {(block.inner ?? []).map((inner, i) => (
-              <InnerBlockView key={`${inner._template}-${i}`} block={inner} />
-            ))}
+          </div>
+          {(block.inner ?? []).map((inner, i) => (
+            <InnerBlockView key={`${inner._template}-${i}`} block={inner} />
+          ))}
         </section>
       );
     case "checklist":
       return (
-        <section className="rounded-3xl p-8 md:p-12 bg-gradient-to-br from-rose/30 via-cream to-sage/25 border border-sage/30 space-y-6">
-            <div className="flex items-center gap-3">
-              <Lightbulb className="w-6 h-6 text-sage" />
-              <h2 className="font-serif text-2xl md:text-3xl font-medium text-foreground">
-                {block.title}
-              </h2>
-            </div>
+        <section className="rounded-3xl p-7 sm:p-10 md:p-12 bg-cream/70 border border-sage/25 space-y-6">
+          <div className="border-b border-sage/15 pb-4">
+            <span className="text-xs uppercase tracking-[0.25em] text-sage font-medium block mb-1">
+              Podsumowanie
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-normal text-foreground leading-snug">
+              {block.title}
+            </h2>
+          </div>
+          {block.image && (
             <BlockImage src={block.image} className="w-full rounded-2xl object-cover max-h-80" />
-            <div className="space-y-3 font-sans text-base">
-              {block.items.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 bg-cream/80 p-3.5 rounded-xl border border-sage/20"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-sage shrink-0" />
-                  <span className="text-foreground/90 font-medium">{item}</span>
-                </div>
-              ))}
-            </div>
+          )}
+          <ol className="space-y-3 font-sans text-base">
+            {block.items.map((item, index) => (
+              <li
+                key={item}
+                className="flex items-start gap-3.5 bg-background/50 p-4 rounded-xl border border-sage/15"
+              >
+                <span className="font-serif text-xs font-medium text-sage/80 mt-0.5 w-6 shrink-0 tracking-wider">
+                  0{index + 1}.
+                </span>
+                <span className="text-foreground/85 font-light leading-relaxed">{item}</span>
+              </li>
+            ))}
+          </ol>
         </section>
       );
     case "cta":
       return (
-        <div className="rounded-3xl p-8 md:p-12 text-center bg-gradient-to-br from-sage/20 via-cream to-rose/20 border border-sage/30 space-y-6">
-            <h2 className="font-serif text-3xl md:text-4xl">{block.title}</h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto">{block.lead}</p>
+        <section className="rounded-3xl p-8 md:p-12 text-center bg-cream/70 border border-sage/20 space-y-6">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-foreground">
+            {block.title}
+          </h2>
+          <p className="text-foreground/80 text-base sm:text-lg max-w-xl mx-auto font-light leading-relaxed">
+            {block.lead}
+          </p>
+          {block.image && (
             <BlockImage src={block.image} className="w-full max-h-72 object-cover rounded-2xl" />
-            <div className="flex flex-wrap justify-center gap-4 pt-2">
-              <a
-                href="/#kontakt"
-                className="px-6 py-3 rounded-full bg-sage text-primary-foreground text-sm tracking-wide hover:opacity-90 transition-all hover:scale-[1.02]"
-              >
-                {block.primary}
-              </a>
-              <Link
-                to="/cv"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-sage/40 text-sm tracking-wide hover:bg-sage/5 transition-colors"
-              >
-                <FileText className="w-4 h-4" /> {block.secondary}
-              </Link>
-            </div>
-        </div>
+          )}
+          <div className="flex flex-wrap justify-center items-center gap-4 pt-2">
+            <a
+              href="/#kontakt"
+              className="px-7 py-3 rounded-full bg-sage text-primary-foreground text-sm font-medium tracking-wide hover:opacity-90 transition-opacity"
+            >
+              {block.primary}
+            </a>
+            <Link
+              to="/cv"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full border border-sage/30 text-sm font-medium tracking-wide text-foreground/85 hover:bg-sage/10 transition-colors"
+            >
+              <FileText className="w-4 h-4" /> {block.secondary}
+            </Link>
+          </div>
+        </section>
       );
     default:
       return <ExtraBlockView block={block} bare />;
@@ -246,65 +246,69 @@ function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {
   switch (block._template) {
     case "imagePair":
       return (
-        <div className="grid md:grid-cols-2 gap-6 items-start pt-2">
-          <div className="space-y-3">
+        <div className="grid md:grid-cols-2 gap-6 items-start pt-3">
+          <figure className="space-y-2.5">
             <SetupCycle
               images={block.cycleImages.map(resolveMedia)}
               alt={block.cycleAlt}
-              className="aspect-[3/4] shadow-sm border border-sage/15"
+              className="aspect-[3/4] rounded-2xl shadow-sm border border-sage/15"
             />
-            <p className="text-xs text-muted-foreground text-center leading-relaxed px-2">
+            <figcaption className="text-xs text-foreground/70 text-center leading-relaxed px-2 font-light">
               {block.cycleCaption}
-            </p>
-          </div>
-          <div className="space-y-3">
+            </figcaption>
+          </figure>
+          <figure className="space-y-2.5">
             <div className="overflow-hidden rounded-2xl bg-cream/40 border border-sage/15 shadow-sm aspect-[3/4]">
               <img
                 src={resolveMedia(block.stillImage)}
                 alt={block.stillAlt}
+                loading="lazy"
+                decoding="async"
+                width={600}
+                height={800}
                 className="w-full h-full object-cover"
               />
             </div>
-            <RichText
-              text={block.stillCaption}
-              className="text-xs text-muted-foreground text-center leading-relaxed px-2"
-            />
-          </div>
+            <figcaption className="text-xs text-foreground/70 text-center leading-relaxed px-2 font-light">
+              <RichText text={block.stillCaption} />
+            </figcaption>
+          </figure>
         </div>
       );
     case "callout": {
-      const Icon = CALLOUT_ICONS[block.icon] ?? Frame;
-      const isMic = block.icon === "mic";
       return (
-        <div
-          className={`flex gap-4 p-5 rounded-2xl border ${isMic ? "bg-background/40 border-border/40" : "bg-sage/10 border-sage/25"}`}
-        >
-          <Icon className="w-6 h-6 text-sage shrink-0 mt-0.5" />
-          <div className="space-y-2">
-            {block.title ? (
-              <h3 className="font-serif text-lg font-medium text-foreground">{block.title}</h3>
-            ) : null}
-            <RichText
-              text={block.text}
-              className="text-sm text-muted-foreground leading-relaxed"
-            />
-            <BlockImage src={block.image} className="w-full rounded-xl object-cover max-h-56" />
-          </div>
-        </div>
+        <aside className="border-l-2 border-sage/60 bg-sage/5 pl-5 sm:pl-6 py-4 pr-5 rounded-r-2xl my-4 space-y-2">
+          {block.title ? (
+            <h3 className="font-serif text-base sm:text-lg font-medium text-foreground">
+              {block.title}
+            </h3>
+          ) : null}
+          <RichText
+            text={block.text}
+            className="text-sm sm:text-base text-foreground/80 leading-relaxed font-light"
+          />
+          {block.image && (
+            <BlockImage src={block.image} className="w-full rounded-xl object-cover max-h-56 mt-2" />
+          )}
+        </aside>
       );
     }
     case "twoCol":
       return (
-        <div className="grid md:grid-cols-2 gap-4 pt-2">
-          <div className="p-4 rounded-xl bg-background/50 border border-border/50 space-y-3">
-            <BlockImage src={block.leftImage} className="w-full rounded-lg object-cover max-h-48" />
-            <h4 className="font-serif font-medium text-foreground mb-1">{block.leftTitle}</h4>
-            <p className="text-sm text-muted-foreground">{block.leftText}</p>
+        <div className="grid md:grid-cols-2 gap-5 pt-2">
+          <div className="p-5 sm:p-6 rounded-2xl bg-cream/80 border border-sage/20 space-y-2.5">
+            {block.leftImage && (
+              <BlockImage src={block.leftImage} className="w-full rounded-xl object-cover max-h-48 mb-3" />
+            )}
+            <h4 className="font-serif text-lg font-medium text-foreground">{block.leftTitle}</h4>
+            <p className="text-sm text-foreground/75 leading-relaxed font-light">{block.leftText}</p>
           </div>
-          <div className="p-4 rounded-xl bg-background/50 border border-border/50 space-y-3">
-            <BlockImage src={block.rightImage} className="w-full rounded-lg object-cover max-h-48" />
-            <h4 className="font-serif font-medium text-foreground mb-1">{block.rightTitle}</h4>
-            <p className="text-sm text-muted-foreground">{block.rightText}</p>
+          <div className="p-5 sm:p-6 rounded-2xl bg-cream/80 border border-sage/20 space-y-2.5">
+            {block.rightImage && (
+              <BlockImage src={block.rightImage} className="w-full rounded-xl object-cover max-h-48 mb-3" />
+            )}
+            <h4 className="font-serif text-lg font-medium text-foreground">{block.rightTitle}</h4>
+            <p className="text-sm text-foreground/75 leading-relaxed font-light">{block.rightText}</p>
           </div>
         </div>
       );
@@ -312,7 +316,7 @@ function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {
       return (
         <RichText
           text={block.text}
-          className="text-muted-foreground leading-relaxed text-base md:text-lg"
+          className="text-foreground/80 leading-relaxed text-base sm:text-lg font-light pt-2"
         />
       );
     case "image":
