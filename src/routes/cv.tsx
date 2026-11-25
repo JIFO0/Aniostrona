@@ -26,7 +26,7 @@ export const Route = createFileRoute("/cv")({
 });
 
 function CVPage() {
-  const { cv } = Route.useLoaderData();
+  const { cv, site } = Route.useLoaderData();
   const [unlocked, setUnlocked] = useState(false);
   const [value, setValue] = useState("");
   const [error, setError] = useState(false);
@@ -87,13 +87,13 @@ function CVPage() {
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif italic text-lg tracking-wide">
-            Ania Tomaszewska
+            {site.shortName}
           </Link>
           <Link
             to="/"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <ArrowLeft className="w-4 h-4" /> wróć
+            <ArrowLeft className="w-4 h-4" /> {cv.navBack ?? "wróć"}
           </Link>
         </div>
       </nav>

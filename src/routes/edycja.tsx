@@ -367,6 +367,20 @@ function EdycjaPage() {
                     onChange={(navLabel) => patchCustom({ ...currentCustom, navLabel })}
                   />
                 </Field>
+                <Field label="Powrót w menu">
+                  <TextInput
+                    value={currentCustom.navBack ?? "strona główna"}
+                    onChange={(navBack) => patchCustom({ ...currentCustom, navBack })}
+                  />
+                </Field>
+                <Field label="SEO — tytuł">
+                  <TextInput
+                    value={currentCustom.seo.title}
+                    onChange={(title) =>
+                      patchCustom({ ...currentCustom, seo: { ...currentCustom.seo, title } })
+                    }
+                  />
+                </Field>
                 <Field label="SEO — opis">
                   <TextArea
                     value={currentCustom.seo.description}

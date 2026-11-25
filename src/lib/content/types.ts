@@ -19,7 +19,13 @@ export type SiteContent = {
   };
   languages: { name: string; level: string }[];
   siteUrl: string;
-  footer: { creditLabel: string; creditUrl: string };
+  footer: {
+    creditLabel: string;
+    creditUrl: string;
+    creditName?: string;
+    guideLabel?: string;
+    guideHref?: string;
+  };
 };
 
 export type GalleryItem = { src: string; alt: string; tall: boolean };
@@ -39,7 +45,10 @@ export type HomeContent = {
     kicker: string;
     firstName: string;
     lastName: string;
+    bgText?: string;
     roles: string;
+    cardKicker?: string;
+    cardNote?: string;
     leadAfterAge: string;
     ctaPrimary: string;
     ctaSecondary: string;
@@ -108,6 +117,7 @@ export type HomeContent = {
 
 export type CvContent = {
   seo: { title: string; description: string };
+  navBack?: string;
   locked: {
     kicker: string;
     title: string;
@@ -210,6 +220,7 @@ export type PoradnikBlock =
     }
   | {
       _template: "richSection";
+      numberLabel?: string;
       number: string;
       title: string;
       paragraphs: string[];
@@ -217,14 +228,17 @@ export type PoradnikBlock =
       imageAlt?: string;
       inner?: PoradnikInnerBlock[];
     }
-  | { _template: "checklist"; title: string; items: string[]; image?: string }
+  | { _template: "checklist"; kicker?: string; title: string; items: string[]; image?: string; imageAlt?: string }
   | {
       _template: "cta";
       title: string;
       lead: string;
       primary: string;
+      primaryHref?: string;
       secondary: string;
+      secondaryHref?: string;
       image?: string;
+      imageAlt?: string;
     }
   | ExtraBlockBody;
 
@@ -238,6 +252,7 @@ export type PoradnikContent = {
   jsonLdHeadline: string;
   jsonLdDescription: string;
   navBack: string;
+  navCvLabel?: string;
   blocks: PoradnikBlock[];
 };
 
@@ -245,6 +260,7 @@ export type CustomPage = {
   slug: string;
   title: string;
   navLabel: string;
+  navBack?: string;
   seo: { title: string; description: string };
   blocks: ExtraBlock[];
 };

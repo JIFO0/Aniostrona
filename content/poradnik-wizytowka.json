@@ -8,6 +8,7 @@
   "jsonLdHeadline": "Filmik-wizytówka: jak nagrać zgłoszenie na uczelnię aktorską i do agencji",
   "jsonLdDescription": "Poradnik o samonagrywaniu filmików do zgłoszeń na uczelnie aktorskie i wizytówek osobistych do agencji modelingowych: miejsce, kadr, tekst, dźwięk.",
   "navBack": "Powrót do portfolio",
+  "navCvLabel": "CV",
   "blocks": [
     {
       "_template": "hero",
@@ -58,6 +59,13 @@
           "_template": "imagePair",
           "cycleAlt": "Przygotowanie domowego planu do nagrania wizytówki",
           "cycleCaption": "Kulisy domowego planu: telefon, statyw, proste tło i laptop do bieżącej kontroli. Pokój może tętnić codziennością, ale w kadrze znajdzie się tylko to, co zaplanowane.",
+          "cycleImages": [
+            "poradnik/setup-01.png",
+            "poradnik/setup-02.png",
+            "poradnik/setup-03.png",
+            "poradnik/setup-04.png",
+            "poradnik/setup-05.png"
+          ],
           "stillImage": "poradnik/wkadrze.png",
           "stillAlt": "Gotowy wycinek kadru w kamerze",
           "stillCaption": "Ten sam kadr widziany okiem kamery. Całe otoczenie znika poza krawędzią ekranu, pozostawiając czystą, spokojną przestrzeń dla Ciebie."

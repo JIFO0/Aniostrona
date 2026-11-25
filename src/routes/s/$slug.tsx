@@ -38,7 +38,7 @@ function CustomPageView() {
             to="/"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
           >
-            <ArrowLeft className="w-4 h-4" /> strona główna
+            <ArrowLeft className="w-4 h-4" /> {page.navBack ?? "strona główna"}
           </Link>
         </div>
       </nav>

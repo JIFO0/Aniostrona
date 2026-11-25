@@ -178,6 +178,7 @@ const ACHIEVEMENT_ICONS: Record<string, ComponentType<{ className?: string }>> =
   award: Award,
   languages: Languages,
   sparkles: Sparkles,
+  trophy: Trophy,
 };
 
 export const Route = createFileRoute("/")({
@@ -278,7 +279,7 @@ function Index() {
           {/* Giant 3D Background Typography */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none -z-0">
             <span className="font-serif text-6xl sm:text-8xl md:text-[11rem] lg:text-[14rem] font-bold uppercase tracking-tight text-foreground/10 leading-none text-center">
-              TOMASZEWSKA
+              {home.hero.bgText ?? home.hero.lastName.toUpperCase()}
             </span>
           </div>
 
@@ -341,10 +342,12 @@ function Index() {
             <div className="w-full lg:w-1/4 text-center lg:text-right space-y-6 md:space-y-8 animate-drift-in">
               <div className="p-6 rounded-3xl bg-card/80 backdrop-blur-md border border-border/60 shadow-lg text-left inline-block lg:block space-y-2">
                 <span className="text-xs uppercase tracking-widest font-semibold text-primary block">
-                  Profil Twórczy
+                  {home.hero.cardKicker ?? "Profil Twórczy"}
                 </span>
                 <p className="text-lg font-serif text-foreground font-medium">{home.hero.roles}</p>
-                <p className="text-xs text-muted-foreground">Plany filmowe · Scena teatralna · Sztuka</p>
+                <p className="text-xs text-muted-foreground">
+                  {home.hero.cardNote ?? "Plany filmowe · Scena teatralna · Sztuka"}
+                </p>
               </div>
               <div className="flex justify-center lg:justify-end">
                 <a
@@ -677,7 +680,12 @@ function Index() {
                       <div className="w-10 h-10 rounded-xl bg-primary/15 text-primary flex items-center justify-center shrink-0">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <RichText as="div" text={item.text} className="text-sm md:text-base text-foreground font-light leading-relaxed pt-1" />
+                      <div className="space-y-3 flex-1 min-w-0">
+                        <RichText as="div" text={item.text} className="text-sm md:text-base text-foreground font-light leading-relaxed pt-1" />
+                        {item.image ? (
+                          <img src={item.image} alt="" loading="lazy" decoding="async" className="w-full max-w-sm rounded-2xl object-cover shadow-sm border border-border/40" />
+                        ) : null}
+                      </div>
                     </div>
                   </Reveal>
                 );
@@ -796,13 +804,17 @@ function Index() {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3 text-xs text-muted-foreground">
-            <Link
-              to="/poradnik-wizytowka"
-              className="hover:text-foreground transition-colors underline decoration-primary/40 underline-offset-2"
-            >
-              poradnik wizytówka
-            </Link>
-            <span className="hidden sm:inline text-muted-foreground/30">•</span>
+            {site.footer.guideLabel !== "" && (
+              <>
+                <Link
+                  to={(site.footer.guideHref || "/poradnik-wizytowka") as "/poradnik-wizytowka"}
+                  className="hover:text-foreground transition-colors underline decoration-primary/40 underline-offset-2"
+                >
+                  {site.footer.guideLabel ?? "poradnik wizytówka"}
+                </Link>
+                <span className="hidden sm:inline text-muted-foreground/30">•</span>
+              </>
+            )}
             <p className="font-serif italic">
               © {new Date().getFullYear()} {site.name}
             </p>
@@ -815,7 +827,9 @@ function Index() {
             >
               <span>{site.footer.creditLabel}</span>
               <Heart className="w-3 h-3 text-rose-500 fill-rose-500 inline group-hover:scale-110 transition-transform" />
-              <span className="underline decoration-primary/40 underline-offset-2">jifo.dev</span>
+              <span className="underline decoration-primary/40 underline-offset-2">
+                {site.footer.creditName ?? "jifo.dev"}
+              </span>
             </a>
           </div>
         </div>

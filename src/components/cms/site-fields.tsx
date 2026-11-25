@@ -149,18 +149,40 @@ export function SiteFields({
       ))}
 
       <h2 className="font-serif text-2xl">Stopka</h2>
+      <div className="grid md:grid-cols-2 gap-4">
+        <Field label="Link do poradnika w stopce" hint="Zostaw puste, żeby ukryć">
+          <TextInput
+            value={site.footer.guideLabel ?? "poradnik wizytówka"}
+            onChange={(guideLabel) => setSite({ ...site, footer: { ...site.footer, guideLabel } })}
+          />
+        </Field>
+        <Field label="Adres poradnika w stopce">
+          <TextInput
+            value={site.footer.guideHref ?? "/poradnik-wizytowka"}
+            onChange={(guideHref) => setSite({ ...site, footer: { ...site.footer, guideHref } })}
+          />
+        </Field>
+      </div>
       <Field label="Etykieta creditu">
         <TextInput
           value={site.footer.creditLabel}
           onChange={(creditLabel) => setSite({ ...site, footer: { ...site.footer, creditLabel } })}
         />
       </Field>
-      <Field label="URL creditu">
-        <TextInput
-          value={site.footer.creditUrl}
-          onChange={(creditUrl) => setSite({ ...site, footer: { ...site.footer, creditUrl } })}
-        />
-      </Field>
+      <div className="grid md:grid-cols-2 gap-4">
+        <Field label="Nazwa autora w stopce">
+          <TextInput
+            value={site.footer.creditName ?? "jifo.dev"}
+            onChange={(creditName) => setSite({ ...site, footer: { ...site.footer, creditName } })}
+          />
+        </Field>
+        <Field label="URL creditu">
+          <TextInput
+            value={site.footer.creditUrl}
+            onChange={(creditUrl) => setSite({ ...site, footer: { ...site.footer, creditUrl } })}
+          />
+        </Field>
+      </div>
     </div>
   );
 }
@@ -176,6 +198,9 @@ export function CvFields({ cv, setCv }: { cv: CvContent; setCv: (cv: CvContent) 
           value={cv.seo.description}
           onChange={(description) => setCv({ ...cv, seo: { ...cv.seo, description } })}
         />
+      </Field>
+      <Field label="Powrót w menu">
+        <TextInput value={cv.navBack ?? "wróć"} onChange={(navBack) => setCv({ ...cv, navBack })} />
       </Field>
       <h2 className="font-serif text-2xl pt-4">Zamknięta karta</h2>
       <Field label="Kicker">
@@ -199,13 +224,33 @@ export function CvFields({ cv, setCv }: { cv: CvContent; setCv: (cv: CvContent) 
           onChange={(placeholder) => setCv({ ...cv, locked: { ...cv.locked, placeholder } })}
         />
       </Field>
-      <Field label="Przycisk">
+      <div className="grid md:grid-cols-2 gap-4">
+        <Field label="Przycisk">
+          <TextInput
+            value={cv.locked.submit}
+            onChange={(submit) => setCv({ ...cv, locked: { ...cv.locked, submit } })}
+          />
+        </Field>
+        <Field label="Tekst ładowania">
+          <TextInput
+            value={cv.locked.loading}
+            onChange={(loading) => setCv({ ...cv, locked: { ...cv.locked, loading } })}
+          />
+        </Field>
+      </div>
+      <Field label="Komunikat błędnego hasła">
         <TextInput
-          value={cv.locked.submit}
-          onChange={(submit) => setCv({ ...cv, locked: { ...cv.locked, submit } })}
+          value={cv.locked.error}
+          onChange={(error) => setCv({ ...cv, locked: { ...cv.locked, error } })}
         />
       </Field>
       <h2 className="font-serif text-2xl pt-4">Otwarta karta</h2>
+      <Field label="Kicker">
+        <TextInput
+          value={cv.unlocked.kicker}
+          onChange={(kicker) => setCv({ ...cv, unlocked: { ...cv.unlocked, kicker } })}
+        />
+      </Field>
       <Field label="Tytuł">
         <TextInput
           value={cv.unlocked.title}
@@ -218,6 +263,20 @@ export function CvFields({ cv, setCv }: { cv: CvContent; setCv: (cv: CvContent) 
           onChange={(lead) => setCv({ ...cv, unlocked: { ...cv.unlocked, lead } })}
         />
       </Field>
+      <div className="grid md:grid-cols-2 gap-4">
+        <Field label="Przycisk pobierania">
+          <TextInput
+            value={cv.unlocked.download}
+            onChange={(download) => setCv({ ...cv, unlocked: { ...cv.unlocked, download } })}
+          />
+        </Field>
+        <Field label="Przycisk otwarcia w karcie">
+          <TextInput
+            value={cv.unlocked.open}
+            onChange={(open) => setCv({ ...cv, unlocked: { ...cv.unlocked, open } })}
+          />
+        </Field>
+      </div>
       <Field label="Nazwa pliku PDF">
         <TextInput
           value={cv.unlocked.filename}

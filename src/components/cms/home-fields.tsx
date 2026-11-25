@@ -117,9 +117,29 @@ export function HomeFields({
             />
           </Field>
         </div>
+        <Field label="Wielki napis w tle">
+          <TextInput
+            value={home.hero.bgText ?? home.hero.lastName.toUpperCase()}
+            onChange={(bgText) => patch({ hero: { ...home.hero, bgText } })}
+          />
+        </Field>
         <Field label="Role pod imieniem">
           <TextInput value={home.hero.roles} onChange={(roles) => patch({ hero: { ...home.hero, roles } })} />
         </Field>
+        <div className="grid md:grid-cols-2 gap-4">
+          <Field label="Kicker karty po prawej">
+            <TextInput
+              value={home.hero.cardKicker ?? "Profil Twórczy"}
+              onChange={(cardKicker) => patch({ hero: { ...home.hero, cardKicker } })}
+            />
+          </Field>
+          <Field label="Dopisek karty po prawej">
+            <TextInput
+              value={home.hero.cardNote ?? "Plany filmowe · Scena teatralna · Sztuka"}
+              onChange={(cardNote) => patch({ hero: { ...home.hero, cardNote } })}
+            />
+          </Field>
+        </div>
         <Field label="Lead po wieku" hint="Strona dopisze wiek sama, np. „21-letnia …”">
           <TextArea
             value={home.hero.leadAfterAge}
@@ -458,6 +478,22 @@ export function HomeFields({
               })
             }
           >
+            <Field label="Ikona">
+              <select
+                className="cms-input"
+                value={item.icon || "sparkles"}
+                onChange={(e) => {
+                  const items = [...home.achievements.items];
+                  items[i] = { ...item, icon: e.target.value };
+                  patch({ achievements: { ...home.achievements, items } });
+                }}
+              >
+                <option value="sparkles">Gwiazdki</option>
+                <option value="award">Medal / Nagroda</option>
+                <option value="trophy">Puchar</option>
+                <option value="languages">Języki</option>
+              </select>
+            </Field>
             <Field label="Tekst">
               <TextArea
                 value={item.text}

@@ -50,9 +50,41 @@ export function PoradnikFields({
             onChange={(description) => setPoradnik({ ...poradnik, seo: { ...poradnik.seo, description } })}
           />
         </Field>
-        <Field label="Powrót w menu">
-          <TextInput value={poradnik.navBack} onChange={(navBack) => setPoradnik({ ...poradnik, navBack })} />
+        <Field label="OG tytuł">
+          <TextInput
+            value={poradnik.seo.ogTitle}
+            onChange={(ogTitle) => setPoradnik({ ...poradnik, seo: { ...poradnik.seo, ogTitle } })}
+          />
         </Field>
+        <Field label="OG opis">
+          <TextArea
+            value={poradnik.seo.ogDescription}
+            onChange={(ogDescription) => setPoradnik({ ...poradnik, seo: { ...poradnik.seo, ogDescription } })}
+          />
+        </Field>
+        <Field label="JSON-LD nagłówek artykułu">
+          <TextInput
+            value={poradnik.jsonLdHeadline}
+            onChange={(jsonLdHeadline) => setPoradnik({ ...poradnik, jsonLdHeadline })}
+          />
+        </Field>
+        <Field label="JSON-LD opis artykułu">
+          <TextArea
+            value={poradnik.jsonLdDescription}
+            onChange={(jsonLdDescription) => setPoradnik({ ...poradnik, jsonLdDescription })}
+          />
+        </Field>
+        <div className="grid md:grid-cols-2 gap-4">
+          <Field label="Powrót w menu">
+            <TextInput value={poradnik.navBack} onChange={(navBack) => setPoradnik({ ...poradnik, navBack })} />
+          </Field>
+          <Field label="Etykieta CV w menu">
+            <TextInput
+              value={poradnik.navCvLabel ?? "CV"}
+              onChange={(navCvLabel) => setPoradnik({ ...poradnik, navCvLabel })}
+            />
+          </Field>
+        </div>
       </section>
 
       <AddMenu
@@ -171,9 +203,17 @@ function PoradnikBlockFields({
   if (block._template === "richSection") {
     return (
       <>
-        <Field label="Numer">
-          <TextInput value={block.number} onChange={(number) => onChange({ ...block, number })} />
-        </Field>
+        <div className="grid md:grid-cols-2 gap-3">
+          <Field label="Etykieta przed numerem" hint="domyślnie: Część">
+            <TextInput
+              value={block.numberLabel ?? "Część"}
+              onChange={(numberLabel) => onChange({ ...block, numberLabel })}
+            />
+          </Field>
+          <Field label="Numer">
+            <TextInput value={block.number} onChange={(number) => onChange({ ...block, number })} />
+          </Field>
+        </div>
         <Field label="Nagłówek">
           <TextInput value={block.title} onChange={(title) => onChange({ ...block, title })} />
         </Field>
@@ -182,6 +222,11 @@ function PoradnikBlockFields({
           value={block.image ?? ""}
           onChange={(image) => onChange({ ...block, image })}
         />
+        {block.image ? (
+          <Field label="Alt zdjęcia sekcji">
+            <TextInput value={block.imageAlt ?? ""} onChange={(imageAlt) => onChange({ ...block, imageAlt })} />
+          </Field>
+        ) : null}
         {block.paragraphs.map((p, pi) => (
           <Field key={pi} label={`Akapit ${pi + 1}`}>
             <TextArea
@@ -247,6 +292,12 @@ function PoradnikBlockFields({
   if (block._template === "checklist") {
     return (
       <>
+        <Field label="Nagłówek nad tytułem" hint="domyślnie: Podsumowanie">
+          <TextInput
+            value={block.kicker ?? "Podsumowanie"}
+            onChange={(kicker) => onChange({ ...block, kicker })}
+          />
+        </Field>
         <Field label="Tytuł checklisty">
           <TextInput value={block.title} onChange={(title) => onChange({ ...block, title })} />
         </Field>
@@ -255,6 +306,11 @@ function PoradnikBlockFields({
           value={block.image ?? ""}
           onChange={(image) => onChange({ ...block, image })}
         />
+        {block.image ? (
+          <Field label="Alt zdjęcia">
+            <TextInput value={block.imageAlt ?? ""} onChange={(imageAlt) => onChange({ ...block, imageAlt })} />
+          </Field>
+        ) : null}
         {block.items.map((item, ii) => (
           <Field key={ii} label={`Punkt ${ii + 1}`}>
             <div className="flex gap-2">
@@ -291,17 +347,36 @@ function PoradnikBlockFields({
         <Field label="Tekst">
           <TextArea value={block.lead} onChange={(lead) => onChange({ ...block, lead })} />
         </Field>
-        <Field label="Przycisk główny">
-          <TextInput value={block.primary} onChange={(primary) => onChange({ ...block, primary })} />
-        </Field>
-        <Field label="Przycisk CV">
-          <TextInput value={block.secondary} onChange={(secondary) => onChange({ ...block, secondary })} />
-        </Field>
+        <div className="grid md:grid-cols-2 gap-3">
+          <Field label="Przycisk główny">
+            <TextInput value={block.primary} onChange={(primary) => onChange({ ...block, primary })} />
+          </Field>
+          <Field label="Link przycisku głównego">
+            <TextInput
+              value={block.primaryHref ?? "/#kontakt"}
+              onChange={(primaryHref) => onChange({ ...block, primaryHref })}
+            />
+          </Field>
+          <Field label="Przycisk dodatkowy">
+            <TextInput value={block.secondary} onChange={(secondary) => onChange({ ...block, secondary })} />
+          </Field>
+          <Field label="Link przycisku dodatkowego">
+            <TextInput
+              value={block.secondaryHref ?? "/cv"}
+              onChange={(secondaryHref) => onChange({ ...block, secondaryHref })}
+            />
+          </Field>
+        </div>
         <ImageField
           label="Zdjęcie"
           value={block.image ?? ""}
           onChange={(image) => onChange({ ...block, image })}
         />
+        {block.image ? (
+          <Field label="Alt zdjęcia">
+            <TextInput value={block.imageAlt ?? ""} onChange={(imageAlt) => onChange({ ...block, imageAlt })} />
+          </Field>
+        ) : null}
       </>
     );
   }
@@ -398,31 +473,32 @@ function InnerEditor({
     );
   }
   if (inner._template === "imagePair") {
+    const cycleImages = inner.cycleImages ?? [];
     return (
       <>
         <p className="text-xs text-sage">Para zdjęć (setup / kadr)</p>
-        {inner.cycleImages.map((src, i) => (
+        {cycleImages.map((src, i) => (
           <ImageField
             key={i}
             label={`Klatka cyklu ${i + 1}`}
             value={src}
             onChange={(value) => {
-              const cycleImages = [...inner.cycleImages];
-              cycleImages[i] = value;
-              onChange({ ...inner, cycleImages });
+              const next = [...cycleImages];
+              next[i] = value;
+              onChange({ ...inner, cycleImages: next });
             }}
           />
         ))}
         <div className="flex gap-2">
           <AddOne
             label="Dodaj klatkę"
-            onClick={() => onChange({ ...inner, cycleImages: [...inner.cycleImages, ""] })}
+            onClick={() => onChange({ ...inner, cycleImages: [...cycleImages, ""] })}
           />
-          {inner.cycleImages.length > 1 ? (
+          {cycleImages.length > 1 ? (
             <button
               type="button"
               className="text-xs text-destructive"
-              onClick={() => onChange({ ...inner, cycleImages: inner.cycleImages.slice(0, -1) })}
+              onClick={() => onChange({ ...inner, cycleImages: cycleImages.slice(0, -1) })}
             >
               Usuń ostatnią klatkę
             </button>

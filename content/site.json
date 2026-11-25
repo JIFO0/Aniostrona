@@ -38,6 +38,9 @@
   "siteUrl": "https://ann.veronique.com",
   "footer": {
     "creditLabel": "Made by boyfriend",
-    "creditUrl": "https://jifo.dev"
+    "creditName": "jifo.dev",
+    "creditUrl": "https://jifo.dev",
+    "guideLabel": "poradnik wizytówka",
+    "guideHref": "/poradnik-wizytowka"
   }
 }
