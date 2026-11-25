@@ -11,6 +11,7 @@ import { ExtraBlocksEditor } from "@/components/cms/extra-editor";
 import { GalleryFields, HomeFields, PathFields } from "@/components/cms/home-fields";
 import { PoradnikFields } from "@/components/cms/poradnik-fields";
 import { CvFields, SiteFields } from "@/components/cms/site-fields";
+import { HomeSectionsFields, SiteStyleFields } from "@/components/cms/style-fields";
 import { Field, TextArea, TextInput } from "@/components/cms/fields";
 
 export const Route = createFileRoute("/edycja")({
@@ -30,8 +31,8 @@ export const Route = createFileRoute("/edycja")({
   component: EdycjaPage,
 });
 
-type PageId = "home" | "poradnik" | "cv" | `custom:${string}` | "new";
-type HomeTab = "home" | "gallery" | "path" | "extra" | "site";
+type PageId = "home" | "poradnik" | "cv" | "style" | `custom:${string}` | "new";
+type HomeTab = "home" | "gallery" | "path" | "extra" | "site" | "style";
 
 function EdycjaPage() {
   const data = Route.useLoaderData();
@@ -60,7 +61,8 @@ function EdycjaPage() {
         { id: "home" as const, label: "Treść" },
         { id: "gallery" as const, label: "Galeria" },
         { id: "path" as const, label: "Ścieżka" },
-        { id: "extra" as const, label: "Nowe sekcje" },
+        { id: "extra" as const, label: "Nowe sekcje / boxy" },
+        { id: "style" as const, label: "Style i wielkości" },
         { id: "site" as const, label: "Kontakt i dane" },
       ] satisfies { id: HomeTab; label: string }[],
     [],
@@ -254,6 +256,11 @@ function EdycjaPage() {
                 <h2 className="text-3xl mb-2">CV</h2>
                 <p className="text-sm text-ink/60 mt-auto">Teksty karty i plik PDF.</p>
               </button>
+              <button type="button" className="cms-page-card" onClick={() => setPage("style")}>
+                <p className="text-clay text-xs tracking-[0.2em] uppercase mb-4">04</p>
+                <h2 className="text-3xl mb-2">Style i wielkości</h2>
+                <p className="text-sm text-ink/60 mt-auto">Kolory, fonty, rozmiary, filtry, sekcje.</p>
+              </button>
               <button type="button" className="cms-page-card cms-page-card-new" onClick={() => setPage("new")}>
                 <p className="text-cream/70 text-xs tracking-[0.2em] uppercase mb-4">nowa</p>
                 <h2 className="text-3xl mb-2 text-white">+ Nowa strona</h2>
@@ -309,12 +316,30 @@ function EdycjaPage() {
                     onChange={(extra) => setHome({ ...home, extra })}
                   />
                 ) : null}
+                {homeTab === "style" ? (
+                  <div className="space-y-8">
+                    <SiteStyleFields
+                      style={site.style ?? {}}
+                      onChange={(style) => setSite({ ...site, style })}
+                    />
+                    <HomeSectionsFields home={home} setHome={setHome} />
+                  </div>
+                ) : null}
                 {homeTab === "site" ? <SiteFields site={site} setSite={setSite} /> : null}
               </>
             ) : null}
 
             {page === "poradnik" ? <PoradnikFields poradnik={poradnik} setPoradnik={setPoradnik} /> : null}
             {page === "cv" ? <CvFields cv={cv} setCv={setCv} /> : null}
+            {page === "style" ? (
+              <div className="space-y-8">
+                <SiteStyleFields
+                  style={site.style ?? {}}
+                  onChange={(style) => setSite({ ...site, style })}
+                />
+                <HomeSectionsFields home={home} setHome={setHome} />
+              </div>
+            ) : null}
 
             {page === "new" ? (
               <div className="space-y-5 max-w-xl">

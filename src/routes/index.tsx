@@ -24,6 +24,11 @@ import {
 import galleryManifest from "../gallery-manifest.json";
 import { ageFromBirth, RichText } from "@/lib/content";
 import { ExtraBlocks } from "@/components/site/ExtraBlocks";
+import {
+  galleryColumnsClass,
+  heroImageHeightClass,
+  SiteStyleApplier,
+} from "@/components/site/SiteStyleApplier";
 import { readHome, readSite } from "@/lib/content/load.server";
 
 function GlitterCanvas() {
@@ -221,6 +226,8 @@ function Index() {
     () => ageFromBirth(site.birthYear, site.birthMonth),
     [site.birthYear, site.birthMonth],
   );
+  const hidden = useMemo(() => new Set(home.hiddenSections ?? []), [home.hiddenSections]);
+  const show = (id: string) => !hidden.has(id);
 
   const isStaticExport =
     galleryManifest.generated !== "never" && galleryManifest.galleryMe.length > 0;
@@ -237,6 +244,7 @@ function Index() {
 
   return (
     <main className="grain min-h-screen text-foreground relative overflow-x-hidden">
+      <SiteStyleApplier style={site.style} />
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-xl bg-card/75 border-b border-border/40 transition-colors duration-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -267,6 +275,7 @@ function Index() {
       {/* ========================================================================= */}
       {/* 1. HERO — OKŁADKA MAGAZYNU 3D VOGUE Z MONUMENTALNYM ZDJĘCIEM */}
       {/* ========================================================================= */}
+      {show("hero") && (
       <section id="top" className="mesh-bg relative overflow-hidden pt-20 pb-12 md:pt-24 md:pb-16 min-h-[92vh] flex flex-col justify-center items-center">
         {/* Real Shimmering Glitter Specks (Drobinki Brokatu) */}
         <GlitterCanvas />
@@ -330,7 +339,7 @@ function Index() {
                 height={900}
                 fetchPriority="high"
                 decoding="async"
-                className="h-[540px] sm:h-[650px] md:h-[760px] lg:h-[840px] xl:h-[900px] w-auto object-contain drop-shadow-[0_35px_55px_rgba(0,0,0,0.25)] select-none pointer-events-none"
+                className={`${heroImageHeightClass(site.style?.heroImageHeight)} w-auto object-contain drop-shadow-[0_35px_55px_rgba(0,0,0,0.25)] select-none pointer-events-none`}
                 style={{
                   WebkitMaskImage: "linear-gradient(to bottom, black 84%, transparent 100%)",
                   maskImage: "linear-gradient(to bottom, black 84%, transparent 100%)",
@@ -361,12 +370,14 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="hero" />
 
       {/* ========================================================================= */}
       {/* 2. O MNIE — MAGAZYN STORY & 2 KOLUMNY */}
       {/* ========================================================================= */}
+      {show("o-mnie") && (
       <section id="o-mnie" className="py-24 md:py-32">
         <div className="max-w-7xl mx-auto px-6 space-y-14">
           <Reveal>
@@ -428,12 +439,14 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="o-mnie" />
 
       {/* ========================================================================= */}
       {/* 3. CZYM SIĘ ZAJMUJĘ — SIATKA 4 KOLUMN */}
       {/* ========================================================================= */}
+      {show("czym") && (
       <section id="czym" className="py-24 md:py-32 bg-gradient-to-b from-transparent via-primary/5 to-transparent">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -474,11 +487,12 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="czym" />
 
       {/* STATS */}
-      {home.stats && home.stats.length > 0 && (
+      {show("stats") && home.stats && home.stats.length > 0 && (
         <>
           <section className="py-24 md:py-32">
             <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12 text-center">
@@ -504,6 +518,7 @@ function Index() {
       {/* ========================================================================= */}
       {/* 4. GALERIA — DYNAMICZNE MASONRY Z PŁYNNYM ZOOMEM */}
       {/* ========================================================================= */}
+      {show("galeria") && (
       <section id="galeria" className="py-24 md:py-32 mesh-bg">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -540,7 +555,7 @@ function Index() {
           </Reveal>
 
           {/* Dynamic Masonry Columns */}
-          <div key={galleryTab} className="columns-2 md:columns-3 gap-6 space-y-6 animate-drift-in">
+          <div key={galleryTab} className={`${galleryColumnsClass(site.style?.galleryColumns)} animate-drift-in`}>
             {gallery.map((g, i) => (
               <Reveal key={g.src} delay={i * 60}>
                 <button
@@ -562,12 +577,14 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="galeria" />
 
       {/* ========================================================================= */}
       {/* 5. MOJA DROGA — PIONOWA OŚ CZASU */}
       {/* ========================================================================= */}
+      {show("sciezka") && (
       <section id="sciezka" className="py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-6">
           <Reveal>
@@ -592,12 +609,14 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="sciezka" />
 
       {/* ========================================================================= */}
       {/* 6. ZAINTERESOWANIA — PŁYWAJĄCE PIGUŁKI HASHTAGÓW */}
       {/* ========================================================================= */}
+      {show("interests") && (
       <section className="py-24 md:py-32 relative overflow-hidden">
         <img
           src={home.interests.backgroundImage}
@@ -637,12 +656,14 @@ function Index() {
           </Reveal>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="interests" />
 
       {/* ========================================================================= */}
       {/* 7. OSIĄGNIĘCIA I ZESPÓŁ — ZŁOTA LISTA ODZNAK */}
       {/* ========================================================================= */}
+      {show("achievements") && (
       <section className="py-24 md:py-32 bg-gradient-to-b from-transparent via-primary/5 to-transparent">
         <div className="max-w-6xl mx-auto px-6 space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -710,12 +731,14 @@ function Index() {
           </div>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="achievements" />
 
       {/* ========================================================================= */}
       {/* 8. KONTAKT — WYCENTROWANY MINIMALIZM */}
       {/* ========================================================================= */}
+      {show("kontakt") && (
       <section id="kontakt" className="mesh-bg py-24 md:py-32">
         <div className="max-w-4xl mx-auto px-6 text-center space-y-6">
           <Reveal>
@@ -761,6 +784,7 @@ function Index() {
           </Reveal>
         </div>
       </section>
+      )}
 
       <ExtraBlocks blocks={home.extra} after="kontakt" />
 

@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, FileText } from "lucide-react";
 import { SetupCycle } from "@/components/site/SetupCycle";
-import { ExtraBlockView, BlockImage } from "@/components/site/ExtraBlocks";
+import { ExtraBlockView, BlockImage, boxStyleClasses } from "@/components/site/ExtraBlocks";
+import { SiteStyleApplier } from "@/components/site/SiteStyleApplier";
 import { readPoradnik, readSite } from "@/lib/content/load.server";
 import {
   poradnikOgImage,
@@ -14,6 +15,7 @@ import {
 export const Route = createFileRoute("/poradnik-wizytowka")({
   loader: () => ({ poradnik: readPoradnik(), site: readSite() }),
   head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [] };
     const { poradnik, site } = loaderData;
     const still = poradnik.blocks
       .flatMap((b) => (b._template === "richSection" ? b.inner ?? [] : []))
@@ -62,6 +64,7 @@ function PoradnikWizytowkaPage() {
 
   return (
     <main className="grain min-h-screen mesh-bg flex flex-col text-foreground">
+      <SiteStyleApplier style={site.style} />
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/70 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif italic text-lg tracking-wide">
@@ -96,7 +99,9 @@ function PoradnikWizytowkaPage() {
 }
 
 function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
-  switch (block._template) {
+  const bs = boxStyleClasses(block.boxStyle);
+  const content = (() => {
+    switch (block._template) {
     case "hero":
       return (
         <header className="pt-32 pb-12 md:pt-40 md:pb-16 px-6 max-w-3xl mx-auto text-center">
@@ -242,7 +247,15 @@ function PoradnikBlockView({ block }: { block: PoradnikBlock }) {
       );
     default:
       return <ExtraBlockView block={block} bare />;
-  }
+    }
+  })();
+
+  if (!block.boxStyle) return content;
+  return (
+    <div className={bs.className} style={bs.style}>
+      {content}
+    </div>
+  );
 }
 
 function InnerBlockView({ block }: { block: PoradnikInnerBlock }) {

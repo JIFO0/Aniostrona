@@ -1,3 +1,23 @@
+export type SiteStyleConfig = {
+  themeId?: string;
+  fontId?: string;
+  fontSizeScale?: "sm" | "md" | "lg" | "xl";
+  headingScale?: "compact" | "normal" | "large" | "editorial";
+  radius?: "sharp" | "subtle" | "rounded" | "smooth";
+  cardStyle?: "soft" | "glass" | "bordered" | "solid";
+  photoFilter?: "normal" | "warm-cinema" | "noir" | "vintage" | "vivid" | "soft-glow";
+  showGrain?: boolean;
+  heroImageHeight?: "compact" | "normal" | "tall" | "monumental";
+  sectionSpacing?: "compact" | "normal" | "airy";
+  galleryColumns?: 2 | 3 | 4;
+  primaryColor?: string;
+  backgroundColor?: string;
+  cardColor?: string;
+  textColor?: string;
+  accentColor?: string;
+  customCss?: string;
+};
+
 export type SiteContent = {
   name: string;
   shortName: string;
@@ -26,6 +46,7 @@ export type SiteContent = {
     guideLabel?: string;
     guideHref?: string;
   };
+  style?: SiteStyleConfig;
 };
 
 export type GalleryItem = { src: string; alt: string; tall: boolean };
@@ -113,6 +134,7 @@ export type HomeContent = {
     footerLocations: string;
   };
   extra: ExtraBlock[];
+  hiddenSections?: string[];
 };
 
 export type CvContent = {
@@ -136,6 +158,20 @@ export type CvContent = {
     filename: string;
   };
   pdf: string;
+};
+
+export type BoxStyle = {
+  bg?: "none" | "cream" | "card" | "tint" | "dark" | "gradient";
+  customBg?: string;
+  customText?: string;
+  border?: "none" | "subtle" | "accent";
+  radius?: "default" | "none" | "md" | "2xl" | "full";
+  shadow?: "none" | "soft" | "strong";
+  padding?: "sm" | "md" | "lg" | "xl";
+  width?: "narrow" | "normal" | "wide" | "full";
+  align?: "left" | "center" | "right";
+  textSize?: "sm" | "base" | "lg" | "xl";
+  imageSize?: "sm" | "md" | "lg" | "full";
 };
 
 export type ExtraBlockBody =
@@ -168,11 +204,49 @@ export type ExtraBlockBody =
       buttonLabel: string;
       buttonHref: string;
       image?: string;
+    }
+  | {
+      _template: "twoCol";
+      leftTitle: string;
+      leftText: string;
+      leftImage?: string;
+      rightTitle: string;
+      rightText: string;
+      rightImage?: string;
+    }
+  | {
+      _template: "stats";
+      title: string;
+      items: { value: string; label: string; note: string }[];
+    }
+  | {
+      _template: "callout";
+      kicker: string;
+      title: string;
+      text: string;
+      image?: string;
+    }
+  | {
+      _template: "buttons";
+      title: string;
+      items: { label: string; href: string; variant: "primary" | "outline" }[];
+    }
+  | {
+      _template: "spacer";
+      height: "sm" | "md" | "lg";
+      showLine: boolean;
+    }
+  | {
+      _template: "video";
+      title: string;
+      url: string;
+      caption: string;
     };
 
 export type ExtraBlock = ExtraBlockBody & {
   id: string;
   after?: string;
+  boxStyle?: BoxStyle;
 };
 
 export type PoradnikInnerBlock =
@@ -205,7 +279,7 @@ export type PoradnikInnerBlock =
   | { _template: "image"; src: string; alt: string; caption: string }
   | { _template: "gallery"; title: string; images: { src: string; alt: string }[] };
 
-export type PoradnikBlock =
+export type PoradnikBlock = (
   | {
       _template: "hero";
       badge: string;
@@ -240,7 +314,8 @@ export type PoradnikBlock =
       image?: string;
       imageAlt?: string;
     }
-  | ExtraBlockBody;
+  | ExtraBlockBody
+) & { boxStyle?: BoxStyle };
 
 export type PoradnikContent = {
   seo: {

@@ -5,6 +5,7 @@ export {
   emptyPoradnikBlock,
   emptyPoradnikInner,
   EXTRA_BLOCK_LABELS,
+  HOME_SECTIONS,
   HOME_SLOTS,
   isSafeSlug,
   moveItem,
@@ -18,6 +19,7 @@ export { getCv, getHome, getPoradnik, getSite } from "./load";
 export { resolveMedia, poradnikOgImage } from "./media";
 export { RichText, stripRichText } from "./rich-text";
 export type {
+  BoxStyle,
   CvContent,
   CustomPage,
   ExtraBlock,
@@ -28,4 +30,5 @@ export type {
   PoradnikContent,
   PoradnikInnerBlock,
   SiteContent,
+  SiteStyleConfig,
 } from "./types";

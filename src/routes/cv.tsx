@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Lock, Download, ArrowLeft, FileText } from "lucide-react";
+import { SiteStyleApplier } from "@/components/site/SiteStyleApplier";
 import { readCv, readSite } from "@/lib/content/load.server";
 
 const isStaticExport = import.meta.env.EXPORT_STATIC === "1";
@@ -9,6 +10,7 @@ const staticPassword = String(import.meta.env.CV_STATIC_PASSWORD ?? "");
 export const Route = createFileRoute("/cv")({
   loader: () => ({ cv: readCv(), site: readSite() }),
   head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [] };
     const { cv, site } = loaderData;
     return {
       meta: [
@@ -84,6 +86,7 @@ function CVPage() {
 
   return (
     <main className="grain min-h-screen mesh-bg flex flex-col">
+      <SiteStyleApplier style={site.style} />
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif italic text-lg tracking-wide">

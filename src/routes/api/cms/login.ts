@@ -6,7 +6,10 @@ export const Route = createFileRoute("/api/cms/login")({
     handlers: {
       POST: async ({ request }) => {
         if (!cmsConfigured()) {
-          return Response.json({ ok: false, error: "CMS_PASSWORD nie jest ustawione na serwerze." }, { status: 500 });
+          return Response.json(
+            { ok: false, error: "CMS_PASSWORD ani CMS_ACCESS_KEY nie są ustawione na serwerze." },
+            { status: 500 },
+          );
         }
         let body: { password?: unknown };
         try {

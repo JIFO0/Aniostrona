@@ -3,11 +3,13 @@ import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 const COOKIE = "ania_cms";
 
 function secret(): string {
-  return process.env.CMS_SECRET || process.env.CMS_PASSWORD || "";
+  return process.env.CMS_SECRET || process.env.CMS_PASSWORD || process.env.CMS_ACCESS_KEY || "";
 }
 
-function expectedPassword(): string {
-  return process.env.CMS_PASSWORD || "";
+function expectedKeys(): string[] {
+  return [process.env.CMS_PASSWORD, process.env.CMS_ACCESS_KEY]
+    .map((value) => (value || "").trim())
+    .filter(Boolean);
 }
 
 function hmac(value: string): string {
@@ -21,13 +23,18 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export function cmsConfigured(): boolean {
-  return Boolean(expectedPassword());
+  return expectedKeys().length > 0;
 }
 
 export function passwordOk(input: string): boolean {
-  const expected = expectedPassword();
-  if (!expected) return false;
-  return safeEqual(input.trim(), expected.trim());
+  const keys = expectedKeys();
+  if (!keys.length) return false;
+  const candidate = input.trim();
+  let matched = false;
+  for (const key of keys) {
+    if (safeEqual(candidate, key)) matched = true;
+  }
+  return matched;
 }
 
 export function makeSessionCookie(): string {
@@ -41,7 +48,7 @@ export function clearSessionCookie(): string {
 }
 
 export function hasValidSession(request: Request): boolean {
-  if (!expectedPassword()) return false;
+  if (!cmsConfigured()) return false;
   const cookie = request.headers.get("cookie") ?? "";
   const match = cookie.match(new RegExp(`(?:^|;\\s*)${COOKIE}=([^;]+)`));
   const token = match?.[1];

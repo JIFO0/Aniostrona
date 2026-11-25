@@ -1,6 +1,7 @@
 import { Field, ImageField, ImageListField, TextArea, TextInput } from "@/components/cms/fields";
 import { AddMenu, AddOne, EditorCard } from "@/components/cms/controls";
 import { ExtraBodyFields } from "@/components/cms/extra-editor";
+import { BoxStyleFields } from "@/components/cms/style-fields";
 import {
   emptyPoradnikBlock,
   emptyPoradnikInner,
@@ -105,7 +106,15 @@ export function PoradnikFields({
             block={block}
             onChange={(next) => {
               const blocks = [...poradnik.blocks];
-              blocks[i] = next;
+              blocks[i] = { ...next, boxStyle: block.boxStyle };
+              setBlocks(blocks);
+            }}
+          />
+          <BoxStyleFields
+            value={block.boxStyle}
+            onChange={(boxStyle) => {
+              const blocks = [...poradnik.blocks];
+              blocks[i] = { ...block, boxStyle };
               setBlocks(blocks);
             }}
           />

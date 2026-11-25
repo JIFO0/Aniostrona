@@ -71,6 +71,18 @@ export const HOME_SLOTS = [
   { id: "kontakt", label: "po Kontakcie (przed stopką)" },
 ] as const;
 
+export const HOME_SECTIONS = [
+  { id: "hero", label: "Hero (okładka)" },
+  { id: "o-mnie", label: "O mnie" },
+  { id: "czym", label: "Czym się zajmuję" },
+  { id: "stats", label: "Liczby" },
+  { id: "galeria", label: "Galeria" },
+  { id: "sciezka", label: "Moja droga" },
+  { id: "interests", label: "Zainteresowania" },
+  { id: "achievements", label: "Osiągnięcia i zespół" },
+  { id: "kontakt", label: "Kontakt" },
+] as const;
+
 export type ExtraTemplate = ExtraBlockBody["_template"];
 
 export const EXTRA_BLOCK_LABELS: Record<ExtraTemplate, string> = {
@@ -78,11 +90,17 @@ export const EXTRA_BLOCK_LABELS: Record<ExtraTemplate, string> = {
   text: "Tekst",
   image: "Zdjęcie",
   imageText: "Zdjęcie + tekst",
+  twoCol: "Dwie kolumny",
   gallery: "Galeria",
   cards: "Karty",
+  stats: "Liczby / kafelki",
+  callout: "Ramka wyróżnienia",
   quote: "Cytat",
   list: "Lista",
   ctaBox: "Przycisk / CTA",
+  buttons: "Rząd przycisków",
+  video: "Wideo / YouTube",
+  spacer: "Odstęp / linia",
 };
 
 export function emptyExtraBody(template: ExtraTemplate): ExtraBlockBody {
@@ -95,10 +113,24 @@ export function emptyExtraBody(template: ExtraTemplate): ExtraBlockBody {
       return { _template: "image", src: "", alt: "", caption: "" };
     case "imageText":
       return { _template: "imageText", src: "", alt: "", title: "", body: "", imageSide: "left" };
+    case "twoCol":
+      return {
+        _template: "twoCol",
+        leftTitle: "",
+        leftText: "",
+        leftImage: "",
+        rightTitle: "",
+        rightText: "",
+        rightImage: "",
+      };
     case "gallery":
       return { _template: "gallery", title: "", images: [{ src: "", alt: "" }] };
     case "cards":
       return { _template: "cards", title: "", items: [{ title: "", text: "", image: "" }] };
+    case "stats":
+      return { _template: "stats", title: "", items: [{ value: "10+", label: "Projektów", note: "" }] };
+    case "callout":
+      return { _template: "callout", kicker: "", title: "", text: "", image: "" };
     case "quote":
       return { _template: "quote", text: "", cite: "", image: "" };
     case "list":
@@ -112,6 +144,16 @@ export function emptyExtraBody(template: ExtraTemplate): ExtraBlockBody {
         buttonHref: "/#kontakt",
         image: "",
       };
+    case "buttons":
+      return {
+        _template: "buttons",
+        title: "",
+        items: [{ label: "Zobacz więcej", href: "/#kontakt", variant: "primary" }],
+      };
+    case "video":
+      return { _template: "video", title: "", url: "", caption: "" };
+    case "spacer":
+      return { _template: "spacer", height: "md", showLine: true };
   }
 }
 

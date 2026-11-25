@@ -1,6 +1,7 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
 import { ExtraBlockView } from "@/components/site/ExtraBlocks";
+import { SiteStyleApplier } from "@/components/site/SiteStyleApplier";
 import { readCustomPage, readSite } from "@/lib/content/load.server";
 
 export const Route = createFileRoute("/s/$slug")({
@@ -29,6 +30,7 @@ function CustomPageView() {
   const { page, site } = Route.useLoaderData();
   return (
     <main className="grain min-h-screen mesh-bg text-foreground">
+      <SiteStyleApplier style={site.style} />
       <nav className="fixed top-0 left-0 right-0 z-40 backdrop-blur-md bg-cream/60 border-b border-border/40">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="font-serif italic text-lg tracking-wide">
